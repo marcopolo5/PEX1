@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Andreea Purta\source\repos\WPF ClientAPP\obj\Debug\
+C:\Repos\WPF ClientAPP\obj\Debug\
 WPF_ClientAPP
 none
 false
 DEBUG;TRACE
-C:\Users\Andreea Purta\source\repos\WPF ClientAPP\App.xaml
+C:\Repos\WPF ClientAPP\App.xaml
 11151548125
 
 61522651010
 13152784993
 MainWindow.xaml;
 
-True
+False
 
