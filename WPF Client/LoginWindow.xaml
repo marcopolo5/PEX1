@@ -1,0 +1,20 @@
+﻿<Window x:Class="ElearningClient.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ElearningClient"
+        mc:Ignorable="d"
+        Title="LoginWindow" Height="500" Width="500">
+    <StackPanel Margin="20">
+        <Label Content="Username"></Label>
+        <TextBox Name = "UsernameTxt" Height="45"></TextBox>
+
+        <Label Content="Password"></Label>
+        <TextBox Name = "PasswordTxt" Height="45" RenderTransformOrigin="0.495,2.513"/>
+
+        <Button Name="LoginBtn" Content="Login" Height="41" Margin="0,10,0,0" Click="LoginBtn_Click"></Button>
+        <Button Name="RegisterBtn" Content="Register" Height="41" Margin="0,10,0,0" Click="RegisterBtn_Click"></Button>
+    </StackPanel>
+    
+</Window>

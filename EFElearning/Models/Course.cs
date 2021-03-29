@@ -1,8 +1,8 @@
-﻿using EFElearning.Validation;
+﻿using ElearningDatabase.Validation;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace EFElearning.Models
+namespace ElearningDatabase.Models
 {
     public enum DifficultyEnum
     {

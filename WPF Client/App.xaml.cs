@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace WPF_Client
+namespace ElearningClient
 {
     /// <summary>
     /// Interaction logic for App.xaml

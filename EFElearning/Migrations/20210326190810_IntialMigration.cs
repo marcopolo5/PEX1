@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace EFElearning.Migrations
+namespace ElearningDatabase.Migrations
 {
     public partial class IntialMigration : Migration
     {

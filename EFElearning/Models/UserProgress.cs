@@ -1,4 +1,4 @@
-﻿namespace EFElearning.Models
+﻿namespace ElearningDatabase.Models
 {
     public class UserProgress
     {

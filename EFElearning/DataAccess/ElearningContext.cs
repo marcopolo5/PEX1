@@ -1,7 +1,7 @@
-﻿using EFElearning.Models;
+﻿using ElearningDatabase.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace EFElearning
+namespace ElearningDatabase
 {
     public class ElearningContext : DbContext
     {

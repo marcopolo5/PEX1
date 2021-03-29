@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EFElearning\EFElearning.csproj" />
+    <ProjectReference Include="..\EFElearning\Elearning.Database.csproj" />
   </ItemGroup>
 
 </Project>

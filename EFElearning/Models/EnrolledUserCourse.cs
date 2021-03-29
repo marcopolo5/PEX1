@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace EFElearning.Models
+namespace ElearningDatabase.Models
 {
     public class EnrolledUserCourse
     {

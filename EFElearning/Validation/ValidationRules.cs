@@ -1,4 +1,4 @@
-﻿namespace EFElearning.Validation
+﻿namespace ElearningDatabase.Validation
 {
     public class ValidationRules
     {

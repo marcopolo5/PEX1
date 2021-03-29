@@ -1,9 +1,9 @@
-﻿using EFElearning;
+﻿using ElearningDatabase;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 using System.Windows;
 
-namespace WPF_Client
+namespace ElearningClient
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -14,7 +14,7 @@ namespace WPF_Client
 
         public MainWindow()
         {
-              InitializeComponent();
+             InitializeComponent();
             GetConnection();
         }
 
