@@ -1,8 +1,13 @@
 {
   "ExpandedNodes": [
     "",
-    "\\WpfClientApp"
+    "\\EFElearning",
+    "\\EFElearning\\DataAccess",
+    "\\EFElearning\\Migrations",
+    "\\EFElearning\\Models",
+    "\\EFElearning\\Validation",
+    "\\WPF Client"
   ],
-  "SelectedNode": "\\WpfClientApp",
+  "SelectedNode": "\\WPF Client\\MainWindow.xaml.cs",
   "PreviewInSolutionExplorer": false
 }

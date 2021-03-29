@@ -14,8 +14,8 @@ namespace WPF_Client
 
         public MainWindow()
         {
+              InitializeComponent();
             GetConnection();
-            InitializeComponent();
         }
 
         public void GetConnection()
