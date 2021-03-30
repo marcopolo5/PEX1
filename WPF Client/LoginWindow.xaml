@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ElearningClient"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="500" Width="500">
+        Title="LoginWindow" Height="450" Width="500">
     <StackPanel Margin="20">
         <Label Content="Username"></Label>
         <TextBox Name = "UsernameTxt" Height="45"></TextBox>

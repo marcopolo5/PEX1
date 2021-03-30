@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EFElearning\Elearning.Database.csproj" />
+    <ProjectReference Include="..\Elearning.Business\Elearning.Business.csproj" />
   </ItemGroup>
 
 </Project>
