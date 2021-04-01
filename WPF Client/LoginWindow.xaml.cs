@@ -98,8 +98,11 @@ namespace ElearningClient
 
             try
             {
-                register.ValidateRegister(username,password, firstname, lastname, confirmPassword, checkInstructor, email);
-                this.ShowMainWindow();
+                if (register.ValidateRegister(username, password, firstname, lastname, confirmPassword, checkInstructor, email))
+                {
+                    this.ShowMainWindow();
+                }
+
             }
             catch (Exception ex)
             {
