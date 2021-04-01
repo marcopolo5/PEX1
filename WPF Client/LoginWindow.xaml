@@ -5,16 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ElearningClient"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="500" Width="500">
+        Title="LoginWindow" Height="800" Width="800">
     <StackPanel Margin="20">
+        <Label Content="Username"></Label>
+        <TextBox Name = "LoginUsernameTxt" Height="45"></TextBox>
+
+        <Label Content="Password"></Label>
+        <TextBox Name = "LoginPasswordTxt" Height="45" RenderTransformOrigin="0.495,2.513"/>
+
+        <Label Content="---------------"></Label>
+
+        <Label Content="First Name"></Label>
+        <TextBox Name = "FirstNameTxt" Height="45"></TextBox>
+
+        <Label Content="Last Name"></Label>
+        <TextBox Name = "LastNameTxt" Height="45"></TextBox>
+
+        <Label Content="Email"></Label>
+        <TextBox Name = "EmailTxt" Height="45" RenderTransformOrigin="0.495,2.513"/>
+
         <Label Content="Username"></Label>
         <TextBox Name = "UsernameTxt" Height="45"></TextBox>
 
         <Label Content="Password"></Label>
         <TextBox Name = "PasswordTxt" Height="45" RenderTransformOrigin="0.495,2.513"/>
 
+        <Label Content="Confirm Password"></Label>
+        <TextBox Name = "ConfirmPasswordTxt" Height="45"></TextBox>
+
         <Button Name="LoginBtn" Content="Login" Height="41" Margin="0,10,0,0" Click="LoginBtn_Click"></Button>
         <Button Name="RegisterBtn" Content="Register" Height="41" Margin="0,10,0,0" Click="RegisterBtn_Click"></Button>
+        <CheckBox Name="InstructorCheck" Content="I'm an instructor" IsChecked="false"></CheckBox>
     </StackPanel>
     
 </Window>

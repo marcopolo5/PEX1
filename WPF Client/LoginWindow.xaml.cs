@@ -25,19 +25,22 @@ namespace ElearningClient
             InitializeComponent();
         }
 
-        private void LoginBtn_Click(object sender, RoutedEventArgs e)
+        private SqlConnection EstablishConnection()
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
             try
             {
+                
                 if (conn.State == ConnectionState.Closed)
-                { 
-                    conn.Open(); 
+                {
+                    conn.Open();
+    
                 }
+                return conn;
 
-                CheckLogin(conn);
             }
-            catch(Exception ex)
+            
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -45,12 +48,20 @@ namespace ElearningClient
             {
                 conn.Close();
             }
+
+            return conn;
+            
+        }
+        private void LoginBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var establishConnection= EstablishConnection();
+            CheckLogin(establishConnection);
         }
 
         private void CheckLogin(SqlConnection conn)
         {
-            String username = UsernameTxt.Text;
-            String password = PasswordTxt.Text;
+            String username = LoginUsernameTxt.Text;
+            String password = LoginPasswordTxt.Text;
 
             String query = "SELECT COUNT(*) FROM Users " +
                 "WHERE (Username = @Username AND Password = @Password) OR " +
@@ -76,7 +87,7 @@ namespace ElearningClient
 
         private void RegisterBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            EstablishConnection();
         }
     }
 }
