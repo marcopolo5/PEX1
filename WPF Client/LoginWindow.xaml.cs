@@ -11,7 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Microsoft.Data.SqlClient;
+using Elearning.Business;
+using System.Data.SqlClient;
 
 namespace ElearningClient
 {
@@ -42,6 +43,7 @@ namespace ElearningClient
             
             catch (Exception ex)
             {
+                
                 MessageBox.Show(ex.Message);
             }
             finally
@@ -54,40 +56,63 @@ namespace ElearningClient
         }
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            var establishConnection= EstablishConnection();
-            CheckLogin(establishConnection);
+            var establishConnection = EstablishConnection();
+            establishConnection.Open();
+            Login login = new Login();
+            String username = UsernameTxt.Text;
+            String password = PasswordTxt.Text;
+            try
+            {
+                login.ValidateLogin(establishConnection, username, password);
+                this.ShowMainWindow();
+            }
+            catch(Exception ex)
+            {
+                UsernameTxt.Clear();
+                PasswordTxt.Clear();
+                MessageBox.Show(ex.Message);
+            }
+            
+            
+            
         }
 
-        private void CheckLogin(SqlConnection conn)
+        public void ShowMainWindow()
         {
-            String username = LoginUsernameTxt.Text;
-            String password = LoginPasswordTxt.Text;
-
-            String query = "SELECT COUNT(*) FROM Users " +
-                "WHERE (Username = @Username AND Password = @Password) OR " +
-                "(Email = @Username AND Password = @Password)";
-
-            SqlCommand command = new SqlCommand(query, conn);
-            command.CommandType = CommandType.Text;
-            command.Parameters.AddWithValue("@Username", username);
-            command.Parameters.AddWithValue("@Password", password);
-            int count = Convert.ToInt32(command.ExecuteScalar());
-
-            if (count == 1)
-            {
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Invalid credentials!");
-            }
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
         }
 
         private void RegisterBtn_Click(object sender, RoutedEventArgs e)
         {
             EstablishConnection();
+            Register register = new Register();
+            string username = UsernameTxt.Text;
+            string password = PasswordTxt.Text;
+            string firstname = FirstNameTxt.Text;
+            string lastname = LastNameTxt.Text;
+            string confirmPassword = ConfirmPasswordTxt.Text;
+            bool checkInstructor = InstructorCheck.IsEnabled;
+            string email = EmailTxt.Text;
+
+            try
+            {
+                register.ValidateRegister(username,password, firstname, lastname, confirmPassword, checkInstructor, email);
+                this.ShowMainWindow();
+            }
+            catch (Exception ex)
+            {
+                UsernameTxt.Clear();
+                PasswordTxt.Clear();
+                FirstNameTxt.Clear();
+                LastNameTxt.Clear();
+                ConfirmPasswordTxt.Clear();
+                EmailTxt.Clear();
+
+                MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }
