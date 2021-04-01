@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Elearning.Business;
+using ElearningDatabase;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Configuration;
 using System.Data;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Elearning.Business;
 using System.Data.SqlClient;
+using System.Windows;
 
 namespace ElearningClient
 {
@@ -21,9 +14,21 @@ namespace ElearningClient
     /// </summary>
     public partial class LoginWindow : Window
     {
+        private ElearningContext db;
+
+
+        public void GetConnection()
+        {
+            var dbCOntext = new DbContextOptionsBuilder<ElearningContext>();
+            dbCOntext.UseSqlServer(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+            db = new ElearningContext(dbCOntext.Options);
+            db.Migrate();
+        } 
+
         public LoginWindow()
         {
             InitializeComponent();
+            GetConnection();
         }
 
         private SqlConnection EstablishConnection()
@@ -31,19 +36,14 @@ namespace ElearningClient
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
             try
             {
-                
                 if (conn.State == ConnectionState.Closed)
                 {
                     conn.Open();
-    
                 }
                 return conn;
-
             }
-            
             catch (Exception ex)
             {
-                
                 MessageBox.Show(ex.Message);
             }
             finally
@@ -52,29 +52,26 @@ namespace ElearningClient
             }
 
             return conn;
-            
         }
+
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
             var establishConnection = EstablishConnection();
             establishConnection.Open();
             Login login = new Login();
-            String username = UsernameTxt.Text;
-            String password = PasswordTxt.Text;
+            string username = LoginUsernameTxt.Text;
+            string password = LoginPasswordTxt.Text;
             try
             {
                 login.ValidateLogin(establishConnection, username, password);
                 this.ShowMainWindow();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 UsernameTxt.Clear();
                 PasswordTxt.Clear();
                 MessageBox.Show(ex.Message);
             }
-            
-            
-            
         }
 
         public void ShowMainWindow()
@@ -86,7 +83,7 @@ namespace ElearningClient
 
         private void RegisterBtn_Click(object sender, RoutedEventArgs e)
         {
-            EstablishConnection();
+          
             Register register = new Register();
             string username = UsernameTxt.Text;
             string password = PasswordTxt.Text;
@@ -102,7 +99,6 @@ namespace ElearningClient
                 {
                     this.ShowMainWindow();
                 }
-
             }
             catch (Exception ex)
             {
@@ -115,7 +111,6 @@ namespace ElearningClient
 
                 MessageBox.Show(ex.Message);
             }
-
         }
     }
 }

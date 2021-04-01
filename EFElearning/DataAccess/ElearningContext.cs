@@ -13,6 +13,10 @@ namespace ElearningDatabase
         {
         }
 
+        public ElearningContext(DbContextOptions options): base(options)
+        {
+        }
+
         public string ConnectionString { get; }
 
         public DbSet<Course> Courses { get; set; }
@@ -26,6 +30,11 @@ namespace ElearningDatabase
         public void Migrate()
         {
             this.Database.Migrate();
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Data Source=(localdb)\\ProjectsV13;Initial Catalog=Example;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

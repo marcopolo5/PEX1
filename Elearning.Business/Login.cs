@@ -6,9 +6,9 @@ namespace Elearning.Business
 {
     public class Login
     {
-        public void ValidateLogin(SqlConnection conn, String username, String password)
+        public void ValidateLogin(SqlConnection conn, string username, string password)
         {
-            String query = "SELECT COUNT(*) FROM Users " +
+            string query = "SELECT COUNT(*) FROM Users " +
                 "WHERE (Username = @Username AND Password = @Password) OR " +
                 "(Email = @Username AND Password = @Password)";
 

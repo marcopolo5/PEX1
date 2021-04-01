@@ -38,5 +38,5 @@
         <Button Name="RegisterBtn" Content="Register" Height="41" Margin="0,10,0,0" Click="RegisterBtn_Click"></Button>
         <CheckBox Name="InstructorCheck" Content="I'm an instructor" IsChecked="false"></CheckBox>
     </StackPanel>
-    
+
 </Window>

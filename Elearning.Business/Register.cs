@@ -1,11 +1,6 @@
 ﻿using ElearningDatabase;
 using ElearningDatabase.Models;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
 
 namespace Elearning.Business
 {
@@ -19,12 +14,10 @@ namespace Elearning.Business
             {
                 role = RoleEnum.Trainer;
             }
-            if (CheckPassword(password, confirmPassword))
+            if (CheckPassword(password, confirmPassword) && IsValidEmail(email))
             {
-
                 using (ElearningContext elearningContext = new ElearningContext())
                 {
-
                     elearningContext.Users.Add(new User()
                     {
                         FirstName = firstname,
@@ -32,17 +25,27 @@ namespace Elearning.Business
                         Username = username,
                         Password = password,
                         Role = role,
-                        Email= email
-
+                        Email = email
                     });
                     elearningContext.SaveChanges();
                 }
 
                 return true;
-
             }
             return false;
+        }
 
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private bool CheckPassword(string password, string confirmPassword)
@@ -84,6 +87,5 @@ namespace Elearning.Business
 
             return false;
         }
-
     }
 }
