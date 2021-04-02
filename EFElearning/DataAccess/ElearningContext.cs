@@ -1,4 +1,5 @@
-﻿using ElearningDatabase.Models;
+﻿using Elearning.Database;
+using ElearningDatabase.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace ElearningDatabase
@@ -13,7 +14,7 @@ namespace ElearningDatabase
         {
         }
 
-        public ElearningContext(DbContextOptions options): base(options)
+        public ElearningContext(DbContextOptions options) : base(options)
         {
         }
 
@@ -34,7 +35,7 @@ namespace ElearningDatabase
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=(localdb)\\ProjectsV13;Initial Catalog=Example;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            optionsBuilder.UseSqlServer(ResourceFile.connectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

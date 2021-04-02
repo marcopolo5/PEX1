@@ -16,14 +16,13 @@ namespace ElearningClient
     {
         private ElearningContext db;
 
-
         public void GetConnection()
         {
             var dbCOntext = new DbContextOptionsBuilder<ElearningContext>();
-            dbCOntext.UseSqlServer(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+            dbCOntext.UseSqlServer(Elearning.Database.ResourceFile.connectionString);
             db = new ElearningContext(dbCOntext.Options);
             db.Migrate();
-        } 
+        }
 
         public LoginWindow()
         {
@@ -83,7 +82,6 @@ namespace ElearningClient
 
         private void RegisterBtn_Click(object sender, RoutedEventArgs e)
         {
-          
             Register register = new Register();
             string username = UsernameTxt.Text;
             string password = PasswordTxt.Text;
