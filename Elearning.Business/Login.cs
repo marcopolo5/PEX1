@@ -1,6 +1,10 @@
-﻿using System;
+﻿using ElearningDatabase;
+using ElearningDatabase.Models;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Elearning.Business
 {
@@ -22,6 +26,23 @@ namespace Elearning.Business
             {
                 throw new Exception("Invalid credentials!");
             }
+        }
+
+        public User GetLoggedUser(string username, string password)
+        {
+            ElearningContext context = new ElearningContext();
+            var matchingUsers = context.Users
+                               .Where(user => (user.Username == username || user.Email == username) && user.Password == password)
+                               .Select(user => user)
+                               .Cast<User>();
+
+            int numberOfMatchingUsers = matchingUsers.Count();
+
+            if (numberOfMatchingUsers != 1)
+            {
+                throw new Exception("Invalid credentials!");
+            }
+            return matchingUsers.FirstOrDefault();
         }
     }
 

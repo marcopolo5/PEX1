@@ -1,5 +1,6 @@
 ﻿using Elearning.Business;
 using ElearningDatabase;
+using ElearningDatabase.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Configuration;
@@ -62,8 +63,8 @@ namespace ElearningClient
             string password = LoginPasswordTxt.Text;
             try
             {
-                login.ValidateLogin(establishConnection, username, password);
-                this.ShowMainWindow();
+                User loggedUser = login.GetLoggedUser(username, password);
+                this.ShowMainWindow(loggedUser);
             }
             catch (Exception ex)
             {
@@ -73,9 +74,10 @@ namespace ElearningClient
             }
         }
 
-        public void ShowMainWindow()
+        public void ShowMainWindow(User user)
         {
             MainWindow mainWindow = new MainWindow();
+            mainWindow.SetUser(user);
             mainWindow.Show();
             this.Close();
         }
@@ -95,7 +97,7 @@ namespace ElearningClient
             {
                 if (register.ValidateRegister(username, password, firstname, lastname, confirmPassword, checkInstructor, email))
                 {
-                    this.ShowMainWindow();
+                    //this.ShowMainWindow();
                 }
             }
             catch (Exception ex)

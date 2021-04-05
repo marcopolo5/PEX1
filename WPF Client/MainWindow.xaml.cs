@@ -1,7 +1,9 @@
 ﻿using ElearningDatabase;
+using ElearningDatabase.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 using System.Windows;
+using Elearning.Business;
 
 namespace ElearningClient
 {
@@ -11,19 +13,33 @@ namespace ElearningClient
     public partial class MainWindow : Window
     {
         private ElearningContext db;
+        private User user;
 
         public MainWindow()
         {
-             InitializeComponent();
+            InitializeComponent();
             GetConnection();
+            InitializeCoursesDataGrid();
         }
 
         public void GetConnection()
         {
             var dbCOntext = new DbContextOptionsBuilder<ElearningContext>();
-            dbCOntext.UseSqlServer(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+            dbCOntext.UseSqlServer(Elearning.Database.ResourceFile.connectionString);
             db = new ElearningContext(dbCOntext.Options);
             db.Migrate();
         }
+
+        public void SetUser(User user)
+        {
+            this.user = user;
+        }
+
+        public void InitializeCoursesDataGrid()
+        {
+            AllCoursesBusiness courses = new AllCoursesBusiness();
+            CoursesDataGrid.ItemsSource = courses.GetAllCoursesOfAnUser(this.user);
+        }
+
     }
 }
