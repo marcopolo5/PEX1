@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Windows;
+using System.Windows.Input;
 
 namespace ElearningClient
 {
@@ -30,6 +31,7 @@ namespace ElearningClient
         {
             InitializeComponent();
             GetConnection();
+            signupGrid.Visibility = Visibility.Hidden;
         }
 
         private SqlConnection EstablishConnection()
@@ -59,7 +61,7 @@ namespace ElearningClient
         {
             Login login = new Login();
             string username = LoginUsernameTxt.Text;
-            string password = LoginPasswordTxt.Text;
+            string password = LoginPasswordTxt.Password.ToString();
             try
             {
                 User loggedUser = login.GetLoggedUser(username, password);
@@ -89,11 +91,12 @@ namespace ElearningClient
         {
             Register register = new Register();
             string username = UsernameTxt.Text;
-            string password = PasswordTxt.Text;
+            string password = PasswordTxt.Password.ToString();
             string firstname = FirstNameTxt.Text;
             string lastname = LastNameTxt.Text;
-            string confirmPassword = ConfirmPasswordTxt.Text;
-            bool checkInstructor = InstructorCheck.IsEnabled;
+            string confirmPassword = ConfirmPasswordTxt.Password.ToString();
+            bool checkInstructor = InstructorRadioBtn.IsEnabled;
+            bool checkStudent = StudentRadioBtn.IsEnabled;
             string email = EmailTxt.Text;
 
             try
@@ -114,6 +117,55 @@ namespace ElearningClient
 
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        //button events
+        private void LoginPasswordTxt_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (Keyboard.GetKeyStates(Key.CapsLock) == KeyStates.Toggled)
+            {
+                capslock1.Content = "CAPS LOCK IS ON";
+            }
+            else
+            {
+                capslock1.Content = "";
+            }
+        }
+
+        private void PasswordTxt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Keyboard.GetKeyStates(Key.CapsLock) == KeyStates.Toggled)
+            {
+                capslock2.Content = "CAPS LOCK IS ON";
+            }
+            else
+            {
+                capslock2.Content = "";
+            }
+        }
+
+        private void ConfirmPasswordTxt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Keyboard.GetKeyStates(Key.CapsLock) == KeyStates.Toggled)
+            {
+                capslock3.Content = "CAPS LOCK IS ON";
+            }
+            else
+            {
+                capslock3.Content = "";
+            }
+        }
+
+        private void signinBtn_Click(object sender, RoutedEventArgs e)
+        {
+            signupGrid.Visibility = Visibility.Hidden;
+            signinGrid.Visibility = Visibility.Visible;
+        }
+
+        private void signupBtn_Click(object sender, RoutedEventArgs e)
+        {
+            signinGrid.Visibility = Visibility.Hidden;
+            signupGrid.Visibility = Visibility.Visible;
         }
     }
 }
