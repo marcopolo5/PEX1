@@ -14,19 +14,42 @@ namespace Elearning.Business
         {
             using (ElearningContext context = new ElearningContext())
             {
-                try
-                {
+                //try
+                //{
                     var usersCourses = context.UserProgresses
                                       .Where(enrollment => enrollment.UserId == user.Id)
                                       .Select(enrollment => enrollment.Course)
                     .ToList();
                     return usersCourses;
-                }
-                catch (Exception exception)
-                {
-                    return new List<Course>();
-                }
-                
+                //}
+                //catch (Exception exception)
+                //{
+                //    return new List<Course>();
+                //}
+                //TODO: handling exceptions?
+            }
+        }
+
+        public List<Course> GetSuggestedCoursesForAnUser(User user)
+        {
+            using (ElearningContext context = new ElearningContext())
+            {
+                //try
+                //{
+                    var usersCourses = context.UserProgresses
+                                      .Where(enrollment => enrollment.UserId == user.Id)
+                                      .Select(enrollment => enrollment.Course);
+                    var allCourses = context.Courses
+                                        .Select(course => course);
+
+                    var suggestedCourses = allCourses.Except(usersCourses).ToList();
+                    return suggestedCourses;
+                //}
+                //catch (Exception exception)
+                //{
+                //    return new List<Course>();
+                //}
+
             }
         }
     }

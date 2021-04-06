@@ -7,8 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <DataGrid Height="300px" Name="CoursesDataGrid">
-            
-        </DataGrid>
+        <Label Content="Your courses:" FontSize="20" Margin="0,28,0,-28" ></Label>
+        <DataGrid Name="CoursesDataGrid" Margin="0,67,0,239"/>
+        <Label Content="You can try also:" FontSize="20" Margin="0,200,0,-200" ></Label>
+        <DataGrid Name="SuggestedCoursesDataGrid" Margin="0,244, 0,62"/>
     </Grid>
 </Window>

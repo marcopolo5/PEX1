@@ -35,14 +35,24 @@ namespace ElearningClient
         {
             Debug.WriteLine("set user: user = " + user + " user id = " + user.Id);
             this.user = user;
+            InitializeGrids();
+        }
+        public void InitializeGrids()
+        {
             InitializeCoursesDataGrid();
+            InitializeSuggestedCoursesDataGrid();
         }
 
         public void InitializeCoursesDataGrid()
         {
-            
             AllCoursesBusiness courses = new AllCoursesBusiness();
             CoursesDataGrid.ItemsSource = courses.GetAllCoursesOfAnUser(this.user);
+        }
+
+        public void InitializeSuggestedCoursesDataGrid()
+        {
+            AllCoursesBusiness courses = new AllCoursesBusiness();
+            SuggestedCoursesDataGrid.ItemsSource = courses.GetSuggestedCoursesForAnUser(this.user);
         }
 
     }
