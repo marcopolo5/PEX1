@@ -6,6 +6,7 @@ using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Windows;
 
 namespace ElearningClient
@@ -56,15 +57,17 @@ namespace ElearningClient
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            var establishConnection = EstablishConnection();
-            establishConnection.Open();
             Login login = new Login();
             string username = LoginUsernameTxt.Text;
             string password = LoginPasswordTxt.Text;
             try
             {
                 User loggedUser = login.GetLoggedUser(username, password);
-                this.ShowMainWindow(loggedUser);
+                // Debug.WriteLine("on clik: logged user = " + loggedUser + " id = " + loggedUser.Id);
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.SetUser(loggedUser);
+                mainWindow.Show();
+                this.Close();
             }
             catch (Exception ex)
             {

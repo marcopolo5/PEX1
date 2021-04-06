@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 using System.Windows;
 using Elearning.Business;
+using System.Diagnostics;
 
 namespace ElearningClient
 {
@@ -19,7 +20,7 @@ namespace ElearningClient
         {
             InitializeComponent();
             GetConnection();
-            InitializeCoursesDataGrid();
+            
         }
 
         public void GetConnection()
@@ -32,11 +33,14 @@ namespace ElearningClient
 
         public void SetUser(User user)
         {
+            Debug.WriteLine("set user: user = " + user + " user id = " + user.Id);
             this.user = user;
+            InitializeCoursesDataGrid();
         }
 
         public void InitializeCoursesDataGrid()
         {
+            
             AllCoursesBusiness courses = new AllCoursesBusiness();
             CoursesDataGrid.ItemsSource = courses.GetAllCoursesOfAnUser(this.user);
         }
