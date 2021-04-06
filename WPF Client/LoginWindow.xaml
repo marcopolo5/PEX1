@@ -5,38 +5,211 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ElearningClient"
         mc:Ignorable="d"
-       Title="LoginWindow" Height="800" Width="800">
+       Title="e-Learning" 
+        SizeToContent="WidthAndHeight">
 
-    <StackPanel Margin="20">
-        <Label Content="Username"></Label>
-        <TextBox Name = "LoginUsernameTxt" Height="45"></TextBox>
+    <Window.Resources>
+        <Style x:Key="textBox" TargetType="{x:Type TextBox}">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="UseLayoutRounding" Value="True"/>
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="Foreground" Value="#F0E1DE"/>
+            <Setter Property="CaretBrush" Value="#F0E1DE"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <Border CornerRadius="12"  Background="#5885AF" Opacity="0.45"/>
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="5,0,0,0" VerticalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
-        <Label Content="Password"></Label>
-        <TextBox Name = "LoginPasswordTxt" Height="45" RenderTransformOrigin="0.495,2.513"/>
+        <Style x:Key="passwordBox" TargetType="{x:Type PasswordBox}">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="UseLayoutRounding" Value="True"/>
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="Foreground" Value="#F0E1DE"/>
+            <Setter Property="CaretBrush" Value="#F0E1DE"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type PasswordBox}">
+                        <Grid>
+                            <Border CornerRadius="12" Background="#5885AF" Opacity="0.45"/>
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="5,0,0,0" VerticalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
-        <Label Content="---------------"></Label>
+        <Style x:Key="buttonTemplate" TargetType="{x:Type Button}">
+            <Setter Property="Height" Value="27"/>
+            <Setter Property="Foreground" Value="white"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="btn" CornerRadius="13" Background="#84C7F2" Padding="2" Opacity="0.86" Margin="0,0,0,-5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
-        <Label Content="First Name"></Label>
-        <TextBox Name = "FirstNameTxt" Height="45"></TextBox>
 
-        <Label Content="Last Name"></Label>
-        <TextBox Name = "LastNameTxt" Height="45"></TextBox>
+        <Style x:Key="switchGrid" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Height" Value="27"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="TextElement.Foreground" Value="#D4F1F4"/>
+            <Setter Property="TextElement.FontSize" Value="18"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="12" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="TextElement.Foreground" Value="#D4F1F4"/>
+                                <Setter Property="TextElement.FontStyle" Value="Oblique"/>
+                                <Setter Property="TextElement.FontWeight" Value="DemiBold"/>
+                                <Setter Property="TextElement.FontSize" Value="25"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="TextElement.Foreground" Value="#D4F1F4"/>
+                                <Setter Property="TextElement.FontStyle" Value="Oblique"/>
+                                <Setter Property="TextElement.FontWeight" Value="DemiBold"/>
+                                <Setter Property="TextElement.FontSize" Value="27"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
-        <Label Content="Email"></Label>
-        <TextBox Name = "EmailTxt" Height="45" RenderTransformOrigin="0.495,2.513"/>
 
-        <Label Content="Username"></Label>
-        <TextBox Name = "UsernameTxt" Height="45"></TextBox>
 
-        <Label Content="Password"></Label>
-        <TextBox Name = "PasswordTxt" Height="45" RenderTransformOrigin="0.495,2.513"/>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#2692D0"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#0C2D48"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="logButtons" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Foreground" Value="#F0E1DE"/>
+            <Setter Property="TextElement.FontSize" Value="17"/>
+            <Setter Property="TextElement.FontStyle" Value="Oblique"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="13" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
 
-        <Label Content="Confirm Password"></Label>
-        <TextBox Name = "ConfirmPasswordTxt" Height="45"></TextBox>
+    <Grid Name="mainGrid" Height="525" Width="497">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="0*"/>
+        </Grid.RowDefinitions>
+        <Canvas Name="img" Height="525" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="497" Opacity="0.3">
+            <Canvas.Background>
+                <ImageBrush ImageSource="C:\\Users\\bogdana.oancea\\Desktop\\PngImages\\test.png" />
+            </Canvas.Background>
+        </Canvas>
+        <Canvas Height="525" HorizontalAlignment="Center"  Name="solid" VerticalAlignment="Center" Width="497" Opacity="0.75">
+            <Canvas.Background>
+                <SolidColorBrush Color="#003060"/>
+            </Canvas.Background>
+        </Canvas>
+        <Canvas Height="525" HorizontalAlignment="Center"  Name="solid2" VerticalAlignment="Center" Width="497" Opacity="0.1">
+            <Canvas.Background>
+                <SolidColorBrush Color="black"/>
+            </Canvas.Background>
+        </Canvas>
 
-        <Button Name="LoginBtn" Content="Login" Height="41" Margin="0,10,0,0" Click="LoginBtn_Click"></Button>
-        <Button Name="RegisterBtn" Content="Register" Height="41" Margin="0,10,0,0" Click="RegisterBtn_Click"></Button>
-        <CheckBox Name="InstructorCheck" Content="I'm an instructor" IsChecked="false"></CheckBox>
-    </StackPanel>
+        <Button Style="{DynamicResource switchGrid}" Name="signinBtn" 
+                Content="SIGN IN" 
+                HorizontalAlignment="Left" 
+                Height="58" 
+                Margin="33,10,0,0" 
+                VerticalAlignment="Top" 
+                Width="130"
+                Click="signinBtn_Click"/>
+
+
+        <Button Style="{DynamicResource switchGrid}" Name="signupBtn" 
+                Content="SIGN UP" 
+                HorizontalAlignment="Left" 
+                Height="58" 
+                Margin="178,10,0,0" 
+                VerticalAlignment="Top" 
+                Width="125"
+                Click="signupBtn_Click"/>
+
+
+        <Separator Margin="33,50,194,450" Height="25"/>
+
+        <Grid Name="signinGrid" Margin="0,73,0,10" HorizontalAlignment="Center" Width="497">
+            <Label Content="USERNAME" Margin="40,62,374,355" Foreground="#F0E1DE"/>
+            <TextBox Name="LoginUsernameTxt" Style="{StaticResource textBox}" Tag="Username" Margin="39,92,41,0"/>
+            <Label Content="PASSWORD" Margin="40,142,384,270" Foreground="#F0E1DE"/>
+            <PasswordBox Name="LoginPasswordTxt" Style="{StaticResource passwordBox}" Margin="40,177,41,0" KeyDown="LoginPasswordTxt_KeyDown" />
+            <Label Name="capslock1" Margin="178,206,177,206" Foreground="#F0E1DE"/>
+            <Button Name="LoginBtn" Content="SIGN IN" Margin="39,269,41,142" Style="{DynamicResource logButtons}" Height="31" Click="LoginBtn_Click"/>
+        </Grid>
+
+        <Grid Name="signupGrid" Margin="0,63,0,10" HorizontalAlignment="Left" Width="500">
+            <Label Content="FIRST NAME" Margin="42,21,360,401" Foreground="#F0E1DE"/>
+            <TextBox Name="FirstNameTxt" Style="{StaticResource textBox}" Tag="First name" Margin="42,51,274,0"/>
+            <Label Content="LAST NAME" Margin="269,24,0,404" Foreground="#F0E1DE" HorizontalAlignment="Left" Width="96"/>
+            <TextBox Name="LastNameTxt" Style="{StaticResource textBox}" Tag="Last name" Margin="269,51,40,0"/>
+            <Label Content="USERNAME" Margin="42,90,360,332" Foreground="#F0E1DE"/>
+            <TextBox Name="UsernameTxt" Style="{StaticResource textBox}" Tag="Username" Margin="40,120,40,0"/>
+            <Label Content="E-MAIL" Margin="44,158,372,270" Foreground="#F0E1DE"/>
+            <TextBox Name="EmailTxt" Style="{StaticResource textBox}" Tag="E-mail" Margin="40,187,40,0"/>
+            <Label Content="PASSWORD" Margin="42,226,372,191" Foreground="#F0E1DE"/>
+            <PasswordBox Name="PasswordTxt" Style="{StaticResource passwordBox}" Margin="40,254,274,0" KeyDown="PasswordTxt_KeyDown"/>
+            <Label Content="CONFIRM PASSWORD" Margin="269,226,99,191" Foreground="#F0E1DE"/>
+            <PasswordBox Name="ConfirmPasswordTxt" Style="{StaticResource passwordBox}" Margin="269,255,40,0" KeyDown="ConfirmPasswordTxt_KeyDown"/>
+            <Label Content="I WANT TO" Margin="91,314,321,105" Foreground="#F0E1DE"/>
+            <RadioButton Margin="184,323,215,114" Foreground="#F0E1DE" Name="StudentRadioBtn">Study</RadioButton>
+            <RadioButton Margin="290,323,108,114" Foreground="#F0E1DE" Name="InstructorRadioBtn">Teach</RadioButton>
+            <Button Name="RegisterBtn" Style="{DynamicResource logButtons}" Click="RegisterBtn_Click" Content="SIGN UP" HorizontalAlignment="Center" Height="31" Margin="0,363,0,0" VerticalAlignment="Top" Width="420"/>
+            <Label Name="capslock2" Margin="73,279,321,138" Foreground="#F0E1DE"/>
+            <Label Name="capslock3" Margin="310,279,82,138" Foreground="#F0E1DE"/>
+        </Grid>
+    </Grid>
+
 
 </Window>
