@@ -144,7 +144,7 @@
         </Grid.RowDefinitions>
         <Canvas Name="img" Height="525" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="497" Opacity="0.3">
             <Canvas.Background>
-                <ImageBrush ImageSource="C:\Users\galan\OneDrive\Desktop\rainbow.png" />
+                <ImageBrush></ImageBrush>
             </Canvas.Background>
         </Canvas>
         <Canvas Height="525" HorizontalAlignment="Center"  Name="solid" VerticalAlignment="Center" Width="497" Opacity="0.75">
