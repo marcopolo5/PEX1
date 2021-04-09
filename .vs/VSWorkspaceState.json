@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\WPF Client"
   ],
-  "SelectedNode": "\\WPF Client.sln",
+  "SelectedNode": "\\WPF Client\\WPF Client.sln",
   "PreviewInSolutionExplorer": false
 }
