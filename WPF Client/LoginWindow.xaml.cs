@@ -3,10 +3,12 @@ using ElearningDatabase;
 using ElearningDatabase.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -18,7 +20,7 @@ namespace ElearningClient
     public partial class LoginWindow : Window
     {
         private ElearningContext db;
-
+        private User user;
         public void GetConnection()
         {
             var dbCOntext = new DbContextOptionsBuilder<ElearningContext>();
@@ -32,6 +34,7 @@ namespace ElearningClient
             InitializeComponent();
             GetConnection();
             signupGrid.Visibility = Visibility.Hidden;
+            user = new User();
         }
 
         private SqlConnection EstablishConnection()
@@ -78,7 +81,7 @@ namespace ElearningClient
                 MessageBox.Show(ex.Message);
             }
         }
-
+        
         public void ShowMainWindow(User user)
         {
             MainWindow mainWindow = new MainWindow();
@@ -86,7 +89,7 @@ namespace ElearningClient
             mainWindow.Show();
             this.Close();
         }
-
+        
         private void RegisterBtn_Click(object sender, RoutedEventArgs e)
         {
             Register register = new Register();
@@ -98,12 +101,19 @@ namespace ElearningClient
             bool checkInstructor = InstructorRadioBtn.IsEnabled;
             bool checkStudent = StudentRadioBtn.IsEnabled;
             string email = EmailTxt.Text;
+            user.Username = username;
+            user.Password = password;
+            user.FirstName = firstname;
+            user.LastName = lastname;
+            user.Email = email;
+            user.Role = InstructorRadioBtn.IsEnabled? RoleEnum.Trainer: RoleEnum.Student;
 
             try
             {
                 if (register.ValidateRegister(username, password, firstname, lastname, confirmPassword, checkInstructor, email))
                 {
-                    //this.ShowMainWindow();
+                    this.ShowMainWindow(user);
+                 
                 }
             }
             catch (Exception ex)
@@ -167,5 +177,7 @@ namespace ElearningClient
             signinGrid.Visibility = Visibility.Hidden;
             signupGrid.Visibility = Visibility.Visible;
         }
+
+        
     }
 }
