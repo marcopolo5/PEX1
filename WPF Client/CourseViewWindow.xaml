@@ -210,7 +210,7 @@
                        Name="downloadButton"
                        Content="V"
                        HorizontalAlignment="Right"
-                       Style="{StaticResource buttonTemplate}"
+                       Style="{StaticResource downloadButtonTemplate}"
                        />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
