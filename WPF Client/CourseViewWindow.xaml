@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Client"
         mc:Ignorable="d"
-        Title="CourseViewWindow" Height="450" Width="800">
+        Title="CourseViewWindow" Height="542" Width="800">
     <Grid>
         <ListView  ItemsSource="{Binding Lessons}"  Margin="10,10,534,10">
             <ListView.View >
@@ -14,6 +14,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <WebBrowser Source="https://stirioficiale.ro/storage/0611_Model Declaratie proprie Raspundere.pdf" Margin="281,10,10,144" RenderTransformOrigin="0.402,0.77"/>
 
     </Grid>
 </Window>

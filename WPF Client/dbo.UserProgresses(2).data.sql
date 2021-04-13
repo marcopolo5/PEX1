@@ -1,1 +1,0 @@
-﻿INSERT INTO UserProgresses VALUES (1, 5, 1001), (2, 10, 1003)
