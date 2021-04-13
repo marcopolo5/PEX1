@@ -7,11 +7,11 @@ namespace Elearning.Business
 {
     public class LessonService
     {
-        public List<Resource> GetLessons(int lessonId)
+        public string GetContent(int lessonId)
         {
             using (ElearningContext elearningContext = new ElearningContext())
             {
-                var resources = elearningContext.Lessons.Where(x => x.Id == lessonId).Select(x => x.Resources).ToList().FirstOrDefault();
+                var resources = elearningContext.Lessons.Where(x => x.Id == lessonId).Select(x => x.Content).ToList().FirstOrDefault();
                 return resources;
             }
         }
