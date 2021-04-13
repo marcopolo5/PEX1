@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\background.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.4">
       <PrivateAssets>all</PrivateAssets>
@@ -25,6 +29,10 @@
     <ProjectReference Include="..\EFElearning\Elearning.Database.csproj" />
     <ProjectReference Include="..\Elearning.Business\Elearning.Business.csproj" />
     <ProjectReference Include="..\Elearning.Dtos\Elearning.Dtos.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\background.png" />
   </ItemGroup>
 
 </Project>

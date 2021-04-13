@@ -80,16 +80,32 @@
                             <Trigger Property="IsMouseOver" Value="true">
                                 <Setter Property="TextElement.Foreground" Value="#D4F1F4"/>
                                 <Setter Property="TextElement.FontStyle" Value="Oblique"/>
-                                <Setter Property="TextElement.FontWeight" Value="DemiBold"/>
+                                <Setter Property="TextElement.FontWeight" Value="Bold"/>
                                 <Setter Property="TextElement.FontSize" Value="25"/>
                             </Trigger>
-                            <Trigger Property="IsFocused" Value="true">
-                                <Setter Property="TextElement.Foreground" Value="#D4F1F4"/>
-                                <Setter Property="TextElement.FontStyle" Value="Oblique"/>
-                                <Setter Property="TextElement.FontWeight" Value="DemiBold"/>
-                                <Setter Property="TextElement.FontSize" Value="27"/>
-                            </Trigger>
                         </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style  x:Key="onClick" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Height" Value="27"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="TextElement.Foreground" Value="#D4F1F4"/>
+            <Setter Property="TextElement.Foreground" Value="#D4F1F4"/>
+            <Setter Property="TextElement.FontStyle" Value="Oblique"/>
+            <Setter Property="TextElement.FontWeight" Value="Bold"/>
+            <Setter Property="TextElement.FontSize" Value="30"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="12" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -144,7 +160,7 @@
         </Grid.RowDefinitions>
         <Canvas Name="img" Height="525" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="497" Opacity="0.3">
             <Canvas.Background>
-                <ImageBrush></ImageBrush>
+                <ImageBrush ImageSource="/Resources/background.png"></ImageBrush>
             </Canvas.Background>
         </Canvas>
         <Canvas Height="525" HorizontalAlignment="Center"  Name="solid" VerticalAlignment="Center" Width="497" Opacity="0.75">
@@ -202,9 +218,9 @@
             <PasswordBox Name="PasswordTxt" Style="{StaticResource passwordBox}" Margin="40,254,274,0" KeyDown="PasswordTxt_KeyDown"/>
             <Label Content="CONFIRM PASSWORD" Margin="269,226,99,191" Foreground="#F0E1DE"/>
             <PasswordBox Name="ConfirmPasswordTxt" Style="{StaticResource passwordBox}" Margin="269,255,40,0" KeyDown="ConfirmPasswordTxt_KeyDown"/>
-            <Label Content="I WANT TO" Margin="91,314,321,105" Foreground="#F0E1DE"/>
-            <RadioButton Margin="184,323,215,114" Foreground="#F0E1DE" Name="StudentRadioBtn">Study</RadioButton>
-            <RadioButton Margin="290,323,108,114" Foreground="#F0E1DE" Name="InstructorRadioBtn">Teach</RadioButton>
+            <Label Content="I WANT TO" Margin="121,314,291,105" Foreground="#F0E1DE"/>
+            <RadioButton Margin="214,320,214,117" Foreground="#F0E1DE" Name="StudentRadioBtn">Study</RadioButton>
+            <RadioButton Margin="286,320,149,117" Foreground="#F0E1DE" Name="InstructorRadioBtn">Teach</RadioButton>
             <Button Name="RegisterBtn" Style="{DynamicResource logButtons}" Click="RegisterBtn_Click" Content="SIGN UP" HorizontalAlignment="Center" Height="31" Margin="0,363,0,0" VerticalAlignment="Top" Width="420"/>
             <Label Name="capslock2" Margin="73,279,321,138" Foreground="#F0E1DE"/>
             <Label Name="capslock3" Margin="310,279,82,138" Foreground="#F0E1DE"/>

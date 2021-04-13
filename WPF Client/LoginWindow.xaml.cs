@@ -34,6 +34,7 @@ namespace ElearningClient
             InitializeComponent();
             GetConnection();
             signupGrid.Visibility = Visibility.Hidden;
+            signinBtn.Style = this.Resources["onClick"] as Style;
             user = new User();
         }
 
@@ -170,12 +171,16 @@ namespace ElearningClient
         {
             signupGrid.Visibility = Visibility.Hidden;
             signinGrid.Visibility = Visibility.Visible;
+            signupBtn.Style = this.Resources["switchGrid"] as Style;
+            signinBtn.Style = this.Resources["onClick"] as Style;
         }
 
         private void signupBtn_Click(object sender, RoutedEventArgs e)
         {
             signinGrid.Visibility = Visibility.Hidden;
             signupGrid.Visibility = Visibility.Visible;
+            signupBtn.Style = this.Resources["onClick"] as Style;
+            signinBtn.Style = this.Resources["switchGrid"] as Style;
         }
 
         
