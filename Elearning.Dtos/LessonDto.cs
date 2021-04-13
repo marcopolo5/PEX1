@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Elearning.Dtos
 {
@@ -8,6 +7,7 @@ namespace Elearning.Dtos
         public int Id { get; set; }
 
         public string Name { get; set; }
+        public string Content { get; set; }
 
         public List<ResourceDto> Resources { get; set; }
     }

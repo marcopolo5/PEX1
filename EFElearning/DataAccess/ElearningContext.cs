@@ -32,7 +32,7 @@ namespace ElearningDatabase
         {
             this.Database.Migrate();
         }
-        
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(ResourceFile.connectionString);
