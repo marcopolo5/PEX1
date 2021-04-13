@@ -1,5 +1,6 @@
 ﻿using ElearningDatabase;
 using ElearningDatabase.Models;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Elearning.Business
@@ -9,29 +10,32 @@ namespace Elearning.Business
         public bool ValidateRegister(string username, string password, string firstname, string lastname, string confirmPassword, bool checkInstructor, string email)
         {
             RoleEnum role = RoleEnum.Student;
-
-            if (checkInstructor)
+            if(!CheckIfUserExists(username))
             {
-                role = RoleEnum.Trainer;
-            }
-            if (CheckPassword(password, confirmPassword) && IsValidEmail(email))
-            {
-                using (ElearningContext elearningContext = new ElearningContext())
+                if (checkInstructor)
                 {
-                    elearningContext.Users.Add(new User()
-                    {
-                        FirstName = firstname,
-                        LastName = lastname,
-                        Username = username,
-                        Password = password,
-                        Role = role,
-                        Email = email
-                    });
-                    elearningContext.SaveChanges();
+                    role = RoleEnum.Trainer;
                 }
+                if (CheckPassword(password, confirmPassword) && IsValidEmail(email))
+                {
+                    using (ElearningContext elearningContext = new ElearningContext())
+                    {
+                        elearningContext.Users.Add(new User()
+                        {
+                            FirstName = firstname,
+                            LastName = lastname,
+                            Username = username,
+                            Password = password,
+                            Role = role,
+                            Email = email
+                        });
+                        elearningContext.SaveChanges();
+                    }
 
-                return true;
+                    return true;
+                }
             }
+ 
             return false;
         }
 
@@ -86,6 +90,19 @@ namespace Elearning.Business
             }
 
             return false;
+        }
+
+        public bool CheckIfUserExists(string username)
+        {
+            using (ElearningContext elearningContext = new ElearningContext())
+            {
+                var users = elearningContext.Users.Where(x => x.Username == username).ToList();
+                if(users.Count()>0)
+                {
+                    return true;
+                }
+                return false;
+            }
         }
     }
 }
