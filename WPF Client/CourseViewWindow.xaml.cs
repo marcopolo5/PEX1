@@ -51,16 +51,6 @@ namespace WPF_Client
         }
 
 
-        private void LessonsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ListViewItem lbi = ((sender as ListView).SelectedItem as ListViewItem);
-
-            if (lbi != null && lbi.IsSelected)
-            {
-                MessageBox.Show("merge");
-            }
-        }
-
         private void ListViewItem_MouseButtonDown(object sender, MouseButtonEventArgs e)
         {
             lesson = (Lesson)LessonsListView.SelectedItem;
