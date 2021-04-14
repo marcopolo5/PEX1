@@ -7,19 +7,14 @@
         mc:Ignorable="d"
         Title="CourseViewWindow" Height="542" Width="800">
     <Grid>
-        <ListView Name="LessonsListView" ItemsSource="{Binding Lessons}"  Margin="10,10,534,10">
-            <ListView.View >
-                <GridView>
+        <ListView Name="LessonsListView" ItemsSource="{Binding Lessons}"  Margin="10,10,534,10" MouseDoubleClick="ListViewItem_MouseButtonDown">
+            <ListView.View>
+                <GridView x:Name="LessonGridView">
                     <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Name" Width="180"></GridViewColumn>
                 </GridView>
             </ListView.View>
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_MouseLeftButtonDown"></EventSetter>
-                </Style>
-            </ListView.ItemContainerStyle>
         </ListView>
-        <WebBrowser Source="https://stirioficiale.ro/storage/0611_Model Declaratie proprie Raspundere.pdf" Margin="281,10,10,144" RenderTransformOrigin="0.402,0.77"/>
-
+   
+        <WebBrowser Name="WebBrowser" Margin="281,10,10,144" RenderTransformOrigin="0.402,0.77"/>
     </Grid>
 </Window>
