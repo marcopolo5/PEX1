@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Windows;
 using Elearning.Business;
 using System.Diagnostics;
+using System.Windows.Controls;
 
 namespace ElearningClient
 {
@@ -55,5 +56,34 @@ namespace ElearningClient
             SuggestedCoursesDataGrid.ItemsSource = courses.GetSuggestedCoursesForAnUser(this.user);
         }
 
+        private void AccessCourseButton_Click(object sender, RoutedEventArgs e)
+        {
+            int selectedIndex = CoursesDataGrid.SelectedIndex;
+            
+            if (selectedIndex < 0)
+            {
+                MessageBox.Show("Please select a course!");
+            }
+            else
+            {
+                CourseDTO selectedCourse = CoursesDataGrid.SelectedItem as CourseDTO;
+                string message = string.Format("You selected the following course:\nName = {0} \nDescription = {1} \nCategory = {2}", 
+                                                selectedCourse.Name, selectedCourse.Description, selectedCourse.Category);
+                MessageBox.Show(message);
+            }
+
+        }
+
+
+        private void CoursesDataGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            int selectedIndex = CoursesDataGrid.SelectedIndex;
+
+
+            CourseDTO selectedCourse = CoursesDataGrid.SelectedItem as CourseDTO;
+            string message = string.Format("You selected the following course:\nName = {0} \nDescription = {1} \nCategory = {2}",
+                                            selectedCourse.Name, selectedCourse.Description, selectedCourse.Category);
+            MessageBox.Show(message);
+        }
     }
 }

@@ -16,6 +16,8 @@ namespace Elearning.Business
         public string Category { get; set; }
         public DifficultyEnum Difficulty { get; set; }
 
+
+
     }
     public class AllCoursesBusiness
     {

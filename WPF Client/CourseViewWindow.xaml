@@ -15,7 +15,7 @@
             </ListView.View>
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
-                    <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_MouseLeftButtonDown"></EventSetter>
+                    <!--<EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_MouseLeftButtonDown"></EventSetter>-->
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
