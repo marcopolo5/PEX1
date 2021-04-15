@@ -2,6 +2,7 @@
 using ElearningDatabase;
 using ElearningDatabase.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,6 +21,7 @@ namespace WPF_Client
         public List<Resource> Resources { get; set; }
 
         public LessonService LessonService;
+        public Lesson lesson;
 
         public string content = " ";
 
@@ -38,27 +40,23 @@ namespace WPF_Client
             InitializeComponent();
             GetCourses();
             LessonService = new LessonService();
+            lesson = new Lesson();
         }
 
         public void GetCourses()
         {
             CourseService singleCourse = new CourseService();
             Lessons = singleCourse.GetLessons(1);
-            DataContext = this;
+            DataContext = this; //data binding
         }
 
-        private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            var item = sender as ListViewItem;
-            var value = LessonsListView.SelectedItem;
-            if (item != null && item.IsSelected)
-            {
-                //LessonService.GetContent(value);
-            }
-        }
 
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListViewItem_MouseButtonDown(object sender, MouseButtonEventArgs e)
         {
+            lesson = (Lesson)LessonsListView.SelectedItem;
+            Uri uri = new Uri(lesson.Content);
+            WebBrowser.Source= uri;
+
         }
     }
 }
