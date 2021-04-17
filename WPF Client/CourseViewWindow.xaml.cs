@@ -55,7 +55,7 @@ namespace WPF_Client
         {
             lesson = (Lesson)LessonsListView.SelectedItem;
             Uri uri = new Uri(lesson.Content);
-            WebBrowser.Source= uri;
+            WebBrowser.Source = uri;
 
         }
     }
