@@ -19,7 +19,6 @@ namespace WPF_Client
         private ElearningContext db;
 
         public List<Lesson> Lessons { get; set; }
-        public List<Resource> Resources { get; set; }
         public List<Review> Reviews { get; set; }
 
         public LessonService LessonService;
@@ -40,6 +39,7 @@ namespace WPF_Client
         {
             InitializeComponent();
             GetCourses();
+            ShowReviews();
             LessonService = new LessonService();
             lesson = new Lesson();
         }
