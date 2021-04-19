@@ -1,4 +1,5 @@
 ﻿using Elearning.Business;
+using Elearning.Database.Models;
 using ElearningDatabase;
 using ElearningDatabase.Models;
 using Microsoft.EntityFrameworkCore;
@@ -19,10 +20,10 @@ namespace WPF_Client
 
         public List<Lesson> Lessons { get; set; }
         public List<Resource> Resources { get; set; }
+        public List<Review> Reviews { get; set; }
 
         public LessonService LessonService;
         public Lesson lesson;
-
         public string content = " ";
 
         public void GetConnection()
@@ -56,6 +57,18 @@ namespace WPF_Client
             lesson = (Lesson)LessonsListView.SelectedItem;
             Uri uri = new Uri(lesson.Content);
             WebBrowser.Source = uri;
+
+        }
+
+        public void ShowReviews()
+        {
+            CourseService singleCourse = new CourseService();
+            Reviews = singleCourse.GetReviews(1);
+            DataContext = this; //data binding
+        }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
         }
     }
