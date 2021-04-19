@@ -144,19 +144,6 @@
                 <SolidColorBrush Color="#003060"/>
             </Canvas.Background>
         </Canvas>
-        <Canvas Height="174" HorizontalAlignment="Center"  Name="solid2" VerticalAlignment="Top" Width="576" Opacity="0.1" Grid.Column="5" Grid.Row="4" Grid.RowSpan="2">
-            <Canvas.Background>
-                <SolidColorBrush Color="black"/>
-            </Canvas.Background>
-            <ListView Background="White" ItemsSource="{Binding Reviews}" Height="174" Width="576" SelectionChanged="ListView_SelectionChanged">
-                
-                    <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding User.Username}"></GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Content}"></GridViewColumn>
-                    </GridView>
-                
-            </ListView>
-        </Canvas>
 
 
 
@@ -223,5 +210,14 @@
         <WebBrowser Name="WebBrowser" Margin="10,10,10,10" Grid.Row="3" 
                    Grid.Column="3" 
                    Grid.ColumnSpan="4" RenderTransformOrigin="0.402,0.77"/>
+
+        <ListView Background="White" ItemsSource="{Binding Reviews}" Height="174" SelectionChanged="ListView_SelectionChanged" Grid.ColumnSpan="4" Margin="10,0,10,10" Grid.RowSpan="2" Grid.Column="3" Grid.Row="4">
+
+            <GridView>
+                <GridViewColumn DisplayMemberBinding="{Binding User.Username}"></GridViewColumn>
+                <GridViewColumn DisplayMemberBinding="{Binding Content}"></GridViewColumn>
+            </GridView>
+
+        </ListView>
     </Grid>
 </Window>
