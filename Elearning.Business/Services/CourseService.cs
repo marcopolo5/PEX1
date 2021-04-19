@@ -24,7 +24,6 @@ namespace Elearning.Business
                 var reviews = elearningContext.Courses.Where(x => x.Id == courseId).Select(x => x.Reviews).ToList().FirstOrDefault();
                 return reviews;
             }
-
         }
     }
 }
