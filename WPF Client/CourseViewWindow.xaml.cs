@@ -5,6 +5,8 @@ using ElearningDatabase.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -23,7 +25,6 @@ namespace WPF_Client
 
         public LessonService LessonService;
         public Lesson lesson;
-        public string content = " ";
 
         public void GetConnection()
         {
@@ -42,6 +43,7 @@ namespace WPF_Client
             ShowReviews();
             LessonService = new LessonService();
             lesson = new Lesson();
+           
         }
 
         public void GetCourses()
@@ -69,7 +71,37 @@ namespace WPF_Client
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            
+        }
 
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            ReviewTxtBox.Clear();
+        }
+
+        private void AddReviewButton_Click(object sender, RoutedEventArgs e)
+        {
+            //var input = new Review { Content = ReviewTxtBox.Text };
+            //db.Reviews.Add(input);
+            //db.SaveChanges();
+            //ReviewListView.ItemsSource = db.Reviews;
+
+        }
+
+        private void LessonsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void downloadButton_Click(object sender, RoutedEventArgs e)
+        {
+            //lesson = (Lesson)LessonsListView.SelectedItem;
+            //Uri uri = new Uri(lesson.Content);
+            //Resource resource = new Resource();
+            //using (WebClient wc = new WebClient())
+            //{
+            //    wc.DownloadFile(uri, resource.File);
+            //}
         }
     }
 }
