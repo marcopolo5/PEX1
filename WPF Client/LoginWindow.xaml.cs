@@ -109,12 +109,17 @@ namespace ElearningClient
             user.Email = email;
             user.Role = InstructorRadioBtn.IsEnabled? RoleEnum.Trainer: RoleEnum.Student;
 
+            if(register.CheckIfUserExists(UsernameTxt.Text))
+            {
+                MessageBox.Show("Username already exists! Please enter a new one.");
+            }
+
             try
             {
                 if (register.ValidateRegister(username, password, firstname, lastname, confirmPassword, checkInstructor, email))
                 {
-                    this.ShowMainWindow(user);
-                 
+                    MessageBox.Show("You're now a part of our e-Learning community. Enjoy!");
+                    this.ShowMainWindow(user);                 
                 }
             }
             catch (Exception ex)
