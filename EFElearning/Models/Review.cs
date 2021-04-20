@@ -9,7 +9,9 @@ namespace Elearning.Database.Models
 
         [Required]
         public string Content { get; set; }
-
+        [Required]
         public int UserId { get; set; }
+        [Required]
+        public int CourseId { get; set; }
     }
 }

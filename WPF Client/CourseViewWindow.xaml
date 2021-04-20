@@ -143,9 +143,8 @@
             <Canvas.Background>
                 <SolidColorBrush Color="#003060"/>
             </Canvas.Background>
-            <TextBox Name="ReviewTxtBox"  Background="White" Canvas.Left="225" Canvas.Top="449" TextWrapping="Wrap" Width="344" Height="93"/>
+            <TextBox Name="ReviewTxtBox"  Background="White" Canvas.Left="313" Canvas.Top="449" TextWrapping="Wrap" Width="256" Height="93"/>
             <Button Name="AddReviewButton" Content="Add Review" Canvas.Left="480" Canvas.Top="576" Height="43" Width="89" Click="AddReviewButton_Click"/>
-            <Button Name="CancelButton" Content="Cancel" Canvas.Left="383" Canvas.Top="576" Height="43" Width="92" RenderTransformOrigin="0.103,0.431" Click="CancelButton_Click"/>
         </Canvas>
 
 

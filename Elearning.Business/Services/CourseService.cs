@@ -2,6 +2,7 @@
 using ElearningDatabase;
 using ElearningDatabase.Models;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Elearning.Business
@@ -24,6 +25,24 @@ namespace Elearning.Business
                 var reviews = elearningContext.Courses.Where(x => x.Id == courseId).Select(x => x.Reviews).ToList().FirstOrDefault();
                 return reviews;
             }
+        }
+
+        public void InsertReview(User user, int courseId, string review)
+        {
+            if(review!=" " )
+            {
+                using (ElearningContext elearningContext = new ElearningContext())
+                {
+                    elearningContext.Reviews.Add(new Review()
+                    {
+                        Content = review,
+                        UserId= user.Id,
+                        CourseId= courseId
+                    });
+                    elearningContext.SaveChanges();
+                }
+            }
+
         }
     }
 }
