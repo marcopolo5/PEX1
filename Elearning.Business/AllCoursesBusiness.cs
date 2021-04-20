@@ -21,13 +21,13 @@ namespace Elearning.Business
     }
     public class AllCoursesBusiness
     {
-        public List<CourseDTO> GetAllCoursesOfAnUser(User user)
+        public List<Course> GetAllCoursesOfAnUser(User user)
         {
             using (ElearningContext context = new ElearningContext())
             {
                 var usersCourses = (from userProgress in context.UserProgresses
                                     where userProgress.UserId == user.Id
-                                    select new CourseDTO()
+                                    select new Course()
                                     {
                                         Id = userProgress.Course.Id,
                                         Name = userProgress.Course.Name,
@@ -39,13 +39,13 @@ namespace Elearning.Business
             }
         }
 
-        public List<CourseDTO> GetSuggestedCoursesForAnUser(User user)
+        public List<Course> GetSuggestedCoursesForAnUser(User user)
         {
             using (ElearningContext context = new ElearningContext())
             {
                 var usersCourses = from userProgress in context.UserProgresses
                                    where userProgress.UserId == user.Id
-                                   select new CourseDTO()
+                                   select new Course()
                                    {
                                        Id = userProgress.Course.Id,
                                        Name = userProgress.Course.Name,
@@ -54,7 +54,7 @@ namespace Elearning.Business
                                        Difficulty = userProgress.Course.Difficulty
                                    };
                 var allCourses = from course in context.Courses
-                                 select new CourseDTO()
+                                 select new Course()
                                  {
                                      Id = course.Id,
                                      Name = course.Name,
