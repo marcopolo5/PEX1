@@ -8,7 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\achivements.png" />
+    <None Remove="Resources\achivementsGrey.png" />
     <None Remove="Resources\background.png" />
+    <None Remove="Resources\explore.png" />
+    <None Remove="Resources\exploreGrey.png" />
+    <None Remove="Resources\games.png" />
+    <None Remove="Resources\gamesGrey.png" />
+    <None Remove="Resources\mycourses.png" />
+    <None Remove="Resources\mycoursesGrey.png" />
+    <None Remove="Resources\profile.png" />
+    <None Remove="Resources\search.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,7 +42,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\achivements.png" />
+    <Resource Include="Resources\achivementsGrey.png" />
     <Resource Include="Resources\background.png" />
+    <Resource Include="Resources\explore.png" />
+    <Resource Include="Resources\exploreGrey.png" />
+    <Resource Include="Resources\games.png" />
+    <Resource Include="Resources\gamesGrey.png" />
+    <Resource Include="Resources\mycourses.png" />
+    <Resource Include="Resources\mycoursesGrey.png" />
+    <Resource Include="Resources\profile.png" />
+    <Resource Include="Resources\search.png" />
   </ItemGroup>
 
 </Project>
