@@ -1,5 +1,10 @@
-﻿using System;
+﻿using Elearning.Business;
+using ElearningDatabase;
+using ElearningDatabase.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WPF_Client.Custom;
 
 namespace WPF_Client
 {
@@ -22,15 +28,72 @@ namespace WPF_Client
         private bool achievementsBtnClicked = false;
         private bool gamesBtnClicked = false;
 
+        private User user;
+        private ElearningContext db;
+
         public MainCoursesView()
         {
             InitializeComponent();
+            GetConnection();
             ExploreBtn.Style = this.Resources["ClickNavigationButtons"] as Style;
             ExploreCourses.Visibility = Visibility.Visible;
             MyCourses.Visibility = Visibility.Hidden;
             //Cards card = new();
             //courses.Children.Add(card);
+            
             ChangeImages();
+            
+        }
+
+        public void InitializeExploreCoursesGrid()
+        {
+            AllCoursesBusiness courses = new AllCoursesBusiness();
+            var suggestedCourses = courses.GetSuggestedCoursesForAnUser(this.user);
+            foreach (var course in suggestedCourses)
+            {
+                Cards card = new Cards();
+                card.Course = course.Name;
+                card.Description = course.Description;
+                card.Category = course.Category;
+                card.CourseId = course.Id;
+                card.UserId = this.user.Id;
+                ExploreCoursesGrid.Children.Add(card);
+
+            }
+        }
+
+        public void GetConnection()
+        {
+            var dbCOntext = new DbContextOptionsBuilder<ElearningContext>();
+            dbCOntext.UseSqlServer(Elearning.Database.ResourceFile.connectionString);
+            db = new ElearningContext(dbCOntext.Options);
+            db.Migrate();
+        }
+
+        public void SetUser(User user)
+        {
+            Debug.WriteLine("set user: user = " + user + " user id = " + user.Id);
+            this.user = user;
+            InitializeExploreCoursesGrid();
+            InitializeMyCoursesGrid();
+        }
+
+
+        public void InitializeMyCoursesGrid()
+        {
+            AllCoursesBusiness courses = new AllCoursesBusiness();
+            var myCourses = courses.GetAllCoursesOfAnUser(this.user);
+            foreach (var course in myCourses)
+            {
+                Cards card = new Cards();
+                card.Course = course.Name;
+                card.Description = course.Description;
+                card.Category = course.Category;
+                card.CourseId = course.Id;
+                card.UserId = this.user.Id;
+                MyCoursesGrid.Children.Add(card);
+                
+            }
         }
 
         private void ChangeImages()
@@ -178,5 +241,8 @@ namespace WPF_Client
                 e.Handled = true;
             }
         }
+
+
+
     }
 }

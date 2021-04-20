@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using WPF_Client;
 
 namespace ElearningClient
 {
@@ -70,7 +71,7 @@ namespace ElearningClient
             {
                 User loggedUser = login.GetLoggedUser(username, password);
                 // Debug.WriteLine("on clik: logged user = " + loggedUser + " id = " + loggedUser.Id);
-                MainWindow mainWindow = new MainWindow();
+                MainCoursesView mainWindow = new MainCoursesView();
                 mainWindow.SetUser(loggedUser);
                 mainWindow.Show();
                 this.Close();

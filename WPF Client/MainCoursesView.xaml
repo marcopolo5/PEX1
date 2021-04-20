@@ -150,38 +150,14 @@
 
         <ScrollViewer Name="ExploreCourses" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="296,94,0,0">
             <!--height uniformgrid = 300 * no of rows + 100-->
-            <UniformGrid  Columns="3"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Height="1300" Background="#F5F5F5">
-                <ccontrols:Cards/>
-                <ccontrols:Cards/>
-                <ccontrols:Cards/>
-                <ccontrols:Cards Author="Wells" Course="EXPLORE" Description="abs"  Source="/Resources/search.png"/>
-                <!--binding using db-->
-                <ccontrols:Cards/>
-                <ccontrols:Cards/>
-                <ccontrols:Cards/>
-                <ccontrols:Cards/>
-                <ccontrols:Cards/>
-                <ccontrols:Cards/>
-                <ccontrols:Cards/>
-                <ccontrols:Cards/>
+            <UniformGrid  Name="ExploreCoursesGrid" Columns="3"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Height="1300" Background="#F5F5F5">
+                
             </UniformGrid>
         </ScrollViewer>
 
         <ScrollViewer Name="MyCourses" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="296,94,0,0">
-            <UniformGrid  Columns="3"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Height="1300" Background="#F5F5F5">
-                <ccontrols:Cards Author="ABC" Course="MY COURSES" Description="abs"  Source="/Resources/search.png"/>
-                <ccontrols:Cards/>
-                <ccontrols:Cards/>
-                <ccontrols:Cards/>
-                <ccontrols:Cards Author="Wells" Course="MY COURSES" Description="abs"  Source="/Resources/search.png"/>
-                <!--binding using db-->
-                <ccontrols:Cards/>
-                <ccontrols:Cards/>
-                <ccontrols:Cards/>
-                <ccontrols:Cards/>
-                <ccontrols:Cards/>
-                <ccontrols:Cards/>
-                <ccontrols:Cards/>
+            <UniformGrid Name="MyCoursesGrid" Columns="3"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Height="1300" Background="#F5F5F5">
+                
             </UniformGrid>
         </ScrollViewer>
 

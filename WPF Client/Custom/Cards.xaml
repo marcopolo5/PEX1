@@ -79,12 +79,15 @@
     </UserControl.Resources>
 
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <Button Style="{DynamicResource ButtonStyle}" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave"/>
+        <Button Style="{DynamicResource ButtonStyle}" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave" Click="Button_Click"/>
         <Grid Name="defaultGrid" Width="200" Height="200">
             <Image Name="CourseImage" Source="{Binding Path=Source}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="103" Width="234"/>
             <TextBlock Name="CourseName" Text="{Binding Course}" Margin="10,137,0,0" Style="{StaticResource CourseTextTemplate}"/>
             <TextBlock Name="AuthorName" Text="{Binding Author}" Margin="10,177,0,0" Style="{StaticResource AuthorTextTemplate}"/>
             <TextBlock Name="CourseDescription" Text="{Binding Description}" Width="200" Height="200" Foreground="White" FontSize="20"/>
+            <TextBlock Name="CourseCategory" Text="{Binding Category}" Width="200" Height="200" Foreground="White" FontSize="20"/>
+            <TextBlock Name="CourseIdHidden" Text="{Binding CourseId}" Visibility="Hidden"/>
+            <TextBlock Name="UserIdHidden" Text="{Binding UserId}" Visibility="Hidden"/>
         </Grid>
     </Grid>
 </UserControl>

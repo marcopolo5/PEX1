@@ -29,6 +29,14 @@ namespace WPF_Client.Custom
         public string Course { get; set; }
         public string Description { get; set; }
 
+        public string Category { get; set; }
+
+        public string Difficulty { get; set; }
+
+        public int CourseId { get; set; }
+
+        public int UserId { get; set; }
+
         public ImageSource Source
         {
             get { return (ImageSource)GetValue(SourceProperty); }
@@ -57,6 +65,13 @@ namespace WPF_Client.Custom
             CourseName.Visibility = Visibility.Visible;
             AuthorName.Visibility = Visibility.Visible;
             CourseImage.Visibility = Visibility.Visible;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            CourseViewWindow window = new CourseViewWindow();
+            
+            window.Show();
         }
     }
 }
