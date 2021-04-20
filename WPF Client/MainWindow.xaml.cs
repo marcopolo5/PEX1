@@ -6,6 +6,9 @@ using System.Windows;
 using Elearning.Business;
 using System.Diagnostics;
 using System.Windows.Controls;
+using Elearning.Business.Services;
+using System;
+using WPF_Client;
 
 namespace ElearningClient
 {
@@ -70,20 +73,48 @@ namespace ElearningClient
                 string message = string.Format("You selected the following course:\nName = {0} \nDescription = {1} \nCategory = {2}", 
                                                 selectedCourse.Name, selectedCourse.Description, selectedCourse.Category);
                 MessageBox.Show(message);
+                CourseViewWindow window = new CourseViewWindow();
+                window.Show();
             }
 
         }
 
 
-        private void CoursesDataGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        //private void CoursesDataGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        //{
+        //    int selectedIndex = CoursesDataGrid.SelectedIndex;
+
+
+        //    CourseDTO selectedCourse = CoursesDataGrid.SelectedItem as CourseDTO;
+        //    string message = string.Format("You selected the following course:\nName = {0} \nDescription = {1} \nCategory = {2}",
+        //                                    selectedCourse.Name, selectedCourse.Description, selectedCourse.Category);
+        //    MessageBox.Show(message);
+        //}
+
+        private void TryCourseButton_Click(object sender, RoutedEventArgs e)
         {
-            int selectedIndex = CoursesDataGrid.SelectedIndex;
+            int selectedIndex = SuggestedCoursesDataGrid.SelectedIndex;
 
 
-            CourseDTO selectedCourse = CoursesDataGrid.SelectedItem as CourseDTO;
+            CourseDTO selectedCourse = SuggestedCoursesDataGrid.SelectedItem as CourseDTO;
+            try
+            {
+                EnrollmentService service = new EnrollmentService();
+                service.AddEnrollment(this.user.Id, selectedCourse.Id);
+                this.InitializeCoursesDataGrid();
+                this.InitializeSuggestedCoursesDataGrid();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
             string message = string.Format("You selected the following course:\nName = {0} \nDescription = {1} \nCategory = {2}",
                                             selectedCourse.Name, selectedCourse.Description, selectedCourse.Category);
+            
             MessageBox.Show(message);
+            CourseViewWindow window = new CourseViewWindow();
+            window.Show();
+
         }
     }
 }
