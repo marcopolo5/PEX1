@@ -5,14 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ElearningClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="482" Width="800">
+        Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Label Content="Your courses:" FontSize="20" Margin="0,28,0,372" ></Label>
-        <DataGrid Name="CoursesDataGrid" Margin="0,67,0,286" SelectionUnit="FullRow"  IsReadOnly="True" />
+        <DataGrid Name="CoursesDataGrid" Margin="0,67,0,239" SelectionUnit="FullRow"  IsReadOnly="True"  SelectedCellsChanged="CoursesDataGrid_SelectedCellsChanged"/>
 
         <Label Content="You can try also:" FontSize="20" Margin="0,245,0,115" ></Label>
-        <DataGrid Name="SuggestedCoursesDataGrid" Margin="0,296,0,79" SelectionUnit="FullRow"  IsReadOnly="True"/>
-        <Button Content="Access your course" Name ="AccessCourseButton" HorizontalAlignment="Left" Margin="10,205,0,0" VerticalAlignment="Top" Height="40" Width="189" Click="AccessCourseButton_Click"/>
-        <Button Content="Try course" Name="TryCourseButton" HorizontalAlignment="Left" Margin="19,404,0,0" VerticalAlignment="Top" Height="32" Width="180" Click="TryCourseButton_Click"/>
+        <DataGrid Name="SuggestedCoursesDataGrid" Margin="0,296,0,10"/>
+        <Button Content="Access selected course" Name ="AccessCourseButton" HorizontalAlignment="Left" Margin="10,205,0,0" VerticalAlignment="Top" Height="40" Width="189" Click="AccessCourseButton_Click"/>
     </Grid>
 </Window>

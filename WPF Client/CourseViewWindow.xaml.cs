@@ -44,7 +44,6 @@ namespace WPF_Client
             this.course = course;
             this.user = user;
             GetCourses();
-            GetConnection();
             ShowReviews();
             GetConnection();
             LessonService = new LessonService();
