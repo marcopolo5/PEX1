@@ -1,4 +1,5 @@
-﻿using ElearningDatabase;
+﻿using Elearning.Database.Models;
+using ElearningDatabase;
 using ElearningDatabase.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,15 @@ namespace Elearning.Business
             {
                 var lessons = elearningContext.Courses.Where(x => x.Id == courseId).Select(x => x.Lessons).ToList().FirstOrDefault();
                 return lessons;
+            }
+        }
+
+        public List<Review> GetReviews(int courseId)
+        {
+            using (ElearningContext elearningContext = new ElearningContext())
+            {
+                var reviews = elearningContext.Courses.Where(x => x.Id == courseId).Select(x => x.Reviews).ToList().FirstOrDefault();
+                return reviews;
             }
         }
     }

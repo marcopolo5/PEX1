@@ -143,11 +143,9 @@
             <Canvas.Background>
                 <SolidColorBrush Color="#003060"/>
             </Canvas.Background>
-        </Canvas>
-        <Canvas Height="650" HorizontalAlignment="Left"  Name="solid2" VerticalAlignment="Top" Width="1000" Opacity="0.1">
-            <Canvas.Background>
-                <SolidColorBrush Color="black"/>
-            </Canvas.Background>
+            <TextBox Name="ReviewTxtBox"  Background="White" Canvas.Left="225" Canvas.Top="449" TextWrapping="Wrap" Width="344" Height="93"/>
+            <Button Name="AddReviewButton" Content="Add Review" Canvas.Left="480" Canvas.Top="576" Height="43" Width="89" Click="AddReviewButton_Click"/>
+            <Button Name="CancelButton" Content="Cancel" Canvas.Left="383" Canvas.Top="576" Height="43" Width="92" RenderTransformOrigin="0.103,0.431" Click="CancelButton_Click"/>
         </Canvas>
 
 
@@ -172,11 +170,11 @@
      Name="LessonsListView" ItemsSource="{Binding Lessons}" MouseDoubleClick="ListViewItem_MouseButtonDown"
             Grid.Row="3"
             Grid.Column="1"
-            Grid.ColumnSpan="2"
+            Grid.ColumnSpan="3"
             Grid.RowSpan="2"
-            Width="190"
+            Width="270"
             FontSize="17"
-            HorizontalAlignment="Left"
+            HorizontalAlignment="Left" SelectionChanged="LessonsListView_SelectionChanged"
             >
             <ListView.View>
                 <GridView x:Name="LessonGridView" >
@@ -202,7 +200,8 @@
                             <DataTemplate>
                                 <Button
                        Name="downloadButton"
-                       Content="V"
+                       Content="Download"
+                       Click="downloadButton_Click"
                        HorizontalAlignment="Right"
                        Style="{StaticResource downloadButtonTemplate}"
                        />
@@ -212,9 +211,17 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <WebBrowser Name="WebBrowser" Margin="10,10,10,115" Grid.Row="3" 
+        <WebBrowser Name="WebBrowser" Margin="96,10,10,10" Grid.Row="3" 
                    Grid.Column="3" 
-                   Grid.ColumnSpan="4" RenderTransformOrigin="0.402,0.77" Grid.RowSpan="2"/>
+                   Grid.ColumnSpan="4" RenderTransformOrigin="0.402,0.77"/>
 
+        <ListView Name="ReviewListView" Background="White" ItemsSource="{Binding Reviews}" Height="174" SelectionChanged="ListView_SelectionChanged" Grid.ColumnSpan="2" Margin="1,0,10,10" Grid.RowSpan="2" Grid.Column="5" Grid.Row="4">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="UserId" Width="150" DisplayMemberBinding="{Binding UserId}"></GridViewColumn>
+                    <GridViewColumn Header="Content" Width="150"  DisplayMemberBinding="{Binding Content}"></GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>

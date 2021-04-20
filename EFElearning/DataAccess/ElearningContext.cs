@@ -1,4 +1,5 @@
 ﻿using Elearning.Database;
+using Elearning.Database.Models;
 using ElearningDatabase.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +25,7 @@ namespace ElearningDatabase
         public DbSet<Lesson> Lessons { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Quiz> Quizs { get; set; }
+        public DbSet<Review> Reviews { get; set; }
         public DbSet<Resource> Resources { get; set; }
         public DbSet<UserProgress> UserProgresses { get; set; }
         public DbSet<User> Users { get; set; }

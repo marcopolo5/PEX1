@@ -1,4 +1,5 @@
-﻿using ElearningDatabase.Validation;
+﻿using Elearning.Database.Models;
+using ElearningDatabase.Validation;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -34,5 +35,7 @@ namespace ElearningDatabase.Models
         public string Name { get; set; }
 
         public List<Quiz> Quizes { get; set; }
+
+        public List<Review> Reviews { get; set; }
     }
 }
