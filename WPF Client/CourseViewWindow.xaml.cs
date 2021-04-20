@@ -40,6 +40,7 @@ namespace WPF_Client
         {
             InitializeComponent();
             GetCourses();
+            GetConnection();
             ShowReviews();
             LessonService = new LessonService();
             lesson = new Lesson();
@@ -76,7 +77,7 @@ namespace WPF_Client
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            ReviewTxtBox.Clear();
+            //ReviewTxtBox.Clear();
         }
 
         private void AddReviewButton_Click(object sender, RoutedEventArgs e)
