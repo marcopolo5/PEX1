@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ElearningDatabase.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -26,16 +27,16 @@ namespace WPF_Client.Custom
         }
 
         public string Author { get; set; }
-        public string Course { get; set; }
+        public string CourseName { get; set; }
         public string Description { get; set; }
 
         public string Category { get; set; }
 
         public string Difficulty { get; set; }
 
-        public int CourseId { get; set; }
+        public Course Course { get; set; }
 
-        public int UserId { get; set; }
+        public User User { get; set; }
 
         public ImageSource Source
         {
@@ -49,29 +50,29 @@ namespace WPF_Client.Custom
 
         private void Button_MouseEnter(object sender, MouseEventArgs e)
         {
-            CourseName.Style = this.Resources["ClickCourseTextTemplate"] as Style;
+            CourseNameTxtBlock.Style = this.Resources["ClickCourseTextTemplate"] as Style;
             AuthorName.Style = this.Resources["ClickAuthorTextTemplate"] as Style;
             CourseDescription.Visibility = Visibility.Visible;
-            CourseName.Visibility = Visibility.Hidden;
+            CourseNameTxtBlock.Visibility = Visibility.Hidden;
             AuthorName.Visibility = Visibility.Hidden;
             CourseImage.Visibility = Visibility.Hidden;
         }
 
         private void Button_MouseLeave(object sender, MouseEventArgs e)
         {
-            CourseName.Style = this.Resources["CourseTextTemplate"] as Style;
+            CourseNameTxtBlock.Style = this.Resources["CourseTextTemplate"] as Style;
             AuthorName.Style = this.Resources["AuthorTextTemplate"] as Style;
             CourseDescription.Visibility = Visibility.Hidden;
-            CourseName.Visibility = Visibility.Visible;
+            CourseNameTxtBlock.Visibility = Visibility.Visible;
             AuthorName.Visibility = Visibility.Visible;
             CourseImage.Visibility = Visibility.Visible;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            CourseViewWindow window = new CourseViewWindow();
-            
+            CourseViewWindow window = new CourseViewWindow(User, Course);
             window.Show();
+            
         }
     }
 }

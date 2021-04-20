@@ -30,7 +30,7 @@ namespace WPF_Client
 
         private User user;
         private ElearningContext db;
-
+        
         public MainCoursesView()
         {
             InitializeComponent();
@@ -52,11 +52,11 @@ namespace WPF_Client
             foreach (var course in suggestedCourses)
             {
                 Cards card = new Cards();
-                card.Course = course.Name;
+                card.CourseName = course.Name;
                 card.Description = course.Description;
                 card.Category = course.Category;
-                card.CourseId = course.Id;
-                card.UserId = this.user.Id;
+                card.Course = course;
+                card.User = this.user;
                 ExploreCoursesGrid.Children.Add(card);
 
             }
@@ -86,11 +86,11 @@ namespace WPF_Client
             foreach (var course in myCourses)
             {
                 Cards card = new Cards();
-                card.Course = course.Name;
+                card.CourseName = course.Name;
                 card.Description = course.Description;
                 card.Category = course.Category;
-                card.CourseId = course.Id;
-                card.UserId = this.user.Id;
+                card.Course = course;
+                card.User = this.user;
                 MyCoursesGrid.Children.Add(card);
                 
             }

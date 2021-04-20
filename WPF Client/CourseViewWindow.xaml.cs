@@ -38,24 +38,23 @@ namespace WPF_Client
 
         }
 
-        public CourseViewWindow()
+        public CourseViewWindow(User user, Course course)
         {
             InitializeComponent();
+            this.course = course;
+            this.user = user;
             GetCourses();
             ShowReviews();
             GetConnection();
             LessonService = new LessonService();
             lesson = new Lesson();
-            course = new Course();
-            user = new User();
-            user.Id = 1001;
            
         }
 
         public void GetCourses()
         {
             CourseService singleCourse = new CourseService();
-            Lessons = singleCourse.GetLessons(1);
+            Lessons = singleCourse.GetLessons(this.course.Id);
             DataContext = this; //data binding
         }
 
@@ -71,7 +70,7 @@ namespace WPF_Client
         public void ShowReviews()
         {
             CourseService singleCourse = new CourseService();
-            Reviews = singleCourse.GetReviews(1);
+            Reviews = singleCourse.GetReviews(this.course.Id);
             DataContext = this; //data binding
 
         }
@@ -85,7 +84,7 @@ namespace WPF_Client
         {
             CourseService singleCourse = new CourseService();
             var review = ReviewTxtBox.Text;
-            singleCourse.InsertReview(user, 1, review);
+            singleCourse.InsertReview(user, course.Id, review);
             
 
         }
