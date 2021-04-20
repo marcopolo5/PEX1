@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,7 +26,8 @@ namespace WPF_Client
 
         public LessonService LessonService;
         public Lesson lesson;
-
+        public User user;
+        public Course course;
         public void GetConnection()
         {
             var dbCOntext = new DbContextOptionsBuilder<ElearningContext>();
@@ -41,8 +43,12 @@ namespace WPF_Client
             InitializeComponent();
             GetCourses();
             ShowReviews();
+            GetConnection();
             LessonService = new LessonService();
             lesson = new Lesson();
+            course = new Course();
+            user = new User();
+            user.Id = 1001;
            
         }
 
@@ -67,6 +73,7 @@ namespace WPF_Client
             CourseService singleCourse = new CourseService();
             Reviews = singleCourse.GetReviews(1);
             DataContext = this; //data binding
+
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -74,17 +81,12 @@ namespace WPF_Client
             
         }
 
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
-        {
-            ReviewTxtBox.Clear();
-        }
-
         private void AddReviewButton_Click(object sender, RoutedEventArgs e)
         {
-            //var input = new Review { Content = ReviewTxtBox.Text };
-            //db.Reviews.Add(input);
-            //db.SaveChanges();
-            //ReviewListView.ItemsSource = db.Reviews;
+            CourseService singleCourse = new CourseService();
+            var review = ReviewTxtBox.Text;
+            singleCourse.InsertReview(user, 1, review);
+            
 
         }
 
@@ -95,13 +97,14 @@ namespace WPF_Client
 
         private void downloadButton_Click(object sender, RoutedEventArgs e)
         {
-            //lesson = (Lesson)LessonsListView.SelectedItem;
-            //Uri uri = new Uri(lesson.Content);
-            //Resource resource = new Resource();
-            //using (WebClient wc = new WebClient())
-            //{
-            //    wc.DownloadFile(uri, resource.File);
-            //}
+            lesson = (Lesson)LessonsListView.SelectedItem;
+            Uri uri = new Uri(lesson.Content);
+            var processStartInfo = new ProcessStartInfo
+            {
+                FileName = uri.ToString(),
+                UseShellExecute = true
+            };
+            Process.Start(processStartInfo);
         }
     }
 }
