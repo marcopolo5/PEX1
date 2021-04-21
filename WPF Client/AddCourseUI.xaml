@@ -1,0 +1,179 @@
+﻿<Window x:Class="WPF_Client.AddCourseUI"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Client"
+        mc:Ignorable="d"
+        Title="AddCourseUI" Height="800" Width="1300">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#2692D0"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#0C2D48"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="buttonTemplate" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Foreground" Value="#F0E1DE"/>
+            <Setter Property="TextElement.FontSize" Value="17"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="13" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="comboBoxTemplate" TargetType="{x:Type ComboBox}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Foreground" Value="#F0E1DE"/>
+            <Setter Property="TextElement.FontSize" Value="17"/>
+
+        </Style>
+    </Window.Resources>
+
+
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="126"/>
+            <ColumnDefinition Width="126"/>
+            <ColumnDefinition Width="126"/>
+            <ColumnDefinition Width="126"/>
+            <ColumnDefinition Width="126"/>
+            <ColumnDefinition Width="126"/>
+            <ColumnDefinition Width="126"/>
+            <ColumnDefinition Width="126"/>
+            <ColumnDefinition Width="126"/>
+            <ColumnDefinition Width="126"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="22"/>
+            <RowDefinition Height="63"/>
+            <RowDefinition Height="63"/>
+            <RowDefinition Height="63"/>
+            <RowDefinition Height="63"/>
+            <RowDefinition Height="63"/>
+            <RowDefinition Height="63"/>
+            <RowDefinition Height="63"/>
+            <RowDefinition Height="63"/>
+            <RowDefinition Height="63"/>
+            <RowDefinition Height="63"/>
+            <RowDefinition Height="63"/>
+            <RowDefinition Height="63"/>
+            <RowDefinition Height="22"/>
+        </Grid.RowDefinitions>
+
+        <Canvas Height="800" HorizontalAlignment="Left"  Name="solid1" VerticalAlignment="Top" Width="1300" Opacity="0.9">
+            <Canvas.Background>
+                <SolidColorBrush Color="#4166f5"/>
+            </Canvas.Background>
+        </Canvas>
+
+        <Canvas Height="800" HorizontalAlignment="Left"  Name="solid" VerticalAlignment="Top" Width="1300" Opacity="0.75">
+            <Canvas.Background>
+                <SolidColorBrush Color="#003060"/>
+            </Canvas.Background>
+        </Canvas>
+        <Canvas Height="800" HorizontalAlignment="Left"  Name="solid2" VerticalAlignment="Top" Width="1300" Opacity="0.1">
+            <Canvas.Background>
+                <SolidColorBrush Color="black"/>
+            </Canvas.Background>
+        </Canvas>
+
+        <Image x:Name="courseImage" Source="/Resources/Login sign up model 1.png" Grid.Row="1" Grid.RowSpan="4" Grid.Column="6" Grid.ColumnSpan="5"/>
+
+        <Button Content="Add image..." Grid.Row="5" Grid.Column="9" Grid.RowSpan="1" Grid.ColumnSpan="2" Style="{StaticResource buttonTemplate}"/>
+
+        <Label Grid.Row="1" Grid.Column="1" Content="Course name:" Foreground="White" FontSize="17" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+        <TextBox VerticalContentAlignment="Center" TextWrapping="Wrap" Grid.Row="1" Grid.Column="2" Grid.RowSpan="1" Grid.ColumnSpan="3" VerticalAlignment="Center" MinHeight="63" FontSize="20" HorizontalAlignment="Left" Width="378" />
+
+        <Label Grid.Row="2" Grid.ColumnSpan="4" Grid.Column="1" Content="Course description" Foreground="White" FontSize="17" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+        <TextBox TextWrapping="Wrap" Grid.Row="3" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="4" FontSize="17" />
+
+        <Button Content="Remove lesson" Grid.Row="12" Grid.Column="2" Grid.RowSpan="1" Grid.ColumnSpan="2" Style="{StaticResource buttonTemplate}"/>
+
+        <Button Content="Add lesson" Grid.Row="12" Grid.Column="4" Grid.RowSpan="1" Grid.ColumnSpan="2" Style="{StaticResource buttonTemplate}"/>
+
+        <Button Content="Cancel" Grid.Row="10" Grid.Column="7" Grid.RowSpan="1" Grid.ColumnSpan="2" Style="{StaticResource buttonTemplate}"/>
+
+        <Button Content="Save" Grid.Row="10" Grid.Column="9" Grid.RowSpan="1" Grid.ColumnSpan="2" Style="{StaticResource buttonTemplate}"/>
+
+        <ComboBox Name="categoryComboBox" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="1">
+        </ComboBox>
+
+        <ComboBox Name="dificultyComboBox" Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="1">
+        </ComboBox>
+
+        <ListView
+            Name="lessonListView"
+            Grid.Row="7"
+            Grid.Column="1"
+            Grid.ColumnSpan="6"
+            Grid.RowSpan="5"
+            FontSize="17"
+            HorizontalAlignment="Left"
+            Width="756"
+            >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Lesson" Width="252">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox
+                                    FontSize="17"
+                                    />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Description" Width="378">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox
+                                    FontSize="17"
+                                    />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Resource" Width="126">
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Grid>
+
+</Window>
