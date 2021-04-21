@@ -33,7 +33,7 @@ namespace Elearning.Business
             {
                 using (ElearningContext elearningContext = new ElearningContext())
                 {
-                    elearningContext.Reviews.Add(new Review()
+                    elearningContext.Reviews.Add(new Review(user.Id, courseId, review)
                     {
                         Content = review,
                         UserId= user.Id,
