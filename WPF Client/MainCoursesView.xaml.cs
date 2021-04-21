@@ -31,16 +31,18 @@ namespace WPF_Client
         private User user;
         private ElearningContext db;
         
-        public MainCoursesView()
+        public MainCoursesView(User user)
         {
             InitializeComponent();
             GetConnection();
             ExploreBtn.Style = this.Resources["ClickNavigationButtons"] as Style;
             ExploreCourses.Visibility = Visibility.Visible;
             MyCourses.Visibility = Visibility.Hidden;
-            //Cards card = new();
-            //courses.Children.Add(card);
-            
+            this.user = user;
+
+            InitializeExploreCoursesGrid();
+            InitializeMyCoursesGrid();
+
             ChangeImages();
             
         }
@@ -70,13 +72,6 @@ namespace WPF_Client
             db.Migrate();
         }
 
-        public void SetUser(User user)
-        {
-            Debug.WriteLine("set user: user = " + user + " user id = " + user.Id);
-            this.user = user;
-            InitializeExploreCoursesGrid();
-            InitializeMyCoursesGrid();
-        }
 
 
         public void InitializeMyCoursesGrid()
