@@ -105,5 +105,13 @@ namespace WPF_Client
             };
             Process.Start(processStartInfo);
         }
+
+        private void dashButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            MainCoursesView dashboard = new MainCoursesView(user);
+            dashboard.Show();
+            this.Close();
+        }
     }
 }
