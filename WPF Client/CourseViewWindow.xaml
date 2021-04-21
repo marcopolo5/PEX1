@@ -148,7 +148,7 @@
         </Canvas>
 
 
-        <Button Content="Dashboard" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource buttonTemplate}" Margin="1,0,1,0"/>
+        <Button Content="Dashboard" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource buttonTemplate}" Margin="1,0,1,0" Click="dashButton_Click"/>
         <ListView
      Name="LessonsListView" ItemsSource="{Binding Lessons}" MouseDoubleClick="ListViewItem_MouseButtonDown"
             Grid.Row="2"
