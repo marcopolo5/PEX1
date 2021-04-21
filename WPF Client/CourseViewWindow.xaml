@@ -143,34 +143,18 @@
             <Canvas.Background>
                 <SolidColorBrush Color="#003060"/>
             </Canvas.Background>
-            <TextBox Name="ReviewTxtBox"  Background="White" Canvas.Left="313" Canvas.Top="449" TextWrapping="Wrap" Width="256" Height="93"/>
-            <Button Name="AddReviewButton" Content="Add Review" Canvas.Left="480" Canvas.Top="576" Height="43" Width="89" Click="AddReviewButton_Click"/>
+            <TextBox Name="ReviewTxtBox"  Background="White" Canvas.Left="312" Canvas.Top="449" TextWrapping="Wrap" Width="559" Height="47"/>
+            <Button Name="AddReviewButton" Content="Add Review" Canvas.Left="876" Canvas.Top="449" Height="47" Width="96" Click="AddReviewButton_Click"/>
         </Canvas>
 
 
-
-        <Label x:Name="courseTitle"
-               Content="Titlul cursului" 
-               FontSize="24" 
-               Grid.Row="1" 
-               Grid.Column="1" 
-               Grid.ColumnSpan="6" 
-               HorizontalAlignment="Left" 
-               VerticalAlignment="Center"
-               Foreground="#F0E1DE"
-               />
-
-        <Button Content="Dashboard" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource buttonTemplate}" Margin="1,0,1,0"/>
-        <Button Content="Meniu but" Grid.Row="2" Grid.Column="3" Style="{StaticResource buttonTemplate}" Margin="1,0,1,0"/>
-        <Button Content="Meniu but" Grid.Row="2" Grid.Column="4" Style="{StaticResource buttonTemplate}" Margin="1,0,1,0"/>
-        <Button Content="Meniu but" Grid.Row="2" Grid.Column="5" Style="{StaticResource buttonTemplate}" Margin="1,0,1,0"/>
-        <Button Content="Meniu but" Grid.Row="2" Grid.Column="6" Style="{StaticResource buttonTemplate}" Margin="1,0,1,0"/>
+        <Button Content="Dashboard" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource buttonTemplate}" Margin="1,0,1,0"/>
         <ListView
      Name="LessonsListView" ItemsSource="{Binding Lessons}" MouseDoubleClick="ListViewItem_MouseButtonDown"
-            Grid.Row="3"
+            Grid.Row="2"
             Grid.Column="1"
             Grid.ColumnSpan="3"
-            Grid.RowSpan="2"
+            Grid.RowSpan="3"
             Width="270"
             FontSize="17"
             HorizontalAlignment="Left" SelectionChanged="LessonsListView_SelectionChanged"
@@ -210,15 +194,15 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <WebBrowser Name="WebBrowser" Margin="96,10,10,10" Grid.Row="3" 
+        <WebBrowser Name="WebBrowser" Margin="96,0,0,10" Grid.Row="2" Grid.RowSpan="2"
                    Grid.Column="3" 
                    Grid.ColumnSpan="4" RenderTransformOrigin="0.402,0.77"/>
 
-        <ListView Name="ReviewListView" Background="White" ItemsSource="{Binding Reviews}" Height="174" SelectionChanged="ListView_SelectionChanged" Grid.ColumnSpan="2" Margin="1,0,10,10" Grid.RowSpan="2" Grid.Column="5" Grid.Row="4">
+        <ListView Name="ReviewListView" Background="White" ItemsSource="{Binding Reviews}" SelectionChanged="ListView_SelectionChanged" Grid.ColumnSpan="4" Margin="96,57,0,0" Grid.Column="3" Grid.Row="4">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="UserId" Width="150" DisplayMemberBinding="{Binding UserId}"></GridViewColumn>
-                    <GridViewColumn Header="Content" Width="150"  DisplayMemberBinding="{Binding Content}"></GridViewColumn>
+                    <GridViewColumn Header="Content" Width="300"  DisplayMemberBinding="{Binding Content}"></GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
