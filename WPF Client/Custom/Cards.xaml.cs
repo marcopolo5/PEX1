@@ -36,8 +36,6 @@ namespace WPF_Client.Custom
 
         public Course Course { get; set; }
 
-        public User User { get; set; }
-
         public ImageSource Source
         {
             get { return (ImageSource)GetValue(SourceProperty); }
@@ -68,11 +66,5 @@ namespace WPF_Client.Custom
             CourseImage.Visibility = Visibility.Visible;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            CourseViewWindow window = new CourseViewWindow(User, Course);
-            window.Show();
-            
-        }
     }
 }

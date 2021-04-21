@@ -71,8 +71,7 @@ namespace ElearningClient
             {
                 User loggedUser = login.GetLoggedUser(username, password);
                 // Debug.WriteLine("on clik: logged user = " + loggedUser + " id = " + loggedUser.Id);
-                MainCoursesView mainWindow = new MainCoursesView();
-                mainWindow.SetUser(loggedUser);
+                MainCoursesView mainWindow = new MainCoursesView(loggedUser);
                 mainWindow.Show();
                 this.Close();
             }
