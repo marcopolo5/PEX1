@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WPF_Client.Custom;
+using Elearning.Business.Services;
 
 namespace WPF_Client
 {
@@ -58,9 +59,8 @@ namespace WPF_Client
                 card.Description = course.Description;
                 card.Category = course.Category;
                 card.Course = course;
-                card.User = this.user;
                 ExploreCoursesGrid.Children.Add(card);
-
+                card.MouseDoubleClick += new MouseButtonEventHandler(DoubleClickExploreCourseHandler);
             }
         }
 
@@ -72,7 +72,28 @@ namespace WPF_Client
             db.Migrate();
         }
 
+        public void DoubleClickExploreCourseHandler(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                EnrollmentService service = new EnrollmentService();
+                service.AddEnrollment(this.user.Id, ((Cards)sender).Course.Id);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+            CourseViewWindow window = new CourseViewWindow(this.user, ((Cards)sender).Course);
+            window.Show();
+            this.Close();
+        }
 
+        public void DoubleClickMyCourseHandler(object sender, MouseButtonEventArgs e)
+        {
+            CourseViewWindow window = new CourseViewWindow(this.user, ((Cards)sender).Course);
+            window.Show();
+            this.Close();
+        }
 
         public void InitializeMyCoursesGrid()
         {
@@ -85,9 +106,8 @@ namespace WPF_Client
                 card.Description = course.Description;
                 card.Category = course.Category;
                 card.Course = course;
-                card.User = this.user;
                 MyCoursesGrid.Children.Add(card);
-                
+                card.MouseDoubleClick += new MouseButtonEventHandler(DoubleClickMyCourseHandler);
             }
         }
 

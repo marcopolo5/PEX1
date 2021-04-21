@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Elearning.Business.Services
 {
-    class EnrollmentService
+    public class EnrollmentService
     {
         public void AddEnrollment(int userId, int courseId)
         {
