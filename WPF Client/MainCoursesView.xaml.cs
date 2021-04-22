@@ -28,6 +28,8 @@ namespace WPF_Client
         private bool mycoursesBtnClicked = false;
         private bool achievementsBtnClicked = false;
         private bool gamesBtnClicked = false;
+        private int myCoursesCount = 0;
+        private int exploreCoursesCount = 0;
 
         private User user;
         private ElearningContext db;
@@ -55,6 +57,15 @@ namespace WPF_Client
             foreach (var course in suggestedCourses)
             {
                 Cards card = new Cards();
+                exploreCoursesCount++;
+                if (exploreCoursesCount % 3 == 0)
+                {
+                    ExploreCoursesGrid.Height = 300 * (exploreCoursesCount / 3) + 100;
+                }
+                else
+                {
+                    ExploreCoursesGrid.Height = 300 * (exploreCoursesCount / 3 + 1) + 100;
+                }
                 card.CourseName = course.Name;
                 card.Description = course.Description;
                 card.Category = course.Category;
@@ -102,6 +113,15 @@ namespace WPF_Client
             foreach (var course in myCourses)
             {
                 Cards card = new Cards();
+                myCoursesCount++;
+                if (myCoursesCount % 3 == 0)
+                {
+                    MyCoursesGrid.Height = 300 * (myCoursesCount / 3) + 100;
+                }
+                else
+                {
+                    MyCoursesGrid.Height = 300 * (myCoursesCount / 3 + 1) + 100;
+                }
                 card.CourseName = course.Name;
                 card.Description = course.Description;
                 card.Category = course.Category;

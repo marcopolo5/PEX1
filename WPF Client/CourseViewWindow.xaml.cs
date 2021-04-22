@@ -6,10 +6,12 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace WPF_Client
@@ -73,6 +75,7 @@ namespace WPF_Client
             Reviews = singleCourse.GetReviews(this.course.Id);
             DataContext = this; //data binding
 
+            
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -84,8 +87,12 @@ namespace WPF_Client
         {
             CourseService singleCourse = new CourseService();
             var review = ReviewTxtBox.Text;
+            Review r = new Review(user.Id, course.Id, review);
             singleCourse.InsertReview(user, course.Id, review);
-            
+            Reviews.Add(r);
+            ICollectionView view = CollectionViewSource.GetDefaultView(ReviewListView.ItemsSource);
+            view.Refresh();
+            ReviewTxtBox.Clear();
 
         }
 
