@@ -198,7 +198,7 @@
                    Grid.Column="3" 
                    Grid.ColumnSpan="4" RenderTransformOrigin="0.402,0.77"/>
 
-        <ListView Name="ReviewListView" Background="White" ItemsSource="{Binding Reviews}" SelectionChanged="ListView_SelectionChanged" Grid.ColumnSpan="4" Margin="96,57,0,0" Grid.Column="3" Grid.Row="4">
+        <ListView Name="ReviewListView" Background="White" ItemsSource="{Binding Reviews, Mode=TwoWay}" SelectionChanged="ListView_SelectionChanged" Grid.ColumnSpan="4" Margin="96,57,0,0" Grid.Column="3" Grid.Row="4">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="UserId" Width="150" DisplayMemberBinding="{Binding UserId}"></GridViewColumn>
