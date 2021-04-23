@@ -1,5 +1,10 @@
-﻿using System;
+﻿using Elearning.Business;
+using ElearningDatabase.Models;
+using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,6 +25,30 @@ namespace WPF_Client
         public AddCourseUI()
         {
             InitializeComponent();
+            dificultyComboBox.ItemsSource = Enum.GetValues(typeof(DifficultyEnum)).Cast<DifficultyEnum>();
+            categoryComboBox.ItemsSource = Enum.GetValues(typeof(CategoryEnum)).Cast<CategoryEnum>();
+        }
+
+
+        private void AddImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                ImageNameTxtBox.Text = File.ReadAllText(openFileDialog.FileName);
+            }
+                
+        }
+
+        private void AddLesson_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void dificultyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

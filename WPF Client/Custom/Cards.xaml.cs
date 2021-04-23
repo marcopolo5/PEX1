@@ -30,7 +30,7 @@ namespace WPF_Client.Custom
         public string CourseName { get; set; }
         public string Description { get; set; }
 
-        public string Category { get; set; }
+        public CategoryEnum Category { get; set; }
 
         public string Difficulty { get; set; }
 

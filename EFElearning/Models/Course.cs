@@ -12,11 +12,29 @@ namespace ElearningDatabase.Models
         Advanced,
     }
 
+    public enum CategoryEnum
+    {
+        IT,
+        Psychology,
+        Education,
+        Medicine,
+        Law,
+        Economics,
+        Finance,
+        BussinesManagement,
+        Engineering,
+        Health,
+        Lifestyle,
+        Arts,
+        Literature
+
+    }
+
     public class Course
     {
         [Required]
         [MaxLength(ValidationRules.courseMinLength)]
-        public string Category { get; set; }
+        public CategoryEnum Category { get; set; }
 
         [Required]
         [MaxLength(ValidationRules.courseMaxLength)]
