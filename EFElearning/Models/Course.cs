@@ -37,5 +37,9 @@ namespace ElearningDatabase.Models
         public List<Quiz> Quizes { get; set; }
 
         public List<Review> Reviews { get; set; }
+
+
+        public User Author { get; set; }
+        public int AuthorId { get; set; }
     }
 }
