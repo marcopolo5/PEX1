@@ -1,18 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ElearningDatabase.Models;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace ElearningDatabase.Models
+namespace Elearning.Database.Models
 {
-    public class EnrolledUserCourse
+    public class Author
     {
         public Course Course { get; set; }
-
-        [Required]
         public int CourseId { get; set; }
 
         public int Id { get; set; }
         public User User { get; set; }
-
-        [Required]
         public int UserId { get; set; }
     }
 }

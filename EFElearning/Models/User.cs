@@ -1,4 +1,5 @@
-﻿using ElearningDatabase.Validation;
+﻿using Elearning.Database.Models;
+using ElearningDatabase.Validation;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -16,9 +17,6 @@ namespace ElearningDatabase.Models
         [Required]
         [MaxLength(ValidationRules.userMaxLength)]
         public string Email { get; set; }
-
-        //toate cursurile la care e inrolat un user
-        public List<EnrolledUserCourse> EnrolledUserCourses { get; set; }
 
         [Required]
         [MaxLength(ValidationRules.userMaxLength)]

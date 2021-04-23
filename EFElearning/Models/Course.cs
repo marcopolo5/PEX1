@@ -26,7 +26,8 @@ namespace ElearningDatabase.Models
         [MaxLength(ValidationRules.courseMaxLength)]
         public DifficultyEnum Difficulty { get; set; }
 
-        public List<EnrolledUserCourse> EnrolledUserCourses { get; set; }
+        [Required]
+        public Author Author { get; set; }
         public int Id { get; set; }
         public List<Lesson> Lessons { get; set; }
 
@@ -38,8 +39,5 @@ namespace ElearningDatabase.Models
 
         public List<Review> Reviews { get; set; }
 
-
-        public User Author { get; set; }
-        public int AuthorId { get; set; }
     }
 }
