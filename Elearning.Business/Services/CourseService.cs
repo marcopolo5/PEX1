@@ -27,6 +27,15 @@ namespace Elearning.Business
             }
         }
 
+        public List<Resource> GetResources(int lessonId)
+        {
+            using (ElearningContext elearningContext = new ElearningContext())
+            {
+                var resources = elearningContext.Lessons.Where(x => x.Id == lessonId).Select(x => x.Resources).ToList().FirstOrDefault();
+                return resources;
+            }
+        }
+
         public void InsertReview(User user, int courseId, string review)
         {
             if(review!=" " )
@@ -43,6 +52,21 @@ namespace Elearning.Business
                 }
             }
 
+        }
+
+        public void InsertLesson(Lesson lesson)
+        {
+            using (ElearningContext elearningContext = new ElearningContext())
+            {
+                elearningContext.Lessons.Add(new Lesson()
+                {
+                    Name= lesson.Name,
+                    CourseId= lesson.CourseId,
+                    Content=lesson.Content,
+                    Resources= lesson.Resources
+                });
+                elearningContext.SaveChanges();
+            }
         }
 
     }

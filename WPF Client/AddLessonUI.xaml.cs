@@ -1,4 +1,8 @@
-﻿using Microsoft.Win32;
+﻿using Elearning.Business;
+using ElearningDatabase;
+using ElearningDatabase.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,10 +23,28 @@ namespace WPF_Client
     /// </summary>
     public partial class AddLessonUI : Window
     {
+        private ElearningContext db;
+        public List<Lesson> Lessons { get; set; }
+        public List<Resource> Resources { get; set; }
+
+        public Lesson lesson;
         public AddLessonUI()
         {
             InitializeComponent();
+            GetConnection();
+            lesson = new Lesson();
         }
+
+        public void GetConnection()
+        {
+            var dbCOntext = new DbContextOptionsBuilder<ElearningContext>();
+            dbCOntext.UseSqlServer(Elearning.Database.ResourceFile.connectionString);
+            db = new ElearningContext(dbCOntext.Options);
+            db.Migrate();
+
+
+        }
+
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
@@ -37,6 +59,24 @@ namespace WPF_Client
             {
                 AddResourceTxtBox.Text = File.ReadAllText(openFileDialog.FileName);
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+        private void SaveLessonButton_Click(object sender, RoutedEventArgs e)
+        {
+            //CourseService singleCourse = new CourseService();
+            //var lessonName = LessonNameTxtBox.Text;
+            //var lessonDescription = LessonDescriptionTxtBox.Text;
+            //var lessonResource = AddResourceTxtBox.Text;
+            //Lesson lesson = new Lesson();
+            //lesson.Name = lessonName;
+            //lesson.Content = lessonDescription;
+            
         }
     }
 }

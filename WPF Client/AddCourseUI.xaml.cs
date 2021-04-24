@@ -43,12 +43,18 @@ namespace WPF_Client
 
         private void AddLesson_Click(object sender, RoutedEventArgs e)
         {
-
+            AddLessonUI addLesson = new AddLessonUI();
+            addLesson.Show();
         }
 
         private void dificultyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void CancelCourse_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
