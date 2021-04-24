@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,6 +22,21 @@ namespace WPF_Client
         public AddLessonUI()
         {
             InitializeComponent();
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void AddResourceButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = @"PDF Files (*.pdf)|*.pdf";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                AddResourceTxtBox.Text = File.ReadAllText(openFileDialog.FileName);
+            }
         }
     }
 }
