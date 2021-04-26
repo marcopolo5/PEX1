@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Text;
 using System.Windows;
@@ -25,14 +26,15 @@ namespace WPF_Client
     {
         private ElearningContext db;
         public List<Lesson> Lessons { get; set; }
-        public List<Resource> Resources { get; set; }
+        public List<Resource> Resourcess { get; set; }
 
-        public Lesson lesson;
+        public Course Course;
+        
         public AddLessonUI()
         {
             InitializeComponent();
             GetConnection();
-            lesson = new Lesson();
+            Resourcess = new List<Resource>();
         }
 
         public void GetConnection()
@@ -69,14 +71,19 @@ namespace WPF_Client
 
         private void SaveLessonButton_Click(object sender, RoutedEventArgs e)
         {
-            //CourseService singleCourse = new CourseService();
-            //var lessonName = LessonNameTxtBox.Text;
-            //var lessonDescription = LessonDescriptionTxtBox.Text;
-            //var lessonResource = AddResourceTxtBox.Text;
-            //Lesson lesson = new Lesson();
-            //lesson.Name = lessonName;
-            //lesson.Content = lessonDescription;
+            Lesson lesson = new Lesson();
+            CourseService singleCourse = new CourseService();
+            lesson.Name = LessonNameTxtBox.Text;
+            lesson.Content = LessonContentTxtBox.Text;
+            Resource resource = new Resource();
+            resource.File = AddResourceTxtBox.Text;
+            lesson.Resources = Resourcess;
+            lesson.Resources.Add(resource);
+            
+            singleCourse.InsertLesson(lesson);
+            Resources.Clear();
             
         }
+
     }
 }

@@ -41,6 +41,7 @@ namespace ElearningDatabase
             optionsBuilder.UseSqlServer(ResourceFile.connectionString);
         }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

@@ -56,16 +56,37 @@ namespace Elearning.Business
 
         public void InsertLesson(Lesson lesson)
         {
-            using (ElearningContext elearningContext = new ElearningContext())
-            {
+          
+                using (ElearningContext elearningContext = new ElearningContext())
+                {
                 elearningContext.Lessons.Add(new Lesson()
                 {
-                    Name= lesson.Name,
-                    CourseId= lesson.CourseId,
-                    Content=lesson.Content,
-                    Resources= lesson.Resources
+                    Name = lesson.Name,
+                    Content = lesson.Content,
+                    Resources = lesson.Resources,
+                   
                 });
-                elearningContext.SaveChanges();
+                    elearningContext.SaveChanges();
+                }
+
+        }
+
+        public void InsertCourse(Course course)
+        {
+            if(course!=null)
+            {
+                using (ElearningContext elearningContext = new ElearningContext())
+                {
+                    elearningContext.Courses.Add(new Course()
+                    {
+                        Name=course.Name,
+                        Category= course.Category,
+                        Difficulty= course.Difficulty,
+                        Description= course.Description
+
+                    });
+                    elearningContext.SaveChanges();
+                }
             }
         }
 

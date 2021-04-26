@@ -22,6 +22,5 @@ namespace ElearningDatabase.Models
 
         public List<Resource> Resources { get; set; }
 
-
     }
 }

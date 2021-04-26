@@ -3,6 +3,7 @@ using ElearningDatabase.Models;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -22,13 +23,22 @@ namespace WPF_Client
     /// </summary>
     public partial class AddCourseUI : Window
     {
+        private List<Lesson> Lessons { set; get; }
+        Course course = new Course();
         public AddCourseUI()
         {
             InitializeComponent();
+            ShowLessons();
             dificultyComboBox.ItemsSource = Enum.GetValues(typeof(DifficultyEnum)).Cast<DifficultyEnum>();
             categoryComboBox.ItemsSource = Enum.GetValues(typeof(CategoryEnum)).Cast<CategoryEnum>();
         }
 
+        private void ShowLessons()
+        {
+            CourseService singleCourse = new CourseService();
+            Lessons = singleCourse.GetLessons(this.course.Id);
+            DataContext = this; //data binding
+        }
 
         private void AddImage_Click(object sender, RoutedEventArgs e)
         {
@@ -55,6 +65,23 @@ namespace WPF_Client
         private void CancelCourse_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+
+        private void lessonListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ICollectionView view = CollectionViewSource.GetDefaultView(lessonListView.ItemsSource);
+            view.Refresh();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
