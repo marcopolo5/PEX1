@@ -80,8 +80,7 @@ namespace WPF_Client
 
         private void lessonListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ICollectionView view = CollectionViewSource.GetDefaultView(lessonListView.ItemsSource);
-            view.Refresh();
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -72,6 +72,7 @@ namespace WPF_Client
 
         private void SaveLessonButton_Click(object sender, RoutedEventArgs e)
         {
+
             Lesson lesson = new Lesson();
             CourseService singleCourse = new CourseService();
             lesson.Name = LessonNameTxtBox.Text;
@@ -80,10 +81,10 @@ namespace WPF_Client
             resource.File = AddResourceTxtBox.Text;
             lesson.Resources = Resourcess;
             lesson.Resources.Add(resource);
-            
-            singleCourse.InsertLesson(lesson,course.Id);
-            Resources.Clear();
-            
+
+            singleCourse.InsertLesson(lesson, course.Id);
+            this.Close();
+
         }
 
     }
