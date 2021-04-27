@@ -57,5 +57,7 @@ namespace ElearningDatabase.Models
 
         public List<Review> Reviews { get; set; }
 
+        public string Image { get; set; }
+
     }
 }
