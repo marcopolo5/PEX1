@@ -28,13 +28,14 @@ namespace WPF_Client
         public List<Lesson> Lessons { get; set; }
         public List<Resource> Resourcess { get; set; }
 
-        public Course Course;
+        public Course course;
         
-        public AddLessonUI()
+        public AddLessonUI(Course course)
         {
             InitializeComponent();
             GetConnection();
             Resourcess = new List<Resource>();
+            this.course = course;
         }
 
         public void GetConnection()
@@ -80,7 +81,7 @@ namespace WPF_Client
             lesson.Resources = Resourcess;
             lesson.Resources.Add(resource);
             
-            singleCourse.InsertLesson(lesson);
+            singleCourse.InsertLesson(lesson,course.Id);
             Resources.Clear();
             
         }

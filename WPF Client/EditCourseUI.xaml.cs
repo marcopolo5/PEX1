@@ -21,16 +21,26 @@ namespace WPF_Client
     /// <summary>
     /// Interaction logic for AddCourseUI.xaml
     /// </summary>
-    public partial class AddCourseUI : Window
+    public partial class EditCourseUI : Window
     {
         private List<Lesson> Lessons { set; get; }
         Course course = new Course();
-        public AddCourseUI()
+        public EditCourseUI(Course course)
         {
             InitializeComponent();
             ShowLessons();
             dificultyComboBox.ItemsSource = Enum.GetValues(typeof(DifficultyEnum)).Cast<DifficultyEnum>();
             categoryComboBox.ItemsSource = Enum.GetValues(typeof(CategoryEnum)).Cast<CategoryEnum>();
+            this.course = course;
+            SetTextBoxesCourse();
+        }
+
+        private void SetTextBoxesCourse()
+        {
+            courseNameBox.Text = course.Name;
+            courseDescriptionBox.Text = course.Description;
+            dificultyComboBox.SelectedItem = course.Difficulty;
+            categoryComboBox.SelectedItem = course.Category;
         }
 
         private void ShowLessons()
@@ -53,7 +63,7 @@ namespace WPF_Client
 
         private void AddLesson_Click(object sender, RoutedEventArgs e)
         {
-            AddLessonUI addLesson = new AddLessonUI();
+            AddLessonUI addLesson = new AddLessonUI(course);
             addLesson.Show();
         }
 
