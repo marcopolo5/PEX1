@@ -28,13 +28,14 @@ namespace WPF_Client
         public List<Lesson> Lessons { get; set; }
         public List<Resource> Resourcess { get; set; }
 
-        public Course Course;
+        public Course course;
         
-        public AddLessonUI()
+        public AddLessonUI(Course course)
         {
             InitializeComponent();
             GetConnection();
             Resourcess = new List<Resource>();
+            this.course = course;
         }
 
         public void GetConnection()
@@ -71,6 +72,7 @@ namespace WPF_Client
 
         private void SaveLessonButton_Click(object sender, RoutedEventArgs e)
         {
+
             Lesson lesson = new Lesson();
             CourseService singleCourse = new CourseService();
             lesson.Name = LessonNameTxtBox.Text;
@@ -79,10 +81,10 @@ namespace WPF_Client
             resource.File = AddResourceTxtBox.Text;
             lesson.Resources = Resourcess;
             lesson.Resources.Add(resource);
-            
-            singleCourse.InsertLesson(lesson);
-            Resources.Clear();
-            
+
+            singleCourse.InsertLesson(lesson, course.Id);
+            this.Close();
+
         }
 
     }

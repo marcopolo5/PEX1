@@ -5,92 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Client"
         mc:Ignorable="d"
-        Title="CourseViewWindow" Height="650" Width="1000">
+        Title="CourseViewWindow" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
     <Window.Resources>
-        <SolidColorBrush x:Key="Button.Static.Background" Color="#2692D0"/>
-        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#0C2D48"/>
+        <Style x:Key="textBox" TargetType="{x:Type TextBox}">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="UseLayoutRounding" Value="True"/>
+            <Setter Property="Height" Value="55"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="CaretBrush" Value="Black"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <Border CornerRadius="28"  Background="#F5F5F5"/>
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="5,0,0,0" VerticalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <SolidColorBrush x:Key="Button.Static.Background" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="Transparent"/>
         <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
         <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
-        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
-        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
-        <Style x:Key="buttonTemplate" TargetType="{x:Type Button}">
+        <Style x:Key="ButtonsTemplate" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Padding" Value="1"/>
-            <Setter Property="Foreground" Value="#F0E1DE"/>
-            <Setter Property="TextElement.FontSize" Value="17"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" CornerRadius="13" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
-                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsDefaulted" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
-                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style x:Key="downloadButtonTemplate" TargetType="{x:Type Button}">
-            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="1"/>
-            <Setter Property="Foreground" Value="#F0E1DE"/>
-            <Setter Property="TextElement.FontSize" Value="17"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" CornerRadius="13" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
-                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsDefaulted" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
-                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style x:Key="lessonButtonTemplate" TargetType="{x:Type Button}">
-            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Foreground" Value="#444444"/>
+            <Setter Property="TextElement.FontSize" Value="25"/>
+            <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="1"/>
-            <Setter Property="Foreground" Value="#F0E1DE"/>
-            <Setter Property="TextElement.FontSize" Value="17"/>
-
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                        <Border x:Name="border" CornerRadius="17" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
                             <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -99,81 +55,72 @@
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
                                 <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
-                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                                <Setter Property="Foreground" Value="#132F70"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-
     </Window.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="96"/>
-            <ColumnDefinition Width="96"/>
-            <ColumnDefinition Width="192"/>
-            <ColumnDefinition Width="192"/>
-            <ColumnDefinition Width="192"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20"/>
-        </Grid.ColumnDefinitions>
 
+    <Grid Name="MainGrid" Height="800" Width="1300">
+        <Label Content="Course Name" Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="35" Margin="45,21,0,0" Width="250"/>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="330"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
-        </Grid.RowDefinitions>
+        <TextBox Name="ReviewTxtBox" Style="{StaticResource textBox}" TextWrapping="Wrap" Margin="313,556,189,0"/>
+        <Button Content="Add review" Style="{StaticResource ButtonsTemplate}" Margin="1136,556,10,199"/>
 
-        <Canvas Height="650" HorizontalAlignment="Left"  Name="solid1" VerticalAlignment="Top" Width="1000" Opacity="0.9">
-            <Canvas.Background>
-                <ImageBrush ImageSource="/Resources/background.png"/>
-            </Canvas.Background>
-        </Canvas>
+        <Image Name="HomeImage" Source="/Resources/homeGrey.png" Margin="1136,51,107,724" Height="25"/>
+        <Button Content="Home" Style="{StaticResource ButtonsTemplate}" Margin="1184,41,29,714" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave"/>
 
-        <Canvas Height="650" HorizontalAlignment="Left"  Name="solid" VerticalAlignment="Top" Width="1000" Opacity="0.75">
-            <Canvas.Background>
-                <SolidColorBrush Color="#003060"/>
-            </Canvas.Background>
-            <TextBox Name="ReviewTxtBox"  Background="White" Canvas.Left="312" Canvas.Top="449" TextWrapping="Wrap" Width="559" Height="47"/>
-            <Button Name="AddReviewButton" Content="Add Review" Canvas.Left="876" Canvas.Top="449" Height="47" Width="96" Click="AddReviewButton_Click"/>
-        </Canvas>
-
-
-        <Button Content="Dashboard" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource buttonTemplate}" Margin="1,0,1,0" Click="dashButton_Click"/>
-        <ListView
-     Name="LessonsListView" ItemsSource="{Binding Lessons}" MouseDoubleClick="ListViewItem_MouseButtonDown"
-            Grid.Row="2"
-            Grid.Column="1"
-            Grid.ColumnSpan="3"
-            Grid.RowSpan="3"
-            Width="270"
-            FontSize="17"
-            HorizontalAlignment="Left" SelectionChanged="LessonsListView_SelectionChanged"
-            >
+        <ListView Name="LessonsListView" ItemsSource="{Binding Lessons}" MouseDoubleClick="ListViewItem_MouseButtonDown" Width="226" FontSize="17" HorizontalAlignment="Left" SelectionChanged="LessonsListView_SelectionChanged" Margin="45,83,0,25">
+            <ListView.Resources>
+                <Style TargetType="GridViewColumnHeader">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Style>
+            </ListView.Resources>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#132F70" />
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Background" Value="#132F70" />
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="20" Background="#F5F5F5">
+                        <ItemsPresenter></ItemsPresenter>
+                    </Border>
+                </ControlTemplate>
+            </ListView.Template>
             <ListView.View>
-                <GridView x:Name="LessonGridView" >
-
+                <GridView x:Name="LessonGridView">
                     <GridViewColumn  DisplayMemberBinding="{Binding Name}" Header="Lessons" Width="150">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button
-                                    Name="lessonButton"
-                                    Content="Lesson"
-                       HorizontalAlignment="Left"
-                                    Margin="0"
-                                    MinWidth="140"
-                                    MaxWidth="140"
-                                    Style="{StaticResource lessonButtonTemplate}"
-                                    />
+                                <!--<Button Name="lessonButton" Content="Lesson" HorizontalAlignment="Left" Margin="0" MinWidth="140" MaxWidth="140" />-->
+                                <Image Name="downloadButton" Cursor="Hand" HorizontalAlignment="Right" Height="25">
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Setter Property="Source" Value="/Resources/downloadIconBlue.png"/>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Source" Value="/Resources/downloadIcon.png"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -181,24 +128,46 @@
                     <GridViewColumn >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button
-                       Name="downloadButton"
-                       Content="Download"
-                       Click="downloadButton_Click"
-                       HorizontalAlignment="Right"
-                       Style="{StaticResource downloadButtonTemplate}"
-                       />
+                                <Button Name="downloadButton" Content="Download" Click="downloadButton_Click" HorizontalAlignment="Right" Style="{StaticResource downloadButtonTemplate}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
-        <WebBrowser Name="WebBrowser" Margin="96,0,0,10" Grid.Row="2" Grid.RowSpan="2"
-                   Grid.Column="3" 
-                   Grid.ColumnSpan="4" RenderTransformOrigin="0.402,0.77"/>
+        <Grid Name="ViewLesson" Background="#F5F5F5" Margin="313,91,29,264" Panel.ZIndex="1">
+            <WebBrowser Name="WebBrowser" Margin="1432,-346,-1432,335" Panel.ZIndex="0"/>
+        </Grid>
 
-        <ListView Name="ReviewListView" Background="White" ItemsSource="{Binding Reviews, Mode=TwoWay}" SelectionChanged="ListView_SelectionChanged" Grid.ColumnSpan="4" Margin="96,57,0,0" Grid.Column="3" Grid.Row="4">
+        <ListView Name="ReviewListView" Background="White" ItemsSource="{Binding Reviews, Mode=TwoWay}" SelectionChanged="ListView_SelectionChanged" Margin="313,632,29,25">
+            <ListView.Resources>
+                <Style TargetType="GridViewColumnHeader">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Style>
+            </ListView.Resources>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#132F70" />
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Background" Value="#132F70" />
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="20" Background="#F5F5F5">
+                        <ItemsPresenter></ItemsPresenter>
+                    </Border>
+                </ControlTemplate>
+            </ListView.Template>
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="UserId" Width="150" DisplayMemberBinding="{Binding UserId}"></GridViewColumn>

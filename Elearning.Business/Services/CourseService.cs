@@ -36,6 +36,7 @@ namespace Elearning.Business
             }
         }
 
+
         public void InsertReview(User user, int courseId, string review)
         {
             if(review!=" " )
@@ -54,7 +55,7 @@ namespace Elearning.Business
 
         }
 
-        public void InsertLesson(Lesson lesson)
+        public void InsertLesson(Lesson lesson, int courseId)
         {
           
                 using (ElearningContext elearningContext = new ElearningContext())
@@ -64,19 +65,20 @@ namespace Elearning.Business
                     Name = lesson.Name,
                     Content = lesson.Content,
                     Resources = lesson.Resources,
+                    CourseId= courseId
                    
                 });
                     elearningContext.SaveChanges();
                 }
-
         }
 
-        public void InsertCourse(Course course)
+        public Course InsertCourse(Course course, User user)
         {
             if(course!=null)
             {
                 using (ElearningContext elearningContext = new ElearningContext())
                 {
+
                     elearningContext.Courses.Add(new Course()
                     {
                         Name=course.Name,
@@ -86,8 +88,15 @@ namespace Elearning.Business
 
                     });
                     elearningContext.SaveChanges();
+                    var newId = elearningContext.Courses.Max(x => x.Id);
+                    elearningContext.Authors.Add(new Author { UserId = user.Id, CourseId = newId });
+                    elearningContext.SaveChanges();
+                    var returnedCourse = elearningContext.Courses.Where(x => x.Id == newId).ToList().FirstOrDefault();
+                    return returnedCourse;
+
                 }
             }
+            return null;
         }
 
     }

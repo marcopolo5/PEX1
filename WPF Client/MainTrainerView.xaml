@@ -1,13 +1,11 @@
-﻿<Window x:Class="WPF_Client.MainCoursesView"
+﻿<Window x:Class="WPF_Client.MainTrainerView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Client"
-        xmlns:ccontrols="clr-namespace:WPF_Client.Custom"
         mc:Ignorable="d"
-        Title="MainWindow"
-         WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+        Title="MainTrainerView" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
 
     <Window.Resources>
         <Style x:Key="textBox" TargetType="{x:Type TextBox}">
@@ -118,14 +116,10 @@
 
 
     <Grid Height="800" Width="1300" HorizontalAlignment="Center">
-        <Label Content="e-Learning App" Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="25" Margin="67,18,0,0"/>
-        <TextBox Name="search" Style="{StaticResource textBox}" Margin="296,22,418,0"/>
-        <Button Name="searchBtn" Margin="830,27,430,740" Style="{StaticResource buttonTemplate}">
-            <Image Source="/Resources/search.png"/>
-        </Button>
+        <Label Content="e-Learning App" Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="25" Margin="102,18,0,0"/>
 
 
-        <Image Name="Profile" Source="/Resources/profile.png" MouseDown="Profile_MouseDown" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,22,64,0" Width="45" Height="45" Panel.ZIndex="1">
+        <Image Name="Profile" Source="/Resources/profile.png" ToolTip="Profile" MouseDown="Profile_MouseDown" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,18,122,0" Width="44" Height="45" Panel.ZIndex="1" Cursor="Hand">
             <Image.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="My Profile"/>
@@ -133,20 +127,15 @@
                 </ContextMenu>
             </Image.ContextMenu>
         </Image>
-        <Label Content="Welcome, " Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="25" Margin="0,20,213,0"/>
-        <Label Name="UserNameLbaer" Content="Name" Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="25" Margin="0,20,144,0"/>
+        <Image Source="/Resources/plusButtonBlue.png" ToolTip="Add course" Name="AddCourseBtn" Cursor="Hand" Margin="1208,18,52,747" Height="35"/>
+        <Label Content="Welcome, " Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="25" Margin="0,18,298,0" Width="127"/>
+        <Label Name="TrainerNameLabel" Content="Name" Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="25" Margin="0,18,213,0"/>
 
-        <Image Name="ExploreImage" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="18,263,0,0" Width="27" Height="40" Panel.ZIndex="1"/>
-        <Button Name="ExploreBtn" Content="Explore" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="83,263,0,0" Style="{StaticResource NavigationButtons}" Width="208" Click="ExploreBtn_Click" MouseEnter="ExploreBtn_MouseEnter" MouseLeave="ExploreBtn_MouseLeave"/>
+        <Image Name="ExploreImage" Source="/Resources/explore.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="18,318,0,0" Width="27" Height="40" Panel.ZIndex="1"/>
+        <Button Name="ExploreBtn" Content="Explore" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="83,318,0,0" Style="{StaticResource NavigationButtons}" Width="208" Click="ExploreBtn_Click" MouseEnter="ExploreBtn_MouseEnter" MouseLeave="ExploreBtn_MouseLeave"/>
 
-        <Image Name="MycoursesImage" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="18,0,0,422" Width="36" Height="32" Panel.ZIndex="1"/>
-        <Button Name="MyCoursesBtn" Content="My Courses" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="83,337,0,0" Style="{StaticResource NavigationButtons}" Width="213" Click="MyCoursesBtn_Click" MouseEnter="MyCoursesBtn_MouseEnter" MouseLeave="MyCoursesBtn_MouseLeave"/>
-
-        <Image Name="AchivementsImage" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="18,413,0,0" Width="36" Height="42" Panel.ZIndex="1"/>
-        <Button Name="AchievementsBtn" Content="Achievements" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="83,408,0,0" Style="{StaticResource NavigationButtons}" Width="208" Click="AchievementsBtn_Click" MouseEnter="AchievementsBtn_MouseEnter" MouseLeave="AchievementsBtn_MouseLeave"/>
-
-        <Image Name="GamesImage" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="18,490,0,0" Width="36" Height="36" Panel.ZIndex="1"/>
-        <Button Name="GamificationBtn" Content="Games" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="83,484,0,0" Style="{StaticResource NavigationButtons}" Width="208" Click="GamificationButton_Click" MouseEnter="GamificationBtn_MouseEnter" MouseLeave="GamificationBtn_MouseLeave"/>
+        <Image Name="MycoursesImage" Source="/Resources/mycoursesGrey.png" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="18,0,0,353" Width="38" Height="41" Panel.ZIndex="1"/>
+        <Button Name="MyCoursesBtn" Content="My Courses" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="83,410,0,0" Style="{StaticResource NavigationButtons}" Width="214" Click="MyCoursesBtn_Click" MouseEnter="MyCoursesBtn_MouseEnter" MouseLeave="MyCoursesBtn_MouseLeave"/>
 
 
         <ScrollViewer Name="ExploreCourses" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="296,94,0,0">
@@ -157,10 +146,11 @@
         </ScrollViewer>
 
         <ScrollViewer Name="MyCourses" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="296,94,0,0">
-            <UniformGrid Name="MyCoursesGrid" Columns="3"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Background="#F5F5F5">
+            <UniformGrid Name="MyCoursesGrid" Columns="3"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#F5F5F5">
 
             </UniformGrid>
         </ScrollViewer>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="1404,61,0,0" VerticalAlignment="Top" Width="0"/>
 
     </Grid>
 </Window>
