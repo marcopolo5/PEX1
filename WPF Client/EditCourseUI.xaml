@@ -103,11 +103,6 @@
         </Grid.RowDefinitions>
 
 
-
-        <Image x:Name="courseImage" Source="/Resources/Login sign up model 1.png" Grid.Row="1" Grid.RowSpan="4" Grid.Column="6" Grid.ColumnSpan="5"/>
-
-        <Button Content="Add image..." Grid.Row="5" Grid.Column="9" Grid.RowSpan="1" Grid.ColumnSpan="2" Style="{StaticResource ButtonsTemplate}" Click="AddImage_Click"/>
-
         <Label Grid.Row="1" Grid.Column="1" Foreground="#132F70" FontWeight="Bold" Content="Course name:" FontSize="17" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
         <TextBox Name="courseNameBox" Style="{StaticResource textBox}" VerticalContentAlignment="Center" TextWrapping="Wrap" Grid.Row="1" Grid.Column="2" Grid.RowSpan="1" Grid.ColumnSpan="3" VerticalAlignment="Center" MinHeight="63" FontSize="20" HorizontalAlignment="Left" Width="378" />
