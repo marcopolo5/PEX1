@@ -64,7 +64,12 @@ namespace WPF_Client
         private void AddLesson_Click(object sender, RoutedEventArgs e)
         {
             AddLessonUI addLesson = new AddLessonUI(course);
-            addLesson.Show();
+            addLesson.ShowDialog();
+            ShowLessons();
+            lessonListView.ItemsSource = Lessons;
+            ICollectionView view = CollectionViewSource.GetDefaultView(lessonListView.ItemsSource);
+            view.Refresh();
+
         }
 
         private void dificultyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

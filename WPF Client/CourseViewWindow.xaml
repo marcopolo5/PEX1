@@ -72,7 +72,7 @@
         <Button Content="Add review" Style="{StaticResource ButtonsTemplate}" Margin="1136,556,10,199"/>
 
         <Image Name="HomeImage" Source="/Resources/homeGrey.png" Margin="1136,51,107,724" Height="25"/>
-        <Button Content="Home" Style="{StaticResource ButtonsTemplate}" Margin="1184,41,29,714" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave"/>
+        <Button Content="Home" Style="{StaticResource ButtonsTemplate}" Margin="1184,41,29,714"/>
 
         <ListView Name="LessonsListView" ItemsSource="{Binding Lessons}" MouseDoubleClick="ListViewItem_MouseButtonDown" Width="226" FontSize="17" HorizontalAlignment="Left" SelectionChanged="LessonsListView_SelectionChanged" Margin="45,83,0,25">
             <ListView.Resources>
@@ -108,8 +108,8 @@
                     <GridViewColumn  DisplayMemberBinding="{Binding Name}" Header="Lessons" Width="150">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <!--<Button Name="lessonButton" Content="Lesson" HorizontalAlignment="Left" Margin="0" MinWidth="140" MaxWidth="140" />-->
-                                <Image Name="downloadButton" Cursor="Hand" HorizontalAlignment="Right" Height="25">
+                                <Button Name="lessonButton" Content="Lesson" HorizontalAlignment="Left" Margin="0" MinWidth="140" MaxWidth="140" />
+                                <!--<Image Name="downloadButton" Cursor="Hand" HorizontalAlignment="Right" Height="25">
                                     <Image.Style>
                                         <Style TargetType="{x:Type Image}">
                                             <Setter Property="Source" Value="/Resources/downloadIconBlue.png"/>
@@ -120,7 +120,7 @@
                                             </Style.Triggers>
                                         </Style>
                                     </Image.Style>
-                                </Image>
+                                </Image>-->
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

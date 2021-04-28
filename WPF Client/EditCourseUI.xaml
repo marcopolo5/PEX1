@@ -160,7 +160,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Description" Width="378" DisplayMemberBinding="{Binding Content}">
+                    <GridViewColumn Header="Content" Width="378" DisplayMemberBinding="{Binding Content}">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBox
