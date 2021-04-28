@@ -25,9 +25,11 @@ namespace WPF_Client
     {
         private List<Lesson> Lessons { set; get; }
         Course course = new Course();
+        CourseService courseService;
         public EditCourseUI(Course course)
         {
             InitializeComponent();
+            courseService = new CourseService();
             ShowLessons();
             dificultyComboBox.ItemsSource = Enum.GetValues(typeof(DifficultyEnum)).Cast<DifficultyEnum>();
             categoryComboBox.ItemsSource = Enum.GetValues(typeof(CategoryEnum)).Cast<CategoryEnum>();
@@ -50,16 +52,6 @@ namespace WPF_Client
             DataContext = this; //data binding
         }
 
-        private void AddImage_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
-            if (openFileDialog.ShowDialog() == true)
-            {
-                ImageNameTxtBox.Text = File.ReadAllText(openFileDialog.FileName);
-            }
-                
-        }
 
         private void AddLesson_Click(object sender, RoutedEventArgs e)
         {
@@ -95,7 +87,17 @@ namespace WPF_Client
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            courseService.UpdateCourse(course);
+            this.Close();
+        }
+
+        private void RemoveLessonButton_Click(object sender, RoutedEventArgs e)
+        {
+            courseService.RemoveLesson((Lesson)lessonListView.SelectedItem);
+            ShowLessons();
+            lessonListView.ItemsSource = Lessons;
+            ICollectionView view = CollectionViewSource.GetDefaultView(lessonListView.ItemsSource);
+            view.Refresh();
         }
     }
 }

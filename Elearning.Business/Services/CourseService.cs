@@ -99,5 +99,25 @@ namespace Elearning.Business
             return null;
         }
 
+        public void RemoveLesson(Lesson lesson)
+        {
+            using (ElearningContext elearningContext = new ElearningContext())
+            {
+
+                elearningContext.Lessons.Remove(lesson);
+                elearningContext.SaveChanges();
+
+            }
+        }
+
+        public void UpdateCourse(Course course)
+        {
+            using (ElearningContext elearningContext = new ElearningContext())
+            {
+                //elearningContext.Courses.Update(course);
+                elearningContext.Entry(course).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                elearningContext.SaveChanges();
+            }
+        }
     }
 }
