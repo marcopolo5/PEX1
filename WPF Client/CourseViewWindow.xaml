@@ -63,16 +63,45 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="DownloadButtonTemplate" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="#132F70"/>
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="Width" Value="17"/>
+            <Setter  Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="17" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <!--<ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>-->
+                            <Image Source="/Resources/downloadIconBlue.png" Height="25"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
 
     <Grid Name="MainGrid" Height="800" Width="1300">
         <Label Content="Course Name" Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="35" Margin="45,21,0,0" Width="250"/>
 
         <TextBox Name="ReviewTxtBox" Style="{StaticResource textBox}" TextWrapping="Wrap" Margin="313,556,189,0"/>
-        <Button Content="Add review" Style="{StaticResource ButtonsTemplate}" Margin="1136,556,10,199"/>
+        <Button Name="AddReviewButton" Click="AddReviewButton_Click" Content="Add review" Style="{StaticResource ButtonsTemplate}" Margin="1136,556,10,199"/>
 
         <Image Name="HomeImage" Source="/Resources/homeGrey.png" Margin="1136,51,107,724" Height="25"/>
-        <Button Content="Home" Style="{StaticResource ButtonsTemplate}" Margin="1184,41,29,714"/>
+        <Button Name="HomeButton" Content="Home" Style="{StaticResource ButtonsTemplate}" Click="HomeButton_Click" MouseEnter="HomeButton_MouseEnter" MouseLeave="HomeButton_MouseLeave" Margin="1184,41,29,714"/>
 
         <ListView Name="LessonsListView" ItemsSource="{Binding Lessons}" MouseDoubleClick="ListViewItem_MouseButtonDown" Width="226" FontSize="17" HorizontalAlignment="Left" SelectionChanged="LessonsListView_SelectionChanged" Margin="45,83,0,25">
             <ListView.Resources>
@@ -109,18 +138,6 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Name="lessonButton" Content="Lesson" HorizontalAlignment="Left" Margin="0" MinWidth="140" MaxWidth="140" />
-                                <!--<Image Name="downloadButton" Cursor="Hand" HorizontalAlignment="Right" Height="25">
-                                    <Image.Style>
-                                        <Style TargetType="{x:Type Image}">
-                                            <Setter Property="Source" Value="/Resources/downloadIconBlue.png"/>
-                                            <Style.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Source" Value="/Resources/downloadIcon.png"/>
-                                                </Trigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Image.Style>
-                                </Image>-->
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -128,16 +145,16 @@
                     <GridViewColumn >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Name="downloadButton" Content="Download" Click="downloadButton_Click" HorizontalAlignment="Right" Style="{StaticResource downloadButtonTemplate}"/>
+                                <Button Name="DownloadButton" Content="Download" Click="DownloadButton_Click" Style="{StaticResource DownloadButtonTemplate}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Grid Name="ViewLesson" Background="#F5F5F5" Margin="313,91,29,264" Panel.ZIndex="1">
-            <WebBrowser Name="WebBrowser" Margin="1432,-346,-1432,335" Panel.ZIndex="0"/>
-        </Grid>
+        
+        <WebBrowser Name="WebBrowser" Margin="326,86,42,258" />
+
 
         <ListView Name="ReviewListView" Background="White" ItemsSource="{Binding Reviews, Mode=TwoWay}" SelectionChanged="ListView_SelectionChanged" Margin="313,632,29,25">
             <ListView.Resources>

@@ -13,6 +13,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace WPF_Client
 {
@@ -101,7 +102,7 @@ namespace WPF_Client
 
         }
 
-        private void downloadButton_Click(object sender, RoutedEventArgs e)
+        private void DownloadButton_Click(object sender, RoutedEventArgs e)
         {
             lesson = (Lesson)LessonsListView.SelectedItem;
             Uri uri = new Uri(lesson.Content);
@@ -113,9 +114,18 @@ namespace WPF_Client
             Process.Start(processStartInfo);
         }
 
-        private void dashButton_Click(object sender, RoutedEventArgs e)
+        private void HomeButton_MouseEnter(object sender, MouseEventArgs e)
         {
+            HomeImage.Source = new BitmapImage(new Uri("/Resources/homeBlue.png", UriKind.Relative));
+        }
 
+        private void HomeButton_MouseLeave(object sender, MouseEventArgs e)
+        {
+            HomeImage.Source = new BitmapImage(new Uri("/Resources/homeGrey.png", UriKind.Relative));
+        }
+
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        {
             MainCoursesView dashboard = new MainCoursesView(user);
             dashboard.Show();
             this.Close();
