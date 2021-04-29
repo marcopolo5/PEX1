@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace ElearningDatabase.Migrations
+namespace Elearning.Database.Migrations
 {
     [DbContext(typeof(ElearningContext))]
-    [Migration("20210419121301_reviewsTable")]
-    partial class reviewsTable
+    [Migration("20210429093103_databaseCreation")]
+    partial class databaseCreation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,29 @@ namespace ElearningDatabase.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Elearning.Database.Models.Author", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId")
+                        .IsUnique();
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Authors");
+                });
 
             modelBuilder.Entity("Elearning.Database.Models.Review", b =>
                 {
@@ -32,17 +55,15 @@ namespace ElearningDatabase.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CourseId")
+                    b.Property<int>("CourseId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CourseId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Reviews");
                 });
@@ -54,10 +75,9 @@ namespace ElearningDatabase.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Category")
-                        .IsRequired()
+                    b.Property<int>("Category")
                         .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -76,28 +96,6 @@ namespace ElearningDatabase.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Courses");
-                });
-
-            modelBuilder.Entity("ElearningDatabase.Models.EnrolledUserCourse", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CourseId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("EnrolledUserCourse");
                 });
 
             modelBuilder.Entity("ElearningDatabase.Models.Lesson", b =>
@@ -277,29 +275,16 @@ namespace ElearningDatabase.Migrations
                     b.ToTable("UserProgresses");
                 });
 
-            modelBuilder.Entity("Elearning.Database.Models.Review", b =>
-                {
-                    b.HasOne("ElearningDatabase.Models.Course", null)
-                        .WithMany("Reviews")
-                        .HasForeignKey("CourseId");
-
-                    b.HasOne("ElearningDatabase.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ElearningDatabase.Models.EnrolledUserCourse", b =>
+            modelBuilder.Entity("Elearning.Database.Models.Author", b =>
                 {
                     b.HasOne("ElearningDatabase.Models.Course", "Course")
-                        .WithMany("EnrolledUserCourses")
-                        .HasForeignKey("CourseId")
+                        .WithOne("Author")
+                        .HasForeignKey("Elearning.Database.Models.Author", "CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ElearningDatabase.Models.User", "User")
-                        .WithMany("EnrolledUserCourses")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -307,6 +292,15 @@ namespace ElearningDatabase.Migrations
                     b.Navigation("Course");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Elearning.Database.Models.Review", b =>
+                {
+                    b.HasOne("ElearningDatabase.Models.Course", null)
+                        .WithMany("Reviews")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ElearningDatabase.Models.Lesson", b =>
@@ -370,7 +364,8 @@ namespace ElearningDatabase.Migrations
 
             modelBuilder.Entity("ElearningDatabase.Models.Course", b =>
                 {
-                    b.Navigation("EnrolledUserCourses");
+                    b.Navigation("Author")
+                        .IsRequired();
 
                     b.Navigation("Lessons");
 
@@ -391,8 +386,6 @@ namespace ElearningDatabase.Migrations
 
             modelBuilder.Entity("ElearningDatabase.Models.User", b =>
                 {
-                    b.Navigation("EnrolledUserCourses");
-
                     b.Navigation("Progresses");
                 });
 #pragma warning restore 612, 618

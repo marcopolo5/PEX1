@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace ElearningDatabase.Migrations
+namespace Elearning.Database.Migrations
 {
     [DbContext(typeof(ElearningContext))]
     partial class ElearningContextModelSnapshot : ModelSnapshot
@@ -180,7 +180,7 @@ namespace ElearningDatabase.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("Quizs");
+                    b.ToTable("Quizes");
                 });
 
             modelBuilder.Entity("ElearningDatabase.Models.Resource", b =>
