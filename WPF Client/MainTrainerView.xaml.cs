@@ -78,6 +78,11 @@ namespace WPF_Client
             editCourseWindow.ShowDialog();
 
             card.Course = editCourseWindow.GetUpdatedCourse();
+            card.CourseName = card.Course.Name;
+            card.Description = card.Course.Description;
+            //card.Difficulty = card.Course.Difficulty;
+            //card.Category = card.Course.Category; 
+
         }
 
         public void DeleteCourseHandler(object sender, RoutedEventArgs e, CardsTrainer card)
