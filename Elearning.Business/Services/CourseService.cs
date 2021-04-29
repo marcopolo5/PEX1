@@ -112,11 +112,21 @@ namespace Elearning.Business
 
         public void UpdateCourse(Course course)
         {
-            using (ElearningContext elearningContext = new ElearningContext())
+            //using (ElearningContext elearningContext = new ElearningContext())
+            //{
+            //    elearningContext.Courses.Update(course);
+            //    //elearningContext.Entry(course).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            //    elearningContext.SaveChanges();
+            //}
+
+            using (ElearningContext context = new ElearningContext())
             {
-                //elearningContext.Courses.Update(course);
-                elearningContext.Entry(course).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                elearningContext.SaveChanges();
+                Course updatedCourse = context.Courses.Where(x => x.Id == course.Id).ToList().FirstOrDefault();
+                updatedCourse.Name = course.Name;
+                updatedCourse.Description = course.Description;
+                updatedCourse.Difficulty = course.Difficulty;
+                updatedCourse.Category = course.Category;
+                context.SaveChanges();
             }
         }
     }
