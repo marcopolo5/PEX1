@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ElearningDatabase.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -32,6 +33,8 @@ namespace WPF_Client.Custom
         public string Category { get; set; }
 
         public string Difficulty { get; set; }
+
+        public Course Course { get; set; }
 
 
         public ImageSource Source
@@ -78,5 +81,7 @@ namespace WPF_Client.Custom
                 e.Handled = true;
             }
         }
+
+    
     }
 }
