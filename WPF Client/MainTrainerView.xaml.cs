@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Elearning.Business.Services;
+using ElearningDatabase.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -24,15 +26,103 @@ namespace WPF_Client
         private bool gamesBtnClicked = false;
         private int myCoursesCount = 0;
         private int exploreCoursesCount = 0;
+        private User trainer;
         public MainTrainerView()
         {
             InitializeComponent();
             ExploreBtn.Style = this.Resources["ClickNavigationButtons"] as Style;
             ExploreCourses.Visibility = Visibility.Visible;
             MyCourses.Visibility = Visibility.Hidden;
-            CardsTrainer mycard = new CardsTrainer();
-            ExploreCoursesGrid.Children.Add(mycard);
+            //CardsTrainer mycard = new CardsTrainer();
+            //ExploreCoursesGrid.Children.Add(mycard);
+            //this.trainer = user;
+
+            InitializeMyCourses();
+            InitializeExploreCourses();
         }
+
+        private void InitializeMyCourses()
+        {
+            User tra = new User
+            {
+                Id = 2
+        };
+            TrainerCoursesService courses = new TrainerCoursesService();
+            var myCourses = courses.GetAllCoursesOfATrainer(tra);
+            foreach (var course in myCourses)
+            {
+                CardsTrainer card = new CardsTrainer();
+                myCoursesCount++;
+                if (myCoursesCount % 3 == 0)
+                {
+                    MyCoursesGrid.Height = 300 * (myCoursesCount / 3) + 100;
+                }
+                else
+                {
+                    MyCoursesGrid.Height = 300 * (myCoursesCount / 3 + 1) + 100;
+                }
+                card.CourseName = course.Name;
+                card.Description = course.Description;
+                card.Category = course.Category.ToString();
+                card.Course = course;
+                MyCoursesGrid.Children.Add(card);
+                card.MenuItemEdit.Click += new RoutedEventHandler((sender, e) => EditCourseHandler(sender, e, card.Course));
+                card.MenuItemDelete.Click += new RoutedEventHandler((sender, e) => DeleteCourseHandler(sender, e, card));
+                //card.MouseDoubleClick += new MouseButtonEventHandler(DoubleClickMyCourseHandler);
+            }
+        }
+
+        public void EditCourseHandler(object sender, RoutedEventArgs e, Course course)
+        {
+            EditCourseUI editCourseWindow = new EditCourseUI(course);
+            editCourseWindow.ShowDialog();
+        }
+
+        public void DeleteCourseHandler(object sender, RoutedEventArgs e, CardsTrainer card)
+        {
+            try
+            {
+                MyCoursesGrid.Children.Remove(card);
+                TrainerCoursesService service = new TrainerCoursesService();
+                service.DeleteCourse(card.Course);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+
+
+        public void InitializeExploreCourses()
+        {
+            User tra = new User
+            {
+                Id = 2
+            };
+            TrainerCoursesService courses = new TrainerCoursesService();
+            var myCourses = courses.GetSuggestedCoursesForAnUser(tra);
+            foreach (var course in myCourses)
+            {
+                CardsTrainer card = new CardsTrainer();
+                myCoursesCount++;
+                if (myCoursesCount % 3 == 0)
+                {
+                    MyCoursesGrid.Height = 300 * (myCoursesCount / 3) + 100;
+                }
+                else
+                {
+                    MyCoursesGrid.Height = 300 * (myCoursesCount / 3 + 1) + 100;
+                }
+                card.CourseName = course.Name;
+                card.Description = course.Description;
+                card.Category = course.Category.ToString();
+                card.Course = course;
+                ExploreCoursesGrid.Children.Add(card);
+                
+            }
+        }
+        
+
         private void ChangeImages()
         {
             if (exploreBtnClicked)
