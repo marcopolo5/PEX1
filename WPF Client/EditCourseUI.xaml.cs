@@ -85,8 +85,17 @@ namespace WPF_Client
 
         }
 
+        private void GetUpdatedCourse()
+        {
+            course.Name = courseNameBox.Text;
+            course.Description = courseDescriptionBox.Text;
+            course.Category = (CategoryEnum)categoryComboBox.SelectedItem;
+            course.Difficulty = (DifficultyEnum)dificultyComboBox.SelectedItem;
+        }
+
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            GetUpdatedCourse();
             courseService.UpdateCourse(course);
             this.Close();
         }
