@@ -24,7 +24,7 @@ namespace ElearningDatabase
         public DbSet<Course> Courses { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
         public DbSet<Question> Questions { get; set; }
-        public DbSet<Quiz> Quizs { get; set; }
+        public DbSet<Quiz> Quizes { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Resource> Resources { get; set; }
         public DbSet<UserProgress> UserProgresses { get; set; }

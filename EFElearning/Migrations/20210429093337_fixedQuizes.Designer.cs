@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace ElearningDatabase.Migrations
+namespace Elearning.Database.Migrations
 {
     [DbContext(typeof(ElearningContext))]
-    [Migration("20210423104616_author")]
-    partial class author
+    [Migration("20210429093337_fixedQuizes")]
+    partial class fixedQuizes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -75,10 +75,9 @@ namespace ElearningDatabase.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Category")
-                        .IsRequired()
+                    b.Property<int>("Category")
                         .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -183,7 +182,7 @@ namespace ElearningDatabase.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("Quizs");
+                    b.ToTable("Quizes");
                 });
 
             modelBuilder.Entity("ElearningDatabase.Models.Resource", b =>

@@ -27,7 +27,7 @@ namespace WPF_Client
             dificultyComboBox.ItemsSource = Enum.GetValues(typeof(DifficultyEnum)).Cast<DifficultyEnum>();
             categoryComboBox.ItemsSource = Enum.GetValues(typeof(CategoryEnum)).Cast<CategoryEnum>();
             user = new User();
-            user.Id = 1001;
+            user.Id = 2;
             user.FirstName = "ana";
             user.LastName = "maria";
             user.Password = "Pisicuta21!";

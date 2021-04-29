@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace ElearningDatabase.Migrations
+namespace Elearning.Database.Migrations
 {
     [DbContext(typeof(ElearningContext))]
     partial class ElearningContextModelSnapshot : ModelSnapshot
@@ -85,9 +85,6 @@ namespace ElearningDatabase.Migrations
                     b.Property<int>("Difficulty")
                         .HasMaxLength(200)
                         .HasColumnType("int");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -183,7 +180,7 @@ namespace ElearningDatabase.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("Quizs");
+                    b.ToTable("Quizes");
                 });
 
             modelBuilder.Entity("ElearningDatabase.Models.Resource", b =>

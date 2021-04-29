@@ -114,10 +114,10 @@ namespace Elearning.Business
         {
             using (ElearningContext elearningContext = new ElearningContext())
             {
-                //elearningContext.Courses.Update(course);
-                elearningContext.Entry(course).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                elearningContext.Courses.Update(course);
                 elearningContext.SaveChanges();
             }
+
         }
     }
 }
