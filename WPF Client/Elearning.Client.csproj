@@ -69,4 +69,8 @@
     <Resource Include="Resources\search.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\" />
+  </ItemGroup>
+
 </Project>

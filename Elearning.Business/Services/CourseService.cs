@@ -2,7 +2,6 @@
 using ElearningDatabase;
 using ElearningDatabase.Models;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Elearning.Business
@@ -15,6 +14,15 @@ namespace Elearning.Business
             {
                 var lessons = elearningContext.Courses.Where(x => x.Id == courseId).Select(x => x.Lessons).ToList().FirstOrDefault();
                 return lessons;
+            }
+        }
+
+        public List<Quiz> GetQuizzes(int courseId)
+        {
+            using (ElearningContext elearningContext = new ElearningContext())
+            {
+                var quizzes = elearningContext.Courses.Where(x => x.Id == courseId).Select(x => x.Quizes).ToList().FirstOrDefault();
+                return quizzes;
             }
         }
 
@@ -36,56 +44,50 @@ namespace Elearning.Business
             }
         }
 
-
         public void InsertReview(User user, int courseId, string review)
         {
-            if(review!=" " )
+            if (review != " ")
             {
                 using (ElearningContext elearningContext = new ElearningContext())
                 {
                     elearningContext.Reviews.Add(new Review(user.Id, courseId, review)
                     {
                         Content = review,
-                        UserId= user.Id,
-                        CourseId= courseId
+                        UserId = user.Id,
+                        CourseId = courseId
                     });
                     elearningContext.SaveChanges();
                 }
             }
-
         }
 
         public void InsertLesson(Lesson lesson, int courseId)
         {
-          
-                using (ElearningContext elearningContext = new ElearningContext())
-                {
+            using (ElearningContext elearningContext = new ElearningContext())
+            {
                 elearningContext.Lessons.Add(new Lesson()
                 {
                     Name = lesson.Name,
                     Content = lesson.Content,
                     Resources = lesson.Resources,
-                    CourseId= courseId
-                   
+                    CourseId = courseId
                 });
-                    elearningContext.SaveChanges();
-                }
+                elearningContext.SaveChanges();
+            }
         }
 
         public Course InsertCourse(Course course, User user)
         {
-            if(course!=null)
+            if (course != null)
             {
                 using (ElearningContext elearningContext = new ElearningContext())
                 {
-
                     elearningContext.Courses.Add(new Course()
                     {
-                        Name=course.Name,
-                        Category= course.Category,
-                        Difficulty= course.Difficulty,
-                        Description= course.Description
-
+                        Name = course.Name,
+                        Category = course.Category,
+                        Difficulty = course.Difficulty,
+                        Description = course.Description
                     });
                     elearningContext.SaveChanges();
                     var newId = elearningContext.Courses.Max(x => x.Id);
@@ -93,7 +95,6 @@ namespace Elearning.Business
                     elearningContext.SaveChanges();
                     var returnedCourse = elearningContext.Courses.Where(x => x.Id == newId).ToList().FirstOrDefault();
                     return returnedCourse;
-
                 }
             }
             return null;
@@ -103,10 +104,8 @@ namespace Elearning.Business
         {
             using (ElearningContext elearningContext = new ElearningContext())
             {
-
                 elearningContext.Lessons.Remove(lesson);
                 elearningContext.SaveChanges();
-
             }
         }
 
@@ -117,7 +116,6 @@ namespace Elearning.Business
                 elearningContext.Courses.Update(course);
                 elearningContext.SaveChanges();
             }
-
         }
     }
 }
