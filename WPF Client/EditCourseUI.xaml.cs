@@ -23,8 +23,10 @@ namespace WPF_Client
     /// </summary>
     public partial class EditCourseUI : Window
     {
+        public Course Course { get; set; }
         private List<Lesson> Lessons { set; get; }
         Course course = new Course();
+         
         CourseService courseService;
         public EditCourseUI(Course course)
         {
@@ -34,6 +36,7 @@ namespace WPF_Client
             dificultyComboBox.ItemsSource = Enum.GetValues(typeof(DifficultyEnum)).Cast<DifficultyEnum>();
             categoryComboBox.ItemsSource = Enum.GetValues(typeof(CategoryEnum)).Cast<CategoryEnum>();
             this.course = course;
+            Course = course;
             SetTextBoxesCourse();
         }
 
@@ -85,19 +88,19 @@ namespace WPF_Client
 
         }
 
-        public Course GetUpdatedCourse()
+        public void GetUpdatedCourse()
         {
-            Course newCourse = new Course();
-            newCourse.Name = courseNameBox.Text;
-            newCourse.Description = courseDescriptionBox.Text;
-            newCourse.Category = (CategoryEnum)categoryComboBox.SelectedItem;
-            newCourse.Difficulty = (DifficultyEnum)dificultyComboBox.SelectedItem;
-            return newCourse;
+            course.Name = courseNameBox.Text;
+            course.Description = courseDescriptionBox.Text;
+            course.Category = (CategoryEnum)categoryComboBox.SelectedItem;
+            course.Difficulty = (DifficultyEnum)dificultyComboBox.SelectedItem;
+
+            Course = course;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            course = GetUpdatedCourse();
+            GetUpdatedCourse();
             courseService.UpdateCourse(course);
             this.Close();
         }

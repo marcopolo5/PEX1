@@ -2,6 +2,7 @@
 using ElearningDatabase.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,7 +28,7 @@ namespace WPF_Client
         private int myCoursesCount = 0;
         private int exploreCoursesCount = 0;
         private User trainer;
-        public MainTrainerView()
+        public MainTrainerView(User user)
         {
             InitializeComponent();
             ExploreBtn.Style = this.Resources["ClickNavigationButtons"] as Style;
@@ -35,7 +36,8 @@ namespace WPF_Client
             MyCourses.Visibility = Visibility.Hidden;
             //CardsTrainer mycard = new CardsTrainer();
             //ExploreCoursesGrid.Children.Add(mycard);
-            //this.trainer = user;
+            
+            this.trainer = user;
 
             InitializeMyCourses();
             InitializeExploreCourses();
@@ -48,10 +50,10 @@ namespace WPF_Client
                 Id = 2
         };
             TrainerCoursesService courses = new TrainerCoursesService();
-            var myCourses = courses.GetAllCoursesOfATrainer(tra);
+            var myCourses = courses.GetAllCoursesOfATrainer(this.trainer);
             foreach (var course in myCourses)
             {
-                CardsTrainer card = new CardsTrainer();
+                CardsTrainer card = new CardsTrainer(course);
                 myCoursesCount++;
                 if (myCoursesCount % 3 == 0)
                 {
@@ -61,10 +63,10 @@ namespace WPF_Client
                 {
                     MyCoursesGrid.Height = 300 * (myCoursesCount / 3 + 1) + 100;
                 }
-                card.CourseName = course.Name;
-                card.Description = course.Description;
-                card.Category = course.Category.ToString();
-                card.Course = course;
+                //card.CourseName = course.Name;
+                //card.Description = course.Description;
+                //card.Category = course.Category.ToString();
+                //card.Course = course;
                 MyCoursesGrid.Children.Add(card);
                 card.MenuItemEdit.Click += new RoutedEventHandler((sender, e) => EditCourseHandler(sender, e, card));
                 card.MenuItemDelete.Click += new RoutedEventHandler((sender, e) => DeleteCourseHandler(sender, e, card));
@@ -77,12 +79,16 @@ namespace WPF_Client
             EditCourseUI editCourseWindow = new EditCourseUI(card.Course);
             editCourseWindow.ShowDialog();
 
-            card.Course = editCourseWindow.GetUpdatedCourse();
-            card.CourseName = card.Course.Name;
-            card.Description = card.Course.Description;
-            //card.Difficulty = card.Course.Difficulty;
-            //card.Category = card.Course.Category; 
-
+            card.Course = editCourseWindow.Course;
+            card.CourseNameTxtBlock.Text = card.Course.Name;
+            //card.CourseNameTxtBlock.GetBindingExpression(TextBlock.TextProperty).UpdateSource();
+            //be.UpdateSource();
+            //card.CourseName = card.Course.Name;
+            //card.Description = card.Course.Description;
+            ////card.UpdateLayout();
+            //card.Difficulty = card.Course.Difficulty.ToString();
+            //card.Category = card.Course.Category.ToString(); 
+            //card.CourseDescription.
         }
 
         public void DeleteCourseHandler(object sender, RoutedEventArgs e, CardsTrainer card)
@@ -107,10 +113,10 @@ namespace WPF_Client
                 Id = 2
             };
             TrainerCoursesService courses = new TrainerCoursesService();
-            var myCourses = courses.GetSuggestedCoursesForAnUser(tra);
+            var myCourses = courses.GetSuggestedCoursesForAnUser(this.trainer);
             foreach (var course in myCourses)
             {
-                CardsTrainer card = new CardsTrainer();
+                CardsTrainer card = new CardsTrainer(course);
                 myCoursesCount++;
                 if (myCoursesCount % 3 == 0)
                 {
@@ -120,9 +126,9 @@ namespace WPF_Client
                 {
                     MyCoursesGrid.Height = 300 * (myCoursesCount / 3 + 1) + 100;
                 }
-                card.CourseName = course.Name;
-                card.Description = course.Description;
-                card.Category = course.Category.ToString();
+                //card.CourseName = course.Name;
+                //card.Description = course.Description;
+                //card.Category = course.Category.ToString();
                 card.Course = course;
                 ExploreCoursesGrid.Children.Add(card);
                 
