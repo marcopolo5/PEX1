@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Client"
         mc:Ignorable="d"
-        Title="EditCourseUI" Height="800" Width="1300">
+        Title="EditCourseUI" Height="855" Width="1300">
 
     <Window.Resources>
         <Style x:Key="textBox" TargetType="{x:Type TextBox}">
@@ -69,7 +69,7 @@
 
 
 
-    <Grid>
+    <Grid Margin="0,0,0,20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="126"/>
@@ -134,7 +134,7 @@
             FontSize="17"
                   Margin="20,0,0,0"
             HorizontalAlignment="Left"
-            Width="756" SelectionChanged="lessonListView_SelectionChanged"
+            Width="756"
             >
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
@@ -180,6 +180,54 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="Resource" Width="126" DisplayMemberBinding="{Binding Resources}">
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <ListView ItemsSource="{Binding Quizes, Mode=TwoWay}"
+            Name="quizesListView"
+            Grid.Row="8"
+            Grid.ColumnSpan="6"
+            Grid.RowSpan="5"
+            FontSize="17"
+                  Margin="0,63,0,10"
+            HorizontalAlignment="Center"
+            Width="630"
+            >
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#132F70" />
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Background" Value="#132F70" />
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="20" Background="#F5F5F5">
+                        <ItemsPresenter></ItemsPresenter>
+                    </Border>
+                </ControlTemplate>
+            </ListView.Template>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Quiz" Width="252" DisplayMemberBinding="{Binding Name}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox
+                                    FontSize="17"
+                                    />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                 </GridView>
             </ListView.View>

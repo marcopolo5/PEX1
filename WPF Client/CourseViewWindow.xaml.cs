@@ -13,7 +13,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using WPF_Client.Custom;
 
 namespace WPF_Client
 {
@@ -34,7 +36,6 @@ namespace WPF_Client
         public User user;
         public Course course;
         public Resource resource;
-
         public void GetConnection()
         {
             var dbCOntext = new DbContextOptionsBuilder<ElearningContext>();
@@ -124,11 +125,64 @@ namespace WPF_Client
             this.Close();
         }
 
+        private void ShowQuestions(Quiz quiz)
+        {
+            CourseService courseService = new CourseService();
+            var quizes = courseService.GetQuestions(quiz.Id);
+            int countQuestions = 0;
+            foreach(var question in quizes)
+            {
+                countQuestions++;
+                QuizCard quizCard = new QuizCard();
+                quizCard.Question = question;
+                quizCard.Question.QuestionText= countQuestions.ToString() + ". " + question.QuestionText;
+                //quizCard.Question.Answer1 = question.Answer1;
+                //quizCard.Answer2 = question.Answer2;
+                //quizCard.Answer3 = question.Answer3;
+                //quizCard.Answer4 = question.Answer4;
+                QuizesUniformGrid.Children.Add(quizCard);
+
+            }
+        }
+
         private void QuizesListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             QuizesGrid.Visibility = Visibility.Visible;
             quiz = (Quiz)QuizesListView.SelectedItem;
             WebBrowser.Visibility = Visibility.Hidden;
+
+            QuizesUniformGrid.Children.Clear();
+            ShowQuestions(quiz);
+        }
+
+        private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        {
+            int score = 0;
+            foreach(QuizCard item in QuizesUniformGrid.Children)
+            {
+                int selectedAnswer = 0;
+
+                for (int i = 1; i <= item.radioButtons.Children.Count; i++)
+                {
+                    var currentButton = (RadioButton)(item.radioButtons.Children[i - 1]);
+
+                    if (currentButton.IsChecked== true)
+                    {
+                        selectedAnswer = i;
+                        currentButton.Foreground = Brushes.Red;
+                        ((RadioButton)(item.radioButtons.Children[item.Question.CorrectAnswer - 1])).Foreground=Brushes.Green;
+                        if (selectedAnswer == item.Question.CorrectAnswer)
+                        {
+                            score += 10;
+                        }
+
+                    }
+                    currentButton.IsEnabled = false;
+
+                }
+            }
+
+            MessageBox.Show(score.ToString() + "/" + QuizesUniformGrid.Children.Count * 10);
         }
     }
 }

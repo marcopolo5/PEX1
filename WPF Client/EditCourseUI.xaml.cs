@@ -26,7 +26,7 @@ namespace WPF_Client
         public Course Course { get; set; }
         private List<Lesson> Lessons { set; get; }
         Course course = new Course();
-         
+        public List<Quiz> Quizes { set; get; }
         CourseService courseService;
         public EditCourseUI(Course course)
         {
@@ -38,6 +38,7 @@ namespace WPF_Client
             this.course = course;
             Course = course;
             SetTextBoxesCourse();
+            ShowQuizes();
         }
 
         private void SetTextBoxesCourse()
@@ -78,11 +79,6 @@ namespace WPF_Client
         }
 
 
-        private void lessonListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
@@ -104,7 +100,12 @@ namespace WPF_Client
             courseService.UpdateCourse(course);
             this.Close();
         }
-
+        private void ShowQuizes()
+        {
+            CourseService singleCourse = new CourseService();
+            Quizes = singleCourse.GetQuizzes(this.course.Id);
+            DataContext = this; //data binding
+        }
         private void RemoveLessonButton_Click(object sender, RoutedEventArgs e)
         {
             courseService.RemoveLesson((Lesson)lessonListView.SelectedItem);

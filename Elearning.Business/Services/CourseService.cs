@@ -26,6 +26,15 @@ namespace Elearning.Business
             }
         }
 
+        public List<Question> GetQuestions(int quizId)
+        {
+            using (ElearningContext elearningContext = new ElearningContext())
+            {
+                var question = elearningContext.Questions.Where(x => x.QuizId == quizId);
+                return question.ToList();
+            }
+        }
+
         public List<Review> GetReviews(int courseId)
         {
             using (ElearningContext elearningContext = new ElearningContext())
@@ -41,6 +50,27 @@ namespace Elearning.Business
             {
                 var resources = elearningContext.Lessons.Where(x => x.Id == lessonId).Select(x => x.Resource).ToList().FirstOrDefault();
                 return resources;
+            }
+        }
+
+        public void InsertQuestion(int quizId, Question question)
+        {
+            if (question != null)
+            {
+                using (ElearningContext elearningContext = new ElearningContext())
+                {
+                    elearningContext.Questions.Add(new Question()
+                    {
+                        QuestionText= question.QuestionText,
+                        Answer1=question.Answer1,
+                        Answer2 = question.Answer2,
+                        Answer3 = question.Answer3,
+                        Answer4 = question.Answer4,
+                        CorrectAnswer= question.CorrectAnswer,
+                        QuizId= quizId
+                    });
+                    elearningContext.SaveChanges();
+                }
             }
         }
 
