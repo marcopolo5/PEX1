@@ -66,25 +66,32 @@ namespace WPF_Client
                 card.Category = course.Category.ToString();
                 card.Course = course;
                 MyCoursesGrid.Children.Add(card);
-                card.MenuItemEdit.Click += new RoutedEventHandler((sender, e) => EditCourseHandler(sender, e, card.Course));
+                card.MenuItemEdit.Click += new RoutedEventHandler((sender, e) => EditCourseHandler(sender, e, card));
                 card.MenuItemDelete.Click += new RoutedEventHandler((sender, e) => DeleteCourseHandler(sender, e, card));
                 //card.MouseDoubleClick += new MouseButtonEventHandler(DoubleClickMyCourseHandler);
             }
         }
 
-        public void EditCourseHandler(object sender, RoutedEventArgs e, Course course)
+        public void EditCourseHandler(object sender, RoutedEventArgs e, CardsTrainer card)
         {
-            EditCourseUI editCourseWindow = new EditCourseUI(course);
+            EditCourseUI editCourseWindow = new EditCourseUI(card.Course);
             editCourseWindow.ShowDialog();
+
+            card.Course = editCourseWindow.GetUpdatedCourse();
+            card.CourseName = card.Course.Name;
+            card.Description = card.Course.Description;
+            //card.Difficulty = card.Course.Difficulty;
+            //card.Category = card.Course.Category; 
+
         }
 
         public void DeleteCourseHandler(object sender, RoutedEventArgs e, CardsTrainer card)
         {
             try
             {
-                MyCoursesGrid.Children.Remove(card);
                 TrainerCoursesService service = new TrainerCoursesService();
                 service.DeleteCourse(card.Course);
+                MyCoursesGrid.Children.Remove(card);
             }
             catch (Exception exception)
             {
