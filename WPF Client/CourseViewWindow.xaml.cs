@@ -54,6 +54,7 @@ namespace WPF_Client
             LessonService = new LessonService();
             lesson = new Lesson();
             quiz = new Quiz();
+            resource = new Resource();
         }
 
         public void GetCourses()
@@ -96,7 +97,7 @@ namespace WPF_Client
         private void DownloadButton_Click(object sender, RoutedEventArgs e)
         {
             lesson = (Lesson)LessonsListView.SelectedItem;
-            resource.File = lesson.Resource.File;
+            resource.File = LessonService.GetResourceFile(lesson.ResourceId);
             Uri uri = new Uri(resource.File);
             var processStartInfo = new ProcessStartInfo
             {

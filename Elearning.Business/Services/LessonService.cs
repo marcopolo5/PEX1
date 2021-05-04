@@ -15,5 +15,14 @@ namespace Elearning.Business
                 return resources;
             }
         }
+
+        public string GetResourceFile(int resourceId)
+        {
+            using (ElearningContext elearningContext = new ElearningContext())
+            {
+                var resource = elearningContext.Resources.Where(x => x.Id == resourceId).Select(x=>x.File).FirstOrDefault();
+                return resource;
+            }
+        }
     }
 }
