@@ -4,14 +4,16 @@ using ElearningDatabase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Elearning.Database.Migrations
 {
     [DbContext(typeof(ElearningContext))]
-    partial class ElearningContextModelSnapshot : ModelSnapshot
+    [Migration("20210504102212_ChangedLessonResource")]
+    partial class ChangedLessonResource
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

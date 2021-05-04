@@ -73,8 +73,8 @@ namespace WPF_Client
             lesson.Content = LessonContentTxtBox.Text;
             Resource resource = new Resource();
             resource.File = AddResourceTxtBox.Text;
-            lesson.Resources = Resourcess;
-            lesson.Resources.Add(resource);
+            lesson.Resource = resource;
+            //lesson.Resource.Add(resource);
 
             singleCourse.InsertLesson(lesson, course.Id);
             this.Close();

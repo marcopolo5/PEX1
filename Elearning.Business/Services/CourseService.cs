@@ -35,11 +35,11 @@ namespace Elearning.Business
             }
         }
 
-        public List<Resource> GetResources(int lessonId)
+        public Resource GetResources(int lessonId)
         {
             using (ElearningContext elearningContext = new ElearningContext())
             {
-                var resources = elearningContext.Lessons.Where(x => x.Id == lessonId).Select(x => x.Resources).ToList().FirstOrDefault();
+                var resources = elearningContext.Lessons.Where(x => x.Id == lessonId).Select(x => x.Resource).ToList().FirstOrDefault();
                 return resources;
             }
         }
@@ -69,7 +69,7 @@ namespace Elearning.Business
                 {
                     Name = lesson.Name,
                     Content = lesson.Content,
-                    Resources = lesson.Resources,
+                    Resource = lesson.Resource,
                     CourseId = courseId
                 });
                 elearningContext.SaveChanges();

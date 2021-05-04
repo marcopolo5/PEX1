@@ -25,13 +25,15 @@ namespace WPF_Client
         private ElearningContext db;
 
         public List<Lesson> Lessons { get; set; }
-        public List<Quiz> Quizzes { get; set; }
+        public List<Quiz> Quizes { get; set; }
         public List<Review> Reviews { get; set; }
 
         public LessonService LessonService;
         public Lesson lesson;
+        public Quiz quiz;
         public User user;
         public Course course;
+        public Resource resource;
 
         public void GetConnection()
         {
@@ -51,18 +53,21 @@ namespace WPF_Client
             GetConnection();
             LessonService = new LessonService();
             lesson = new Lesson();
+            quiz = new Quiz();
         }
 
         public void GetCourses()
         {
             CourseService singleCourse = new CourseService();
             Lessons = singleCourse.GetLessons(this.course.Id);
-            Quizzes = singleCourse.GetQuizzes(this.course.Id);
+            Quizes = singleCourse.GetQuizzes(this.course.Id);
             DataContext = this; //data binding
         }
 
         private void ListViewItem_MouseButtonDown(object sender, MouseButtonEventArgs e)
         {
+            WebBrowser.Visibility = Visibility.Visible;
+            QuizesGrid.Visibility = Visibility.Hidden;
             lesson = (Lesson)LessonsListView.SelectedItem;
             Uri uri = new Uri(lesson.Content);
             WebBrowser.Source = uri;
@@ -75,9 +80,6 @@ namespace WPF_Client
             DataContext = this; //data binding
         }
 
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-        }
 
         private void AddReviewButton_Click(object sender, RoutedEventArgs e)
         {
@@ -91,14 +93,11 @@ namespace WPF_Client
             ReviewTxtBox.Clear();
         }
 
-        private void LessonsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-        }
-
         private void DownloadButton_Click(object sender, RoutedEventArgs e)
         {
             lesson = (Lesson)LessonsListView.SelectedItem;
-            Uri uri = new Uri(lesson.Content);
+            resource.File = lesson.Resource.File;
+            Uri uri = new Uri(resource.File);
             var processStartInfo = new ProcessStartInfo
             {
                 FileName = uri.ToString(),
@@ -122,6 +121,13 @@ namespace WPF_Client
             MainCoursesView dashboard = new MainCoursesView(user);
             dashboard.Show();
             this.Close();
+        }
+
+        private void QuizesListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            QuizesGrid.Visibility = Visibility.Visible;
+            quiz = (Quiz)QuizesListView.SelectedItem;
+            WebBrowser.Visibility = Visibility.Hidden;
         }
     }
 }
