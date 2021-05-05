@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Client"
         mc:Ignorable="d"
-        Title="CourseViewWindow" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+        Title="Course View" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="textBox" TargetType="{x:Type TextBox}">
             <Setter Property="HorizontalAlignment" Value="Stretch" />

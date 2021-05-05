@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Client"
         mc:Ignorable="d"
-        Title="MainTrainerView" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+        Title="Main Window" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
 
     <Window.Resources>
         <Style x:Key="textBox" TargetType="{x:Type TextBox}">
