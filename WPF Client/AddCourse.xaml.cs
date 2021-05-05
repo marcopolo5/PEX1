@@ -34,19 +34,50 @@ namespace WPF_Client
         private Course InitializeCourse()
         {
             Course course = new Course();
+
+            ValidateAddedCourse();
             course.Name = CourseNameTxtBox.Text;
             course.Description = CourseDescriptionTxtBox.Text;
             course.Category = (CategoryEnum)categoryComboBox.SelectedItem;
             course.Difficulty = (DifficultyEnum)dificultyComboBox.SelectedItem;
             return course;
+            
         }
+
+        public void ValidateAddedCourse()
+        {
+            if (CourseNameTxtBox.Text.Length <= 0)
+            {
+                throw new Exception("The name of the course cannot be empty!");
+            }
+            if (CourseDescriptionTxtBox.Text.Length <= 0)
+            {
+                throw new Exception("The description of the course cannot be empty!");
+            }
+            if (categoryComboBox.SelectedItem == null)
+            {
+                throw new Exception("Please select a category!");
+            }
+            if (dificultyComboBox.SelectedItem == null)
+            {
+                throw new Exception("Please select a difficulty!");
+            }
+        }
+        
         private void SaveCourse_click(object sender, RoutedEventArgs e)
         {
             CourseService courseService = new CourseService();
-            var course = InitializeCourse();
-
-            InsertedCourse = courseService.InsertCourse(course, user);
-            this.Close();
+            try
+            {
+                var course = InitializeCourse();
+                InsertedCourse = courseService.InsertCourse(course, user);
+                this.Close();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+            
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

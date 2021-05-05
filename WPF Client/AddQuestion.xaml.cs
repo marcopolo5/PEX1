@@ -36,17 +36,42 @@ namespace WPF_Client
             Quiz = quiz;
         }
 
+        private void ValidateQuestion()
+        {
+            if (QuestionNameTxtBox.Text.Length <= 0)
+            {
+                throw new Exception("The question text cannot be empty!");
+            }
+            if (Answer1TxtBox.Text.Length <= 0 || Answer2TxtBox.Text.Length <= 0 || Answer3TxtBox.Text.Length <= 0 || Answer4TxtBox.Text.Length <= 0)
+            {
+                throw new Exception("The answers cannot be empty!");
+            }
+            if (CorrectAnswerComboBox.SelectedItem == null)
+            {
+                throw new Exception("Please select a correct answer!");
+            }
+        }
+
         private void SaveQuestionButton_Click(object sender, RoutedEventArgs e)
         {
-            Question.QuestionText = QuestionNameTxtBox.Text;
-            Question.Answer1 = Answer1TxtBox.Text;
-            Question.Answer2 = Answer2TxtBox.Text;
-            Question.Answer3 = Answer3TxtBox.Text;
-            Question.Answer4 = Answer4TxtBox.Text;
-            Question.CorrectAnswer = Convert.ToInt32(CorrectAnswerComboBox.SelectedItem);
+            try
+            {
+                ValidateQuestion();
+                Question.QuestionText = QuestionNameTxtBox.Text;
+                Question.Answer1 = Answer1TxtBox.Text;
+                Question.Answer2 = Answer2TxtBox.Text;
+                Question.Answer3 = Answer3TxtBox.Text;
+                Question.Answer4 = Answer4TxtBox.Text;
+                Question.CorrectAnswer = Convert.ToInt32(CorrectAnswerComboBox.SelectedItem);
 
-            courseService.InsertQuestion(Quiz.Id, Question);
-            this.Close();
+                courseService.InsertQuestion(Quiz.Id, Question);
+                this.Close();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+            
 
         }
     }
