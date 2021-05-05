@@ -190,6 +190,7 @@
         </ListView>
 
         <WebBrowser Name="WebBrowser" Margin="326,86,42,258" Visibility="Visible" />
+        
         <Grid Name="QuizesGrid" Margin="326,86,42,258">
             <StackPanel>
                 <ScrollViewer Name="QuizesScrolViewer" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -200,6 +201,7 @@
                 <Button Name="SubmitButton" Content="Submit" Click="SubmitButton_Click" Height="50" Width="50"/>
             </StackPanel>
         </Grid>
+        
         <ListView Name="ReviewListView" Background="White" ItemsSource="{Binding Reviews, Mode=TwoWay}"  Margin="313,632,29,25">
             <ListView.Resources>
                 <Style TargetType="GridViewColumnHeader">
