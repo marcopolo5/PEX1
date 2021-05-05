@@ -184,5 +184,25 @@ namespace Elearning.Business
                 elearningContext.SaveChanges();
             }
         }
+
+
+        public void RemoveQuiz(Quiz quiz)
+        {
+            using (ElearningContext elearningContext = new ElearningContext())
+            {
+                elearningContext.Quizes.Remove(quiz);
+                elearningContext.SaveChanges();
+            }
+            
+        }
+
+        public void UpdateQuiz(Quiz quiz)
+        {
+            using (ElearningContext elearningContext = new ElearningContext())
+            {
+                elearningContext.Quizes.Update(quiz);
+                elearningContext.SaveChanges();
+            }
+        }
     }
 }

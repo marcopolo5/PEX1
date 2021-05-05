@@ -16,22 +16,18 @@ using System.Windows.Shapes;
 namespace WPF_Client
 {
     /// <summary>
-    /// Interaction logic for AddQuiz.xaml
+    /// Interaction logic for EditQuiz.xaml
     /// </summary>
-    public partial class AddQuiz : Window
+    public partial class EditQuiz : Window
     {
         public List<Question> Questions { set; get; }
-        Course course;
         Quiz Quiz;
-        public AddQuiz(Course course_received)
+        public EditQuiz(Quiz quiz_received)
         {
             InitializeComponent();
-            course = course_received;
-            Quiz = new Quiz();
-            Quiz.CourseId = course.Id;
+            Quiz = quiz_received;
+            QuizNameTextBox.Text = Quiz.Name;
             ShowQuestions();
-            AddQuestionButton.IsEnabled = false;
-            RemoveQuestionButton.IsEnabled = false;
 
         }
 
@@ -50,17 +46,12 @@ namespace WPF_Client
 
         private void SaveQuizButton_Click(object sender, RoutedEventArgs e)
         {
-            
-            CourseService singleCourse = new CourseService();
-            Quiz quiz = new Quiz();
-            quiz = Quiz;
-            quiz.Name = QuizNameTextBox.Text;
-            Quiz = singleCourse.InsertQuiz(quiz);
 
-            AddQuestionButton.IsEnabled = true;
-            RemoveQuestionButton.IsEnabled = true;
-            SaveQuizButton.IsEnabled = false;
-            CancelQuizButton.IsEnabled = false;
+            CourseService singleCourse = new CourseService();
+            
+            Quiz.Name = QuizNameTextBox.Text;
+            singleCourse.UpdateQuiz(Quiz);
+
 
         }
 
@@ -88,5 +79,5 @@ namespace WPF_Client
                 MessageBox.Show("Plese select a question!");
             }
         }
-    }
+        }
 }

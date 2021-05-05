@@ -51,7 +51,7 @@ namespace WPF_Client
             CourseService courseService = new CourseService();
             var course = InitializeCourse();
 
-            var insertedCourse= courseService.InsertCourse(course, user);
+            var insertedCourse = courseService.InsertCourse(course, user);
             EditCourseUI editCourseUI = new EditCourseUI(insertedCourse);
             editCourseUI.Show();
             this.Close();

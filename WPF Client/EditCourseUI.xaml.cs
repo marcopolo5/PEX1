@@ -36,7 +36,7 @@ namespace WPF_Client
             dificultyComboBox.ItemsSource = Enum.GetValues(typeof(DifficultyEnum)).Cast<DifficultyEnum>();
             categoryComboBox.ItemsSource = Enum.GetValues(typeof(CategoryEnum)).Cast<CategoryEnum>();
             this.course = course;
-            Course = course;
+            Course = this.course;
             SetTextBoxesCourse();
             ShowQuizes();
         }
@@ -105,6 +105,10 @@ namespace WPF_Client
             CourseService singleCourse = new CourseService();
             Quizes = singleCourse.GetQuizzes(this.course.Id);
             DataContext = this; //data binding
+
+            quizesListView.ItemsSource = Quizes;
+            ICollectionView view = CollectionViewSource.GetDefaultView(quizesListView.ItemsSource);
+            view.Refresh();
         }
         private void RemoveLessonButton_Click(object sender, RoutedEventArgs e)
         {
@@ -113,6 +117,48 @@ namespace WPF_Client
             lessonListView.ItemsSource = Lessons;
             ICollectionView view = CollectionViewSource.GetDefaultView(lessonListView.ItemsSource);
             view.Refresh();
+        }
+
+        private void AddQuizButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddQuiz addQuizWindow = new AddQuiz(this.Course);
+            addQuizWindow.ShowDialog();
+            ShowQuizes();
+        }
+
+        private void RemoveQuizButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                courseService.RemoveQuiz((Quiz)quizesListView.SelectedItem);
+                ShowQuizes();
+            }
+            catch
+            {
+                MessageBox.Show("Please select a quiz!");
+            }
+        }
+
+        private void EditQuizButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Quiz selectedQuiz = (Quiz)quizesListView.SelectedItem;
+                if (selectedQuiz != null)
+                {
+                    EditQuiz editQuizWindow = new EditQuiz(selectedQuiz);
+                    editQuizWindow.ShowDialog();
+                    ShowQuizes();
+                }
+                else
+                {
+                    MessageBox.Show("Please select a quiz!");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Please select a quiz!");
+            }
         }
     }
 }

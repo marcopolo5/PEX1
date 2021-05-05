@@ -233,8 +233,9 @@
             </ListView.View>
         </ListView>
 
-        <Button Content="Remove" Name="RemoveQuizButton" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{StaticResource ButtonsTemplate}" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="12"/>
-        <Button Content="Add quiz" Name="AddQuizButton" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{StaticResource ButtonsTemplate}" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="12"/>
+        <Button Content="Remove" Name="RemoveQuizButton" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource ButtonsTemplate}" Grid.Column="1" Grid.Row="11" Margin="69,63,0,0" Grid.ColumnSpan="2" Grid.RowSpan="2" Click="RemoveQuizButton_Click"/>
+        <Button Content="Edit quiz" Name="EditQuizButton" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource ButtonsTemplate}" Grid.Column="3" Grid.Row="11" Grid.RowSpan="2" Margin="29,63,0,0" Click="EditQuizButton_Click"/>
+        <Button Content="Add quiz" Name="AddQuizButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource ButtonsTemplate}" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="12" Click="AddQuizButton_Click"/>
 
     </Grid>
 
