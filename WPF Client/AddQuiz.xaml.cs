@@ -51,16 +51,25 @@ namespace WPF_Client
         private void SaveQuizButton_Click(object sender, RoutedEventArgs e)
         {
             
-            CourseService singleCourse = new CourseService();
-            Quiz quiz = new Quiz();
-            quiz = Quiz;
-            quiz.Name = QuizNameTextBox.Text;
-            Quiz = singleCourse.InsertQuiz(quiz);
+            try
+            {
+                ValidateAddQuiz();
+                CourseService singleCourse = new CourseService();
+                Quiz quiz = new Quiz();
+                quiz = Quiz;
+                quiz.Name = QuizNameTextBox.Text;
+                Quiz = singleCourse.InsertQuiz(quiz);
 
-            AddQuestionButton.IsEnabled = true;
-            RemoveQuestionButton.IsEnabled = true;
-            SaveQuizButton.IsEnabled = false;
-            CancelQuizButton.IsEnabled = false;
+                AddQuestionButton.IsEnabled = true;
+                RemoveQuestionButton.IsEnabled = true;
+                SaveQuizButton.IsEnabled = false;
+                CancelQuizButton.IsEnabled = false;
+            }
+            catch(Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+            
 
         }
 
@@ -86,6 +95,14 @@ namespace WPF_Client
             catch
             {
                 MessageBox.Show("Plese select a question!");
+            }
+        }
+
+        private void ValidateAddQuiz()
+        {
+            if(QuizNameTextBox.Text.Length<=0)
+            {
+                throw new Exception("The question name cannot be empty!");
             }
         }
     }
