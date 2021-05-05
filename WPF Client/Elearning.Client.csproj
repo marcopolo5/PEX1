@@ -13,6 +13,7 @@
     <None Remove="Resources\achivements.png" />
     <None Remove="Resources\achivementsGrey.png" />
     <None Remove="Resources\background.png" />
+    <None Remove="Resources\defaultImageBlue.png" />
     <None Remove="Resources\downloadIcon.png" />
     <None Remove="Resources\downloadIconBlue.png" />
     <None Remove="Resources\explore.png" />
@@ -21,6 +22,7 @@
     <None Remove="Resources\gamesGrey.png" />
     <None Remove="Resources\homeBlue.png" />
     <None Remove="Resources\homeGrey.png" />
+    <None Remove="Resources\logout.png" />
     <None Remove="Resources\mycourses.png" />
     <None Remove="Resources\mycoursesGrey.png" />
     <None Remove="Resources\plusButtonBlue.png" />
@@ -54,6 +56,7 @@
     <Resource Include="Resources\achivements.png" />
     <Resource Include="Resources\achivementsGrey.png" />
     <Resource Include="Resources\background.png" />
+    <Resource Include="Resources\defaultImageBlue.png" />
     <Resource Include="Resources\downloadIcon.png" />
     <Resource Include="Resources\downloadIconBlue.png" />
     <Resource Include="Resources\explore.png" />
@@ -62,6 +65,7 @@
     <Resource Include="Resources\gamesGrey.png" />
     <Resource Include="Resources\homeBlue.png" />
     <Resource Include="Resources\homeGrey.png" />
+    <Resource Include="Resources\logout.png" />
     <Resource Include="Resources\mycourses.png" />
     <Resource Include="Resources\mycoursesGrey.png" />
     <Resource Include="Resources\plusButtonBlue.png" />

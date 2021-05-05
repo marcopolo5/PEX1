@@ -59,5 +59,25 @@ namespace WPF_Client.Custom
             CourseImage.Visibility = Visibility.Visible;
         }
 
+        private void defaultGrid_MouseEnter(object sender, MouseEventArgs e)
+        {
+            CourseNameTxtBlock.Style = this.Resources["ClickCourseTextTemplate"] as Style;
+            AuthorName.Style = this.Resources["ClickAuthorTextTemplate"] as Style;
+            CourseDescription.Visibility = Visibility.Visible;
+            CourseNameTxtBlock.Visibility = Visibility.Hidden;
+            AuthorName.Visibility = Visibility.Hidden;
+            CourseImage.Visibility = Visibility.Hidden;
+        }
+
+        private void defaultGrid_MouseLeave(object sender, MouseEventArgs e)
+        {
+            CourseNameTxtBlock.Style = this.Resources["CourseTextTemplate"] as Style;
+            AuthorName.Style = this.Resources["AuthorTextTemplate"] as Style;
+            CourseDescription.Visibility = Visibility.Hidden;
+            CourseNameTxtBlock.Visibility = Visibility.Visible;
+            AuthorName.Visibility = Visibility.Visible;
+            CourseImage.Visibility = Visibility.Visible;
+        }
+
     }
 }

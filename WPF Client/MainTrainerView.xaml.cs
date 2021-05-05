@@ -39,7 +39,7 @@ namespace WPF_Client
             this.DataContext = this;
             
             this.trainer = user;
-            this.TrainerNameLabel.Content = this.trainer.Username + "!";
+            this.TrainerNameLabel.Content = "Welcome, " + this.trainer.FirstName + "!";
 
             InitializeMyCourses();
             InitializeExploreCourses();

@@ -6,21 +6,23 @@
         xmlns:local="clr-namespace:ElearningClient"
         mc:Ignorable="d"
        Title="e-Learning" 
-        SizeToContent="WidthAndHeight">
+        SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <Style x:Key="textBox" TargetType="{x:Type TextBox}">
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="UseLayoutRounding" Value="True"/>
-            <Setter Property="Height" Value="28"/>
-            <Setter Property="Foreground" Value="#F0E1DE"/>
-            <Setter Property="CaretBrush" Value="#F0E1DE"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="Foreground" Value="#132F70"/>
+            <Setter Property="CaretBrush" Value="#132F70"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBox}">
                         <Grid>
-                            <Border CornerRadius="12"  Background="#5885AF" Opacity="0.45"/>
+                            <Border CornerRadius="12"  Background="#F5F5F5"/>
                             <ScrollViewer x:Name="PART_ContentHost" Margin="5,0,0,0" VerticalAlignment="Center" />
                         </Grid>
                     </ControlTemplate>
@@ -32,14 +34,14 @@
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="UseLayoutRounding" Value="True"/>
-            <Setter Property="Height" Value="28"/>
-            <Setter Property="Foreground" Value="#F0E1DE"/>
-            <Setter Property="CaretBrush" Value="#F0E1DE"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Foreground" Value="#132F70"/>
+            <Setter Property="CaretBrush" Value="#132F70"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type PasswordBox}">
                         <Grid>
-                            <Border CornerRadius="12" Background="#5885AF" Opacity="0.45"/>
+                            <Border CornerRadius="12" Background="#F5F5F5"/>
                             <ScrollViewer x:Name="PART_ContentHost" Margin="5,0,0,0" VerticalAlignment="Center" />
                         </Grid>
                     </ControlTemplate>
@@ -68,7 +70,7 @@
             <Setter Property="Height" Value="27"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Padding" Value="1"/>
-            <Setter Property="TextElement.Foreground" Value="#D4F1F4"/>
+            <Setter Property="TextElement.Foreground" Value="#132F70"/>
             <Setter Property="TextElement.FontSize" Value="18"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -78,7 +80,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="TextElement.Foreground" Value="#D4F1F4"/>
+                                <Setter Property="TextElement.Foreground" Value="#132F70"/>
                                 <Setter Property="TextElement.FontStyle" Value="Oblique"/>
                                 <Setter Property="TextElement.FontWeight" Value="Bold"/>
                                 <Setter Property="TextElement.FontSize" Value="25"/>
@@ -95,8 +97,8 @@
             <Setter Property="Height" Value="27"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Padding" Value="1"/>
-            <Setter Property="TextElement.Foreground" Value="#D4F1F4"/>
-            <Setter Property="TextElement.Foreground" Value="#D4F1F4"/>
+            <Setter Property="TextElement.Foreground" Value="#132F70"/>
+            <Setter Property="TextElement.Foreground" Value="#132F70"/>
             <Setter Property="TextElement.FontStyle" Value="Oblique"/>
             <Setter Property="TextElement.FontWeight" Value="Bold"/>
             <Setter Property="TextElement.FontSize" Value="30"/>
@@ -113,8 +115,8 @@
 
 
 
-        <SolidColorBrush x:Key="Button.Static.Background" Color="#2692D0"/>
-        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#0C2D48"/>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#132F70"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#050A30"/>
         <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
         <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
         <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
@@ -126,9 +128,11 @@
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Padding" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Foreground" Value="#F0E1DE"/>
             <Setter Property="TextElement.FontSize" Value="17"/>
             <Setter Property="TextElement.FontStyle" Value="Oblique"/>
+            <Setter Property="TextElement.FontWeight" Value="DemiBold"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -158,21 +162,7 @@
             <RowDefinition/>
             <RowDefinition Height="0*"/>
         </Grid.RowDefinitions>
-        <Canvas Name="img" Height="525" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="497" Opacity="0.3">
-            <Canvas.Background>
-                <ImageBrush ImageSource="/Resources/background.png"></ImageBrush>
-            </Canvas.Background>
-        </Canvas>
-        <Canvas Height="525" HorizontalAlignment="Center"  Name="solid" VerticalAlignment="Center" Width="497" Opacity="0.75">
-            <Canvas.Background>
-                <SolidColorBrush Color="#003060"/>
-            </Canvas.Background>
-        </Canvas>
-        <Canvas Height="525" HorizontalAlignment="Center"  Name="solid2" VerticalAlignment="Center" Width="497" Opacity="0.1">
-            <Canvas.Background>
-                <SolidColorBrush Color="black"/>
-            </Canvas.Background>
-        </Canvas>
+
 
         <Button Style="{DynamicResource switchGrid}" Name="signinBtn" 
                 Content="SIGN IN" 
@@ -197,33 +187,33 @@
         <Separator Margin="33,50,194,450" Height="25"/>
 
         <Grid Name="signinGrid" Margin="0,73,0,10" HorizontalAlignment="Center" Width="497">
-            <Label Content="USERNAME" Margin="40,62,374,355" Foreground="#F0E1DE"/>
+            <Label Content="USERNAME" Margin="40,62,374,355" Foreground="#132F70"/>
             <TextBox Name="LoginUsernameTxt" Style="{StaticResource textBox}" Tag="Username" Margin="39,92,41,0"/>
-            <Label Content="PASSWORD" Margin="40,142,384,270" Foreground="#F0E1DE"/>
+            <Label Content="PASSWORD" Margin="40,142,384,270" Foreground="#132F70"/>
             <PasswordBox Name="LoginPasswordTxt" Style="{StaticResource passwordBox}" Margin="40,177,41,0" KeyDown="LoginPasswordTxt_KeyDown" />
-            <Label Name="capslock1" Margin="178,206,177,206" Foreground="#F0E1DE"/>
+            <Label Name="capslock1" Margin="178,206,177,206" Foreground="#132F70"/>
             <Button Name="LoginBtn" Content="SIGN IN" Margin="39,269,41,142" Style="{DynamicResource logButtons}" Height="31" Click="LoginBtn_Click"/>
         </Grid>
 
         <Grid Name="signupGrid" Margin="0,63,0,10" HorizontalAlignment="Left" Width="500">
-            <Label Content="FIRST NAME" Margin="42,21,360,401" Foreground="#F0E1DE"/>
+            <Label Content="FIRST NAME" Margin="42,21,360,401" Foreground="#132F70"/>
             <TextBox Name="FirstNameTxt" Style="{StaticResource textBox}" Tag="First name" Margin="42,51,274,0"/>
-            <Label Content="LAST NAME" Margin="269,24,0,404" Foreground="#F0E1DE" HorizontalAlignment="Left" Width="96"/>
+            <Label Content="LAST NAME" Margin="269,24,0,404" Foreground="#132F70" HorizontalAlignment="Left" Width="96"/>
             <TextBox Name="LastNameTxt" Style="{StaticResource textBox}" Tag="Last name" Margin="269,51,40,0"/>
-            <Label Content="USERNAME" Margin="42,90,360,332" Foreground="#F0E1DE"/>
+            <Label Content="USERNAME" Margin="42,90,360,332" Foreground="#132F70"/>
             <TextBox Name="UsernameTxt" Style="{StaticResource textBox}" Tag="Username" Margin="40,120,40,0"/>
-            <Label Content="E-MAIL" Margin="44,158,372,270" Foreground="#F0E1DE"/>
+            <Label Content="E-MAIL" Margin="44,158,372,270" Foreground="#132F70"/>
             <TextBox Name="EmailTxt" Style="{StaticResource textBox}" Tag="E-mail" Margin="40,187,40,0"/>
-            <Label Content="PASSWORD" Margin="42,226,372,191" Foreground="#F0E1DE"/>
+            <Label Content="PASSWORD" Margin="42,226,372,191" Foreground="#132F70"/>
             <PasswordBox Name="PasswordTxt" Style="{StaticResource passwordBox}" Margin="40,254,274,0" KeyDown="PasswordTxt_KeyDown"/>
-            <Label Content="CONFIRM PASSWORD" Margin="269,226,99,191" Foreground="#F0E1DE"/>
+            <Label Content="CONFIRM PASSWORD" Margin="269,226,99,191" Foreground="#132F70"/>
             <PasswordBox Name="ConfirmPasswordTxt" Style="{StaticResource passwordBox}" Margin="269,255,40,0" KeyDown="ConfirmPasswordTxt_KeyDown"/>
-            <Label Content="I WANT TO" Margin="121,314,291,105" Foreground="#F0E1DE"/>
-            <RadioButton Margin="214,320,214,117" Foreground="#F0E1DE" Name="StudentRadioBtn">Study</RadioButton>
-            <RadioButton Margin="286,320,149,117" Foreground="#F0E1DE" Name="InstructorRadioBtn">Teach</RadioButton>
+            <Label Content="I WANT TO" Margin="121,314,291,105" Foreground="#132F70"/>
+            <RadioButton Margin="214,320,214,117" Foreground="#132F70" Name="StudentRadioBtn">Study</RadioButton>
+            <RadioButton Margin="286,320,149,117" Foreground="#132F70" Name="InstructorRadioBtn">Teach</RadioButton>
             <Button Name="RegisterBtn" Style="{DynamicResource logButtons}" Click="RegisterBtn_Click" Content="SIGN UP" HorizontalAlignment="Center" Height="31" Margin="0,363,0,0" VerticalAlignment="Top" Width="420"/>
-            <Label Name="capslock2" Margin="73,279,321,138" Foreground="#F0E1DE"/>
-            <Label Name="capslock3" Margin="310,279,82,138" Foreground="#F0E1DE"/>
+            <Label Name="capslock2" Margin="73,279,321,138" Foreground="#132F70"/>
+            <Label Name="capslock3" Margin="310,279,82,138" Foreground="#132F70"/>
         </Grid>
     </Grid>
 

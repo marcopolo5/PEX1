@@ -10,26 +10,6 @@
          WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
 
     <Window.Resources>
-        <Style x:Key="textBox" TargetType="{x:Type TextBox}">
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="UseLayoutRounding" Value="True"/>
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="FontSize" Value="15"/>
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="CaretBrush" Value="Black"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Grid>
-                            <Border CornerRadius="17"  Background="#F5F5F5"/>
-                            <ScrollViewer x:Name="PART_ContentHost" Margin="5,0,0,0" VerticalAlignment="Center" />
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
         <Style  x:Key="buttonTemplate" TargetType="{x:Type Button}">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -114,26 +94,16 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Image x:Key="LogoutIcon" Source="/Resources/logout.png" Height="34" Width="40"/>
     </Window.Resources>
 
 
     <Grid Height="800" Width="1300" HorizontalAlignment="Center">
         <Label Content="e-Learning App" Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="25" Margin="67,18,0,0"/>
-        <TextBox Name="search" Style="{StaticResource textBox}" Margin="296,22,418,0"/>
-        <Button Name="searchBtn" Margin="830,27,430,740" Style="{StaticResource buttonTemplate}">
-            <Image Source="/Resources/search.png"/>
-        </Button>
+        <Button Name="LogoutButton" Style="{StaticResource buttonTemplate}" Content="{StaticResource LogoutIcon}" Click="Logout_Click" ToolTip="Log out" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,14,10,0" Width="44" Height="46" Panel.ZIndex="1" Cursor="Hand"/>
 
 
-        <Image Name="Profile" Source="/Resources/profile.png" MouseDown="Profile_MouseDown" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,22,64,0" Width="45" Height="45" Panel.ZIndex="1">
-            <Image.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Name="Logout" Header="Log Out" Click="Logout_Click"/>
-                </ContextMenu>
-            </Image.ContextMenu>
-        </Image>
-        <Label Content="Welcome, " Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="25" Margin="0,20,213,0"/>
-        <Label Name="UserNameLabel"  Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="25" Margin="0,20,144,0"/>
+        <Label Name="UserNameLabel"  Foreground="#132F70" FontWeight="Bold" HorizontalContentAlignment="Right" VerticalAlignment="Top" FontSize="25" Margin="911,16,70,0" Height="42" Width="319"/>
 
         <Image Name="ExploreImage" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="18,263,0,0" Width="27" Height="40" Panel.ZIndex="1"/>
         <Button Name="ExploreBtn" Content="Explore" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="83,263,0,0" Style="{StaticResource NavigationButtons}" Width="208" Click="ExploreBtn_Click" MouseEnter="ExploreBtn_MouseEnter" MouseLeave="ExploreBtn_MouseLeave"/>

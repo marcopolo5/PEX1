@@ -44,13 +44,11 @@ namespace WPF_Client
             MyCourses.Visibility = Visibility.Hidden;
             this.user = user;
 
-            this.UserNameLabel.Content = this.user.Username + "!";
+            this.UserNameLabel.Content = "Welcome, " + this.user.FirstName + "!";
             InitializeExploreCoursesGrid();
             InitializeMyCoursesGrid();
 
-            ChangeImages();
-
-            
+            ChangeImages();           
             
         }
 

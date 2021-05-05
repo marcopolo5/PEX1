@@ -113,23 +113,18 @@
             </Setter>
         </Style>
         <Image x:Key="AddCourseIcon" Source="/Resources/plusButtonBlue.png"/>
+        <Image x:Key="LogoutIcon" Source="/Resources/logout.png" Height="34" Width="40"/>
     </Window.Resources>
     
 
     <Grid Height="800" Width="1300" HorizontalAlignment="Center">
         <Label Content="e-Learning App" Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="25" Margin="102,18,0,0"/>
+       
+        <Button Name="LogoutButton" Style="{StaticResource buttonTemplate}" Content="{StaticResource LogoutIcon}" Click="Logout_Click" ToolTip="Log out" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,14,112,0" Width="44" Height="45" Panel.ZIndex="1" Cursor="Hand"/>
 
 
-        <Image Name="Profile" Source="/Resources/profile.png" ToolTip="Profile" MouseDown="Profile_MouseDown" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,18,122,0" Width="44" Height="45" Panel.ZIndex="1" Cursor="Hand">
-            <Image.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Name="Logout" Header="Log Out" Click="Logout_Click"/>
-                </ContextMenu>
-            </Image.ContextMenu>
-        </Image>
-        <Button Name="AddCourseButton" Margin="1208,18,52,747" Height="35" Content="{StaticResource AddCourseIcon}" Click="AddCourseButton_Click"></Button>
-        <Label Content="Welcome, " Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="25" Margin="0,18,298,0" Width="127"/>
-        <Label Name="TrainerNameLabel"  Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="25" Margin="0,18,213,0"/>
+        <Button Name="AddCourseButton" Style="{StaticResource buttonTemplate}" ToolTip="Add course" Margin="1208,18,52,747" Height="35" Content="{StaticResource AddCourseIcon}" Click="AddCourseButton_Click"/>
+        <Label Name="TrainerNameLabel"  Foreground="#132F70" FontWeight="Bold" HorizontalContentAlignment="Right" VerticalAlignment="Top" FontSize="25" Margin="783,14,174,0" Height="52"/>
 
         <Image Name="ExploreImage" Source="/Resources/explore.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="18,318,0,0" Width="27" Height="40" Panel.ZIndex="1"/>
         <Button Name="ExploreBtn" Content="Explore" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="83,318,0,0" Style="{StaticResource NavigationButtons}" Width="208" Click="ExploreBtn_Click" MouseEnter="ExploreBtn_MouseEnter" MouseLeave="ExploreBtn_MouseLeave"/>
