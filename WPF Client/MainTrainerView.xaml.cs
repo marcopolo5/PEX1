@@ -37,9 +37,6 @@ namespace WPF_Client
 
             this.DataContext = this;
             
-            //CardsTrainer mycard = new CardsTrainer();
-            //ExploreCoursesGrid.Children.Add(mycard);
-            
             this.trainer = user;
             this.TrainerNameLabel.Content = this.trainer.Username + "!";
 
@@ -68,14 +65,11 @@ namespace WPF_Client
                 {
                     MyCoursesGrid.Height = 300 * (myCoursesCount / 3 + 1) + 100;
                 }
-                //card.CourseName = course.Name;
-                //card.Description = course.Description;
-                //card.Category = course.Category.ToString();
-                //card.Course = course;
                 MyCoursesGrid.Children.Add(card);
                 card.MenuItemEdit.Click += new RoutedEventHandler((sender, e) => EditCourseHandler(sender, e, card));
                 card.MenuItemDelete.Click += new RoutedEventHandler((sender, e) => DeleteCourseHandler(sender, e, card));
-                //card.MouseDoubleClick += new MouseButtonEventHandler(DoubleClickMyCourseHandler);
+                
+                card.MouseDoubleClick += new MouseButtonEventHandler(DoubleClickMyCourseHandler);
             }
         }
 
@@ -126,28 +120,42 @@ namespace WPF_Client
                 Id = 2
             };
             TrainerCoursesService courses = new TrainerCoursesService();
-            var myCourses = courses.GetSuggestedCoursesForAnUser(this.trainer);
-            foreach (var course in myCourses)
+            var exploredCourses = courses.GetSuggestedCoursesForATrainer(this.trainer);
+            foreach (var course in exploredCourses)
             {
-                CardsTrainer card = new CardsTrainer(course);
-                myCoursesCount++;
-                if (myCoursesCount % 3 == 0)
+                Cards card = new Cards(course);
+                exploreCoursesCount++;
+                if (exploreCoursesCount % 3 == 0)
                 {
-                    MyCoursesGrid.Height = 300 * (myCoursesCount / 3) + 100;
+                    ExploreCoursesGrid.Height = 300 * (exploreCoursesCount / 3) + 100;
                 }
                 else
                 {
-                    MyCoursesGrid.Height = 300 * (myCoursesCount / 3 + 1) + 100;
+                    ExploreCoursesGrid.Height = 300 * (exploreCoursesCount / 3 + 1) + 100;
                 }
                 //card.CourseName = course.Name;
                 //card.Description = course.Description;
                 //card.Category = course.Category.ToString();
                 card.Course = course;
                 ExploreCoursesGrid.Children.Add(card);
-                
+
+                card.MouseDoubleClick += new MouseButtonEventHandler(DoubleClickExploreCourseHandler);
             }
         }
-        
+
+        public void DoubleClickExploreCourseHandler(object sender, MouseButtonEventArgs e)
+        {
+           
+            CourseViewWindow window = new CourseViewWindow(this.trainer, ((Cards)sender).Course);
+            window.Show();
+        }
+
+        public void DoubleClickMyCourseHandler(object sender, MouseButtonEventArgs e)
+        {
+
+            CourseViewWindow window = new CourseViewWindow(this.trainer, ((CardsTrainer)sender).Course);
+            window.Show();
+        }
 
         private void ChangeImages()
         {

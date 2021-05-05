@@ -28,7 +28,7 @@ namespace Elearning.Business.Services
             }
         }
 
-        public List<Course> GetSuggestedCoursesForAnUser(User author)
+        public List<Course> GetSuggestedCoursesForATrainer(User author)
         {
             using (ElearningContext context = new ElearningContext())
             {
