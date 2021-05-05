@@ -19,13 +19,6 @@ namespace WPF_Client.Custom
     /// </summary>
     public partial class QuizCard : UserControl
     {
-        //public string QuestionText { set; get; }
-        //public string Answer1 { set; get; }
-        //public string Answer2 { set; get; }
-        //public string Answer3 { set; get; }
-        //public string Answer4 { set; get; }
-        //public int CorrectAnswer { set; get; }
-
         public Question Question { set; get; }
 
         public QuizCard()

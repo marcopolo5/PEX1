@@ -70,10 +70,7 @@ namespace WPF_Client
                 {
                     ExploreCoursesGrid.Height = 300 * (exploreCoursesCount / 3 + 1) + 100;
                 }
-                //card.CourseName = course.Name;
-                //card.Description = course.Description;
-                //card.Category = course.Category;
-                //card.Course = course;
+               
                 ExploreCoursesGrid.Children.Add(card);
                 card.MouseDoubleClick += new MouseButtonEventHandler(DoubleClickExploreCourseHandler);
             }
@@ -126,10 +123,7 @@ namespace WPF_Client
                 {
                     MyCoursesGrid.Height = 300 * (myCoursesCount / 3 + 1) + 100;
                 }
-                //card.CourseName = course.Name;
-                //card.Description = course.Description;
-                //card.Category = course.Category;
-                //card.Course = course;
+                
                 MyCoursesGrid.Children.Add(card);
                 card.MouseDoubleClick += new MouseButtonEventHandler(DoubleClickMyCourseHandler);
             }

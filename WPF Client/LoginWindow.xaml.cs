@@ -70,7 +70,7 @@ namespace ElearningClient
             try
             {
                 User loggedUser = login.GetLoggedUser(username, password);
-                // Debug.WriteLine("on clik: logged user = " + loggedUser + " id = " + loggedUser.Id);
+               
                 if (loggedUser.Role.ToString().Equals("Student"))
                 {
                     MainCoursesView mainWindow = new MainCoursesView(loggedUser);

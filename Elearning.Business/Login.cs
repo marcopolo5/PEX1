@@ -43,7 +43,6 @@ namespace Elearning.Business
                 {
                     throw new Exception("Invalid credentials!");
                 }
-                //Debug.WriteLine("IN GetLoggedUser - found user id = " + matchingUsers.FirstOrDefault().Id);
                 return matchingUsers.FirstOrDefault();
             }
         }

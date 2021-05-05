@@ -46,10 +46,12 @@ namespace WPF_Client
             var course = InitializeCourse();
 
             InsertedCourse = courseService.InsertCourse(course, user);
-            //EditCourseUI editCourseUI = new EditCourseUI(InsertedCourse);
-            //editCourseUI.Show();
             this.Close();
         }
 
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

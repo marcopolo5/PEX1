@@ -27,13 +27,6 @@ namespace WPF_Client.Custom
             CourseDescription.Visibility = Visibility.Hidden;
         }
 
-        //public string Author { get; set; }
-        //public string CourseName { get; set; }
-        //public string Description { get; set; }
-
-        //public CategoryEnum Category { get; set; }
-
-        //public string Difficulty { get; set; }
         public Course Course { get; set; }
 
         public ImageSource Source

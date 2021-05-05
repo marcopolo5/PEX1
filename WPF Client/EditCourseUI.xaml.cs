@@ -56,8 +56,7 @@ namespace WPF_Client
         {
             CourseService singleCourse = new CourseService();
             Lessons = singleCourse.GetLessons(this.course.Id);
-            //DataContext = this; //data binding
-
+           
             lessonListView.ItemsSource = Lessons;
             ICollectionView view = CollectionViewSource.GetDefaultView(lessonListView.ItemsSource);
             view.Refresh();
@@ -73,20 +72,9 @@ namespace WPF_Client
 
         }
 
-        private void dificultyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void CancelCourse_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
-
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         public void GetUpdatedCourse()
@@ -109,8 +97,7 @@ namespace WPF_Client
         {
             CourseService singleCourse = new CourseService();
             Quizes = singleCourse.GetQuizzes(this.course.Id);
-            //DataContext = this; //data binding
-
+            
             quizesListView.ItemsSource = Quizes;
             ICollectionView view = CollectionViewSource.GetDefaultView(quizesListView.ItemsSource);
             view.Refresh();

@@ -20,10 +20,8 @@ namespace Elearning.Business.Services
                                         Id = authorCourse.Course.Id,
                                         Name = authorCourse.Course.Name,
                                         Description = authorCourse.Course.Description,
-                                        //Category = authorCourse.Course.Category,
                                         Difficulty = authorCourse.Course.Difficulty
                                     }).ToList();
-                //var usersCourses = context.Authors.Where(x => x.UserId == trainer.Id).Select(x => x.Course).ToList();
                 return usersCourses;
             }
         }
@@ -39,7 +37,6 @@ namespace Elearning.Business.Services
                                        Id = authorCourse.Course.Id,
                                        Name = authorCourse.Course.Name,
                                        Description = authorCourse.Course.Description,
-                                       //Category = authorCourse.Course.Category,
                                        Difficulty = authorCourse.Course.Difficulty
                                    };
                 var allCourses = from course in context.Courses
@@ -48,7 +45,6 @@ namespace Elearning.Business.Services
                                      Id = course.Id,
                                      Name = course.Name,
                                      Description = course.Description,
-                                     //Category = course.Category,
                                      Difficulty = course.Difficulty
                                  };
 

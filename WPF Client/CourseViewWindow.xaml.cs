@@ -144,10 +144,6 @@ namespace WPF_Client
                 QuizCard quizCard = new QuizCard();
                 quizCard.Question = question;
                 quizCard.Question.QuestionText= countQuestions.ToString() + ". " + question.QuestionText;
-                //quizCard.Question.Answer1 = question.Answer1;
-                //quizCard.Answer2 = question.Answer2;
-                //quizCard.Answer3 = question.Answer3;
-                //quizCard.Answer4 = question.Answer4;
                 QuizesUniformGrid.Children.Add(quizCard);
 
             }
