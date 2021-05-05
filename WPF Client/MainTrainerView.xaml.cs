@@ -1,4 +1,5 @@
 ﻿using Elearning.Business.Services;
+using ElearningClient;
 using ElearningDatabase.Models;
 using System;
 using System.Collections.Generic;
@@ -264,6 +265,19 @@ namespace WPF_Client
                 contextMenu.IsOpen = true;
                 e.Handled = true;
             }
+        }
+
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            LoginWindow login = new LoginWindow();
+            login.Show();
+            this.Close();
+        }
+
+        private void AddCourseButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddCourse addCourse = new AddCourse();
+            addCourse.Show();
         }
     }
 }

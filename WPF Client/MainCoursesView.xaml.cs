@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WPF_Client.Custom;
 using Elearning.Business.Services;
+using ElearningClient;
 
 namespace WPF_Client
 {
@@ -280,7 +281,12 @@ namespace WPF_Client
             }
         }
 
-
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            LoginWindow login = new LoginWindow();
+            login.Show();
+            this.Close();
+        }
 
     }
 }

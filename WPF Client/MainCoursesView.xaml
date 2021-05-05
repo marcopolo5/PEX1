@@ -128,8 +128,7 @@
         <Image Name="Profile" Source="/Resources/profile.png" MouseDown="Profile_MouseDown" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,22,64,0" Width="45" Height="45" Panel.ZIndex="1">
             <Image.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="My Profile"/>
-                    <MenuItem Header="Log Out"/>
+                    <MenuItem Name="Logout" Header="Log Out" Click="Logout_Click"/>
                 </ContextMenu>
             </Image.ContextMenu>
         </Image>
