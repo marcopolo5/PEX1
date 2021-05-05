@@ -22,7 +22,7 @@ namespace WPF_Client.Custom
         public CardsTrainer(Course course)
         {
             InitializeComponent();
-            this.DataContext = course;
+            this.DataContext = this;
             CourseDescription.Visibility = Visibility.Hidden;
             this.Course = course;
         }

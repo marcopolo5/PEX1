@@ -34,13 +34,18 @@ namespace WPF_Client
             ExploreBtn.Style = this.Resources["ClickNavigationButtons"] as Style;
             ExploreCourses.Visibility = Visibility.Visible;
             MyCourses.Visibility = Visibility.Hidden;
+
+            this.DataContext = this;
+            
             //CardsTrainer mycard = new CardsTrainer();
             //ExploreCoursesGrid.Children.Add(mycard);
             
             this.trainer = user;
+            this.TrainerNameLabel.Content = this.trainer.Username + "!";
 
             InitializeMyCourses();
             InitializeExploreCourses();
+
         }
 
         private void InitializeMyCourses()
@@ -80,7 +85,8 @@ namespace WPF_Client
             editCourseWindow.ShowDialog();
 
             card.Course = editCourseWindow.Course;
-            card.CourseNameTxtBlock.Text = card.Course.Name;
+            UpdateEditedCard(card);
+            
             //card.CourseNameTxtBlock.GetBindingExpression(TextBlock.TextProperty).UpdateSource();
             //be.UpdateSource();
             //card.CourseName = card.Course.Name;
@@ -89,6 +95,13 @@ namespace WPF_Client
             //card.Difficulty = card.Course.Difficulty.ToString();
             //card.Category = card.Course.Category.ToString(); 
             //card.CourseDescription.
+        }
+
+        public void UpdateEditedCard(CardsTrainer card)
+        {
+            card.CourseNameTxtBlock.Text = card.Course.Name;
+            card.CourseDescription.Text = card.Course.Description;
+            card.CourseCategory.Text = card.Course.Category.ToString();
         }
 
         public void DeleteCourseHandler(object sender, RoutedEventArgs e, CardsTrainer card)

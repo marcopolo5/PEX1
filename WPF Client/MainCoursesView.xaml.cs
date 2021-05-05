@@ -43,10 +43,13 @@ namespace WPF_Client
             MyCourses.Visibility = Visibility.Hidden;
             this.user = user;
 
+            this.UserNameLabel.Content = this.user.Username + "!";
             InitializeExploreCoursesGrid();
             InitializeMyCoursesGrid();
 
             ChangeImages();
+
+            
             
         }
 
@@ -56,7 +59,7 @@ namespace WPF_Client
             var suggestedCourses = courses.GetSuggestedCoursesForAnUser(this.user);
             foreach (var course in suggestedCourses)
             {
-                Cards card = new Cards();
+                Cards card = new Cards(course);
                 exploreCoursesCount++;
                 if (exploreCoursesCount % 3 == 0)
                 {
@@ -66,10 +69,10 @@ namespace WPF_Client
                 {
                     ExploreCoursesGrid.Height = 300 * (exploreCoursesCount / 3 + 1) + 100;
                 }
-                card.CourseName = course.Name;
-                card.Description = course.Description;
-                card.Category = course.Category;
-                card.Course = course;
+                //card.CourseName = course.Name;
+                //card.Description = course.Description;
+                //card.Category = course.Category;
+                //card.Course = course;
                 ExploreCoursesGrid.Children.Add(card);
                 card.MouseDoubleClick += new MouseButtonEventHandler(DoubleClickExploreCourseHandler);
             }
@@ -112,7 +115,7 @@ namespace WPF_Client
             var myCourses = courses.GetAllCoursesOfAnUser(this.user);
             foreach (var course in myCourses)
             {
-                Cards card = new Cards();
+                Cards card = new Cards(course);
                 myCoursesCount++;
                 if (myCoursesCount % 3 == 0)
                 {
@@ -122,10 +125,10 @@ namespace WPF_Client
                 {
                     MyCoursesGrid.Height = 300 * (myCoursesCount / 3 + 1) + 100;
                 }
-                card.CourseName = course.Name;
-                card.Description = course.Description;
-                card.Category = course.Category;
-                card.Course = course;
+                //card.CourseName = course.Name;
+                //card.Description = course.Description;
+                //card.Category = course.Category;
+                //card.Course = course;
                 MyCoursesGrid.Children.Add(card);
                 card.MouseDoubleClick += new MouseButtonEventHandler(DoubleClickMyCourseHandler);
             }
