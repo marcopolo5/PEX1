@@ -19,20 +19,21 @@ namespace WPF_Client.Custom
     /// </summary>
     public partial class CardsTrainer : UserControl
     {
-        public CardsTrainer()
+        public CardsTrainer(Course course)
         {
             InitializeComponent();
-            this.DataContext = this;
+            this.DataContext = course;
             CourseDescription.Visibility = Visibility.Hidden;
+            this.Course = course;
         }
 
-        public string Author { get; set; }
-        public string CourseName { get; set; }
-        public string Description { get; set; }
+        //public string Author { get; set; }
+        //public string CourseName { get; set; }
+        //public string Description { get; set; }
 
-        public string Category { get; set; }
+        //public string Category { get; set; }
 
-        public string Difficulty { get; set; }
+        //public string Difficulty { get; set; }
 
         public Course Course { get; set; }
 

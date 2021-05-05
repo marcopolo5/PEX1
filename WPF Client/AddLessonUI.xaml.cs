@@ -29,7 +29,7 @@ namespace WPF_Client
         public List<Resource> Resourcess { get; set; }
 
         public Course course;
-        
+
         public AddLessonUI(Course course)
         {
             InitializeComponent();
@@ -44,10 +44,7 @@ namespace WPF_Client
             dbCOntext.UseSqlServer(Elearning.Database.ResourceFile.connectionString);
             db = new ElearningContext(dbCOntext.Options);
             db.Migrate();
-
-
         }
-
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
@@ -66,26 +63,21 @@ namespace WPF_Client
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
         }
-
 
         private void SaveLessonButton_Click(object sender, RoutedEventArgs e)
         {
-
             Lesson lesson = new Lesson();
             CourseService singleCourse = new CourseService();
             lesson.Name = LessonNameTxtBox.Text;
             lesson.Content = LessonContentTxtBox.Text;
             Resource resource = new Resource();
             resource.File = AddResourceTxtBox.Text;
-            lesson.Resources = Resourcess;
-            lesson.Resources.Add(resource);
+            lesson.Resource = resource;
+            //lesson.Resource.Add(resource);
 
             singleCourse.InsertLesson(lesson, course.Id);
             this.Close();
-
         }
-
     }
 }

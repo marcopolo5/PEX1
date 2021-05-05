@@ -23,8 +23,10 @@ namespace WPF_Client
     /// </summary>
     public partial class EditCourseUI : Window
     {
+        public Course Course { get; set; }
         private List<Lesson> Lessons { set; get; }
         Course course = new Course();
+        public List<Quiz> Quizes { set; get; }
         CourseService courseService;
         public EditCourseUI(Course course)
         {
@@ -34,7 +36,9 @@ namespace WPF_Client
             dificultyComboBox.ItemsSource = Enum.GetValues(typeof(DifficultyEnum)).Cast<DifficultyEnum>();
             categoryComboBox.ItemsSource = Enum.GetValues(typeof(CategoryEnum)).Cast<CategoryEnum>();
             this.course = course;
+            Course = course;
             SetTextBoxesCourse();
+            ShowQuizes();
         }
 
         private void SetTextBoxesCourse()
@@ -75,33 +79,33 @@ namespace WPF_Client
         }
 
 
-        private void lessonListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        public Course GetUpdatedCourse()
+        public void GetUpdatedCourse()
         {
-            Course newCourse = new Course();
-            newCourse.Name = courseNameBox.Text;
-            newCourse.Description = courseDescriptionBox.Text;
-            newCourse.Category = (CategoryEnum)categoryComboBox.SelectedItem;
-            newCourse.Difficulty = (DifficultyEnum)dificultyComboBox.SelectedItem;
-            return newCourse;
+            course.Name = courseNameBox.Text;
+            course.Description = courseDescriptionBox.Text;
+            course.Category = (CategoryEnum)categoryComboBox.SelectedItem;
+            course.Difficulty = (DifficultyEnum)dificultyComboBox.SelectedItem;
+
+            Course = course;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            course = GetUpdatedCourse();
+            GetUpdatedCourse();
             courseService.UpdateCourse(course);
             this.Close();
         }
-
+        private void ShowQuizes()
+        {
+            CourseService singleCourse = new CourseService();
+            Quizes = singleCourse.GetQuizzes(this.course.Id);
+            DataContext = this; //data binding
+        }
         private void RemoveLessonButton_Click(object sender, RoutedEventArgs e)
         {
             courseService.RemoveLesson((Lesson)lessonListView.SelectedItem);

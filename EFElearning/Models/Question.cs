@@ -5,6 +5,8 @@ namespace ElearningDatabase.Models
     public class Question
     {
         public int Id { get; set; }
+        public int QuizId { get; set; }
+        public Quiz Quiz { get; set; }
 
         [Required]
         public string QuestionText { get; set; }

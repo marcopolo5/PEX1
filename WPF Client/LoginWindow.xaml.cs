@@ -71,9 +71,19 @@ namespace ElearningClient
             {
                 User loggedUser = login.GetLoggedUser(username, password);
                 // Debug.WriteLine("on clik: logged user = " + loggedUser + " id = " + loggedUser.Id);
-                MainCoursesView mainWindow = new MainCoursesView(loggedUser);
-                mainWindow.Show();
-                this.Close();
+                if (loggedUser.Role.ToString().Equals("Student"))
+                {
+                    MainCoursesView mainWindow = new MainCoursesView(loggedUser);
+                    mainWindow.Show();
+                    this.Close();
+                }
+                else if (loggedUser.Role.ToString().Equals("Trainer"))
+                {
+                    MainTrainerView mainTrainerView = new MainTrainerView(loggedUser);
+                    mainTrainerView.Show();
+                    this.Close();
+                }
+                
             }
             catch (Exception ex)
             {

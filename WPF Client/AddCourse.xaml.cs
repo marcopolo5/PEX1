@@ -27,13 +27,13 @@ namespace WPF_Client
             dificultyComboBox.ItemsSource = Enum.GetValues(typeof(DifficultyEnum)).Cast<DifficultyEnum>();
             categoryComboBox.ItemsSource = Enum.GetValues(typeof(CategoryEnum)).Cast<CategoryEnum>();
             user = new User();
-            user.Id = 2;
-            user.FirstName = "ana";
-            user.LastName = "maria";
+            user.Id = 7;
+            user.FirstName = "marco";
+            user.LastName = "polo";
             user.Password = "Pisicuta21!";
-            user.Role = RoleEnum.Student;
-            user.Username = "anamaria";
-            user.Email = "anamaria@yahoo.com";
+            user.Role = RoleEnum.Admin;
+            user.Username = "marco";
+            user.Email = "anamaria@yahoo.ro";
            
         }
 

@@ -20,7 +20,8 @@ namespace ElearningDatabase.Models
         [Required]
         public string Content { get; set; }
 
-        public List<Resource> Resources { get; set; }
+        public Resource Resource { get; set; }
+        public int ResourceId { get; set; }
 
     }
 }
