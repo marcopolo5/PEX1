@@ -103,31 +103,31 @@
         </Grid.RowDefinitions>
 
 
-        <Label Grid.Row="3" Grid.Column="1" Foreground="#132F70" FontWeight="Bold" Content="Course name:" FontSize="17" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Label Grid.Row="2" Grid.Column="1" Foreground="#132F70" FontWeight="Bold" Content="Course name:" FontSize="17" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-        <TextBox Name="courseNameBox" Style="{StaticResource textBox}" VerticalContentAlignment="Center" TextWrapping="Wrap" Grid.Row="3" Grid.Column="2" Grid.RowSpan="1" Grid.ColumnSpan="3" VerticalAlignment="Center" MinHeight="63" FontSize="20" HorizontalAlignment="Left" Width="378" />
+        <TextBox Name="courseNameBox" Style="{StaticResource textBox}" VerticalContentAlignment="Center" TextWrapping="Wrap" Grid.Row="2" Grid.Column="2" Grid.RowSpan="1" Grid.ColumnSpan="3" VerticalAlignment="Center" MinHeight="63" FontSize="20" HorizontalAlignment="Left" Width="378" />
 
-        <Label Grid.Row="4" Grid.ColumnSpan="4" Grid.Column="1" Content="Course description" Foreground="#132F70" FontWeight="Bold" FontSize="17" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Label Grid.Row="3" Grid.ColumnSpan="4" Grid.Column="1" Content="Course description" Foreground="#132F70" FontWeight="Bold" FontSize="17" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-        <TextBox Name="courseDescriptionBox" Style="{StaticResource textBox}" TextWrapping="Wrap" Grid.Row="4" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="4" FontSize="17" Height="132" Margin="0,63,0,0" />
+        <TextBox Name="courseDescriptionBox" Style="{StaticResource textBox}" TextWrapping="Wrap" Grid.Row="3" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="4" FontSize="17" Height="132" Margin="0,63,0,0" />
 
-        <Button Content="Remove lesson" Name="RemoveLessonButton" Grid.Row="8" Grid.Column="6" Grid.RowSpan="1" Grid.ColumnSpan="2" Style="{StaticResource ButtonsTemplate}" Click="RemoveLessonButton_Click"/>
+        <Button Content="Remove lesson" Name="RemoveLessonButton" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="7" Grid.Column="7" Grid.RowSpan="1" Grid.ColumnSpan="2" Style="{StaticResource ButtonsTemplate}" Click="RemoveLessonButton_Click"/>
 
-        <Button Content="Add lesson" Name="AddLessonButton" Grid.Row="8" Grid.Column="8" Grid.RowSpan="1" Grid.ColumnSpan="2" Style="{StaticResource ButtonsTemplate}" Click="AddLesson_Click"/>
+        <Button Content="Add lesson" Name="AddLessonButton" Grid.Row="7" Grid.Column="9" Grid.RowSpan="1" Grid.ColumnSpan="2" Style="{StaticResource ButtonsTemplate}" Click="AddLesson_Click" VerticalAlignment="Top" HorizontalAlignment="Center"/>
 
         <Button Content="Cancel" Name="CancelButton" Grid.Row="11" Grid.Column="7" Grid.RowSpan="1" Grid.ColumnSpan="2" Style="{StaticResource ButtonsTemplate}" Click="CancelCourse_Click"/>
 
         <Button Content="Save" Name="SaveButton"  Grid.Row="11" Grid.Column="9" Grid.RowSpan="1" Grid.ColumnSpan="2" Style="{StaticResource ButtonsTemplate}" Click="SaveButton_Click"/>
 
-        <ComboBox Name="categoryComboBox" IsEditable="True" Text="Category..." FontSize="20" Width="250" Height="40" IsReadOnly="True" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="1" Margin="0,0,5,0">
+        <ComboBox Name="categoryComboBox" IsEditable="True" Text="Category..." FontSize="20" Width="250" Height="40" IsReadOnly="True" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="1" Margin="0,0,5,0">
         </ComboBox>
 
-        <ComboBox Name="dificultyComboBox" IsEditable="True" Text="Difficulty..." FontSize="20" Width="250" Height="40" IsReadOnly="True" Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="1" SelectionChanged="dificultyComboBox_SelectionChanged" Margin="5,0,0,0">
+        <ComboBox Name="dificultyComboBox" IsEditable="True" Text="Difficulty..." FontSize="20" Width="250" Height="40" IsReadOnly="True" Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="1" SelectionChanged="dificultyComboBox_SelectionChanged" Margin="5,0,0,0">
         </ComboBox>
 
         <ListView ItemsSource="{Binding Lessons, Mode=TwoWay}"
             Name="lessonListView"
-            Grid.Row="3"
+            Grid.Row="2"
             Grid.Column="5"
             Grid.ColumnSpan="6"
             Grid.RowSpan="5"
@@ -187,7 +187,7 @@
 
         <ListView ItemsSource="{Binding Quizes, Mode=TwoWay}"
             Name="quizesListView"
-            Grid.Row="8"
+            Grid.Row="7"
             Grid.ColumnSpan="6"
             Grid.RowSpan="5"
             FontSize="17"
@@ -232,6 +232,9 @@
                 </GridView>
             </ListView.View>
         </ListView>
+
+        <Button Content="Remove" Name="RemoveQuizButton" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{StaticResource ButtonsTemplate}" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="12"/>
+        <Button Content="Add quiz" Name="AddQuizButton" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{StaticResource ButtonsTemplate}" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="12"/>
 
     </Grid>
 
