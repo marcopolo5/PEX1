@@ -117,8 +117,16 @@ namespace WPF_Client
         }
         private void RemoveLessonButton_Click(object sender, RoutedEventArgs e)
         {
-            courseService.RemoveLesson((Lesson)lessonListView.SelectedItem);
-            ShowLessons();
+            Lesson selectedLesson = (Lesson)lessonListView.SelectedItem;
+            if (selectedLesson != null)
+            {
+                courseService.RemoveLesson(selectedLesson);
+                ShowLessons();
+            }
+            else
+            {
+                MessageBox.Show("Please select a lesson!");
+            }
             
         }
 
@@ -144,23 +152,17 @@ namespace WPF_Client
 
         private void EditQuizButton_Click(object sender, RoutedEventArgs e)
         {
-            try
+            Quiz selectedQuiz = (Quiz)quizesListView.SelectedItem;
+            if (selectedQuiz != null)
             {
-                Quiz selectedQuiz = (Quiz)quizesListView.SelectedItem;
-                if (selectedQuiz != null)
-                {
-                    EditQuiz editQuizWindow = new EditQuiz(selectedQuiz);
-                    editQuizWindow.ShowDialog();
-                    ShowQuizes();
-                }
-                else
-                {
-                    MessageBox.Show("Please select a quiz!");
-                }
+                EditQuiz editQuizWindow = new EditQuiz(selectedQuiz);
+                editQuizWindow.ShowDialog();
+                ShowQuizes();
             }
-            catch
+            else
             {
                 MessageBox.Show("Please select a quiz!");
+
             }
         }
     }
