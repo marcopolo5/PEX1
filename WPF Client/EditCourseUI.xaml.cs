@@ -24,7 +24,7 @@ namespace WPF_Client
     public partial class EditCourseUI : Window
     {
         public Course Course { get; set; }
-        private List<Lesson> Lessons { set; get; }
+        public List<Lesson> Lessons { set; get; }
         Course course = new Course();
         public List<Quiz> Quizes { set; get; }
         CourseService courseService;
@@ -32,12 +32,15 @@ namespace WPF_Client
         {
             InitializeComponent();
             courseService = new CourseService();
-            ShowLessons();
-            dificultyComboBox.ItemsSource = Enum.GetValues(typeof(DifficultyEnum)).Cast<DifficultyEnum>();
-            categoryComboBox.ItemsSource = Enum.GetValues(typeof(CategoryEnum)).Cast<CategoryEnum>();
             this.course = course;
             Course = this.course;
+            DataContext = this;
+
+            dificultyComboBox.ItemsSource = Enum.GetValues(typeof(DifficultyEnum)).Cast<DifficultyEnum>();
+            categoryComboBox.ItemsSource = Enum.GetValues(typeof(CategoryEnum)).Cast<CategoryEnum>();
+            
             SetTextBoxesCourse();
+            ShowLessons();
             ShowQuizes();
         }
 
@@ -53,7 +56,11 @@ namespace WPF_Client
         {
             CourseService singleCourse = new CourseService();
             Lessons = singleCourse.GetLessons(this.course.Id);
-            DataContext = this; //data binding
+            //DataContext = this; //data binding
+
+            lessonListView.ItemsSource = Lessons;
+            ICollectionView view = CollectionViewSource.GetDefaultView(lessonListView.ItemsSource);
+            view.Refresh();
         }
 
 
@@ -62,9 +69,7 @@ namespace WPF_Client
             AddLessonUI addLesson = new AddLessonUI(course);
             addLesson.ShowDialog();
             ShowLessons();
-            lessonListView.ItemsSource = Lessons;
-            ICollectionView view = CollectionViewSource.GetDefaultView(lessonListView.ItemsSource);
-            view.Refresh();
+            
 
         }
 
@@ -104,7 +109,7 @@ namespace WPF_Client
         {
             CourseService singleCourse = new CourseService();
             Quizes = singleCourse.GetQuizzes(this.course.Id);
-            DataContext = this; //data binding
+            //DataContext = this; //data binding
 
             quizesListView.ItemsSource = Quizes;
             ICollectionView view = CollectionViewSource.GetDefaultView(quizesListView.ItemsSource);
@@ -114,9 +119,7 @@ namespace WPF_Client
         {
             courseService.RemoveLesson((Lesson)lessonListView.SelectedItem);
             ShowLessons();
-            lessonListView.ItemsSource = Lessons;
-            ICollectionView view = CollectionViewSource.GetDefaultView(lessonListView.ItemsSource);
-            view.Refresh();
+            
         }
 
         private void AddQuizButton_Click(object sender, RoutedEventArgs e)

@@ -21,19 +21,13 @@ namespace WPF_Client
     public partial class AddCourse : Window
     {
         User user;
-        public AddCourse()
+        public Course InsertedCourse { get; set; }
+        public AddCourse(User user)
         {
             InitializeComponent();
             dificultyComboBox.ItemsSource = Enum.GetValues(typeof(DifficultyEnum)).Cast<DifficultyEnum>();
             categoryComboBox.ItemsSource = Enum.GetValues(typeof(CategoryEnum)).Cast<CategoryEnum>();
-            user = new User();
-            user.Id = 7;
-            user.FirstName = "marco";
-            user.LastName = "polo";
-            user.Password = "Pisicuta21!";
-            user.Role = RoleEnum.Admin;
-            user.Username = "marco";
-            user.Email = "anamaria@yahoo.ro";
+            this.user = user;
            
         }
 
@@ -51,9 +45,9 @@ namespace WPF_Client
             CourseService courseService = new CourseService();
             var course = InitializeCourse();
 
-            var insertedCourse = courseService.InsertCourse(course, user);
-            EditCourseUI editCourseUI = new EditCourseUI(insertedCourse);
-            editCourseUI.Show();
+            InsertedCourse = courseService.InsertCourse(course, user);
+            //EditCourseUI editCourseUI = new EditCourseUI(InsertedCourse);
+            //editCourseUI.Show();
             this.Close();
         }
 

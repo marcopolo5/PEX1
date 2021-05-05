@@ -48,10 +48,6 @@ namespace WPF_Client
 
         private void InitializeMyCourses()
         {
-            User tra = new User
-            {
-                Id = 2
-        };
             TrainerCoursesService courses = new TrainerCoursesService();
             var myCourses = courses.GetAllCoursesOfATrainer(this.trainer);
             foreach (var course in myCourses)
@@ -82,14 +78,6 @@ namespace WPF_Client
             card.Course = editCourseWindow.Course;
             UpdateEditedCard(card);
             
-            //card.CourseNameTxtBlock.GetBindingExpression(TextBlock.TextProperty).UpdateSource();
-            //be.UpdateSource();
-            //card.CourseName = card.Course.Name;
-            //card.Description = card.Course.Description;
-            ////card.UpdateLayout();
-            //card.Difficulty = card.Course.Difficulty.ToString();
-            //card.Category = card.Course.Category.ToString(); 
-            //card.CourseDescription.
         }
 
         public void UpdateEditedCard(CardsTrainer card)
@@ -116,10 +104,7 @@ namespace WPF_Client
 
         public void InitializeExploreCourses()
         {
-            User tra = new User
-            {
-                Id = 2
-            };
+            
             TrainerCoursesService courses = new TrainerCoursesService();
             var exploredCourses = courses.GetSuggestedCoursesForATrainer(this.trainer);
             foreach (var course in exploredCourses)
@@ -134,9 +119,6 @@ namespace WPF_Client
                 {
                     ExploreCoursesGrid.Height = 300 * (exploreCoursesCount / 3 + 1) + 100;
                 }
-                //card.CourseName = course.Name;
-                //card.Description = course.Description;
-                //card.Category = course.Category.ToString();
                 card.Course = course;
                 ExploreCoursesGrid.Children.Add(card);
 
@@ -276,8 +258,24 @@ namespace WPF_Client
 
         private void AddCourseButton_Click(object sender, RoutedEventArgs e)
         {
-            AddCourse addCourse = new AddCourse();
-            addCourse.Show();
+            AddCourse addCourse = new AddCourse(this.trainer);
+            addCourse.ShowDialog();
+            var course = addCourse.InsertedCourse;
+            CardsTrainer card = new CardsTrainer(course);
+            myCoursesCount++;
+            if (myCoursesCount % 3 == 0)
+            {
+                MyCoursesGrid.Height = 300 * (myCoursesCount / 3) + 100;
+            }
+            else
+            {
+                MyCoursesGrid.Height = 300 * (myCoursesCount / 3 + 1) + 100;
+            }
+            MyCoursesGrid.Children.Add(card);
+            card.MenuItemEdit.Click += new RoutedEventHandler((sender, e) => EditCourseHandler(sender, e, card));
+            card.MenuItemDelete.Click += new RoutedEventHandler((sender, e) => DeleteCourseHandler(sender, e, card));
+
+            card.MouseDoubleClick += new MouseButtonEventHandler(DoubleClickMyCourseHandler);
         }
     }
 }
