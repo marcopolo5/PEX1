@@ -129,7 +129,7 @@
         </Image>
         <Image Source="/Resources/plusButtonBlue.png" ToolTip="Add course" Name="AddCourseBtn" Cursor="Hand" Margin="1208,18,52,747" Height="35"/>
         <Label Content="Welcome, " Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="25" Margin="0,18,298,0" Width="127"/>
-        <Label Name="TrainerNameLabel" Content="Name" Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="25" Margin="0,18,213,0"/>
+        <Label Name="TrainerNameLabel"  Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="25" Margin="0,18,213,0"/>
 
         <Image Name="ExploreImage" Source="/Resources/explore.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="18,318,0,0" Width="27" Height="40" Panel.ZIndex="1"/>
         <Button Name="ExploreBtn" Content="Explore" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="83,318,0,0" Style="{StaticResource NavigationButtons}" Width="208" Click="ExploreBtn_Click" MouseEnter="ExploreBtn_MouseEnter" MouseLeave="ExploreBtn_MouseLeave"/>

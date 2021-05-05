@@ -36,10 +36,12 @@ namespace WPF_Client
             MyCourses.Visibility = Visibility.Hidden;
 
             this.DataContext = this;
+            
             //CardsTrainer mycard = new CardsTrainer();
             //ExploreCoursesGrid.Children.Add(mycard);
             
             this.trainer = user;
+            this.TrainerNameLabel.Content = this.trainer.Username + "!";
 
             InitializeMyCourses();
             InitializeExploreCourses();
