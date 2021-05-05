@@ -262,6 +262,9 @@ namespace WPF_Client
         {
             AddCourse addCourse = new AddCourse(this.trainer);
             addCourse.ShowDialog();
+
+            if (addCourse.InsertedCourse == null)
+                return;
             var course = addCourse.InsertedCourse;
             CardsTrainer card = new CardsTrainer(course);
             myCoursesCount++;
