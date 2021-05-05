@@ -134,7 +134,7 @@
             </Image.ContextMenu>
         </Image>
         <Label Content="Welcome, " Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="25" Margin="0,20,213,0"/>
-        <Label Name="UserNameLbaer" Content="Name" Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="25" Margin="0,20,144,0"/>
+        <Label Name="UserNameLabel"  Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="25" Margin="0,20,144,0"/>
 
         <Image Name="ExploreImage" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="18,263,0,0" Width="27" Height="40" Panel.ZIndex="1"/>
         <Button Name="ExploreBtn" Content="Explore" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="83,263,0,0" Style="{StaticResource NavigationButtons}" Width="208" Click="ExploreBtn_Click" MouseEnter="ExploreBtn_MouseEnter" MouseLeave="ExploreBtn_MouseLeave"/>

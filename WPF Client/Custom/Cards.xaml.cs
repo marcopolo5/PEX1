@@ -19,21 +19,21 @@ namespace WPF_Client.Custom
     /// </summary>
     public partial class Cards : UserControl
     {
-        public Cards()
+        public Cards(Course course)
         {
             InitializeComponent();
+            this.Course = course;
             this.DataContext = this;
             CourseDescription.Visibility = Visibility.Hidden;
         }
 
-        public string Author { get; set; }
-        public string CourseName { get; set; }
-        public string Description { get; set; }
+        //public string Author { get; set; }
+        //public string CourseName { get; set; }
+        //public string Description { get; set; }
 
-        public CategoryEnum Category { get; set; }
+        //public CategoryEnum Category { get; set; }
 
-        public string Difficulty { get; set; }
-
+        //public string Difficulty { get; set; }
         public Course Course { get; set; }
 
         public ImageSource Source
