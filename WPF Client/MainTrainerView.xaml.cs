@@ -131,6 +131,7 @@ namespace WPF_Client
            
             CourseViewWindow window = new CourseViewWindow(this.trainer, ((Cards)sender).Course);
             window.Show();
+            this.Close();
         }
 
         public void DoubleClickMyCourseHandler(object sender, MouseButtonEventArgs e)
@@ -138,6 +139,7 @@ namespace WPF_Client
 
             CourseViewWindow window = new CourseViewWindow(this.trainer, ((CardsTrainer)sender).Course);
             window.Show();
+            this.Close();
         }
 
         private void ChangeImages()

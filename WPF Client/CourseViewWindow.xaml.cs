@@ -120,8 +120,16 @@ namespace WPF_Client
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
-            MainCoursesView dashboard = new MainCoursesView(user);
-            dashboard.Show();
+            if (this.user.Role.ToString().Equals("Student"))
+            {
+                MainCoursesView dashboard = new MainCoursesView(user);
+                dashboard.Show();
+            }
+            else if (this.user.Role.ToString().Equals("Trainer"))
+            {
+                MainTrainerView dashboard = new MainTrainerView(user);
+                dashboard.Show();
+            }
             this.Close();
         }
 
