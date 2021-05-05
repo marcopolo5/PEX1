@@ -53,6 +53,15 @@ namespace Elearning.Business
             }
         }
 
+        public List<Quiz> GetQuizes(int courseId)
+        {
+            using (ElearningContext elearningContext = new ElearningContext())
+            {
+                var quiz = elearningContext.Quizes.Where(x => x.CourseId == courseId);
+                return quiz.ToList();
+            }
+        }
+
         public void InsertQuestion(int quizId, Question question)
         {
             if (question != null)
@@ -72,6 +81,25 @@ namespace Elearning.Business
                     elearningContext.SaveChanges();
                 }
             }
+        }
+
+        public Quiz InsertQuiz(Quiz quiz)
+        {
+            using (ElearningContext elearningContext = new ElearningContext())
+                {
+                    elearningContext.Quizes.Add(new Quiz()
+                    {
+                        Name= quiz.Name,
+                        Questions= quiz.Questions,
+                        CourseId=  quiz.CourseId
+                        
+                    });
+                    elearningContext.SaveChanges();
+                     var newId = elearningContext.Quizes.Max(x => x.Id);
+                    var returnedQuiz = elearningContext.Quizes.Where(x => x.Id == newId).ToList().FirstOrDefault();
+                    return returnedQuiz;
+            }
+            
         }
 
         public void InsertReview(User user, int courseId, string review)
@@ -135,6 +163,15 @@ namespace Elearning.Business
             using (ElearningContext elearningContext = new ElearningContext())
             {
                 elearningContext.Lessons.Remove(lesson);
+                elearningContext.SaveChanges();
+            }
+        }
+
+        public void RemoveQuestion(Question question)
+        {
+            using (ElearningContext elearningContext = new ElearningContext())
+            {
+                elearningContext.Questions.Remove(question);
                 elearningContext.SaveChanges();
             }
         }

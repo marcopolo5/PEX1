@@ -27,15 +27,13 @@ namespace WPF_Client
 
         public CourseService courseService;
 
-        public AddQuestion()
+        public AddQuestion(Quiz quiz)
         {
             InitializeComponent();
             courseService = new CourseService();
             CorrectAnswerComboBox.ItemsSource = options;
             Question = new Question();
-            Quiz = new Quiz();
-            Quiz.Id = 1;
-            
+            Quiz = quiz;
         }
 
         private void SaveQuestionButton_Click(object sender, RoutedEventArgs e)
@@ -48,6 +46,7 @@ namespace WPF_Client
             Question.CorrectAnswer = Convert.ToInt32(CorrectAnswerComboBox.SelectedItem);
 
             courseService.InsertQuestion(Quiz.Id, Question);
+            this.Close();
 
         }
     }

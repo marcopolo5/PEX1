@@ -89,15 +89,14 @@
 
         <Label Content="Quiz name: " Foreground="#132F70" FontWeight="Bold" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="17" />
         <TextBox Name="QuizNameTextBox" Style="{StaticResource textBox}" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="4" FontSize="17" VerticalAlignment="Center" HorizontalAlignment="Left" Width="390" MinHeight="50" />
-
-        <ListView 
+        <ListView ItemsSource="{Binding Questions, Mode=TwoWay}"
             Name="questionsListView"
             Grid.Column="1"
             Grid.Row="2"
             Grid.ColumnSpan="6"
-            Grid.RowSpan="2"
+            Grid.RowSpan="3"
             FontSize="17"
-            Width="600"
+            Width="600" Margin="0,74,0,26"
             >
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
@@ -124,7 +123,7 @@
             </ListView.Template>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Questions" Width="600" DisplayMemberBinding="{Binding Name}">
+                    <GridViewColumn Header="Questions" Width="600" DisplayMemberBinding="{Binding QuestionText}">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBox
@@ -137,11 +136,11 @@
             </ListView.View>
         </ListView>
 
-        <Button Content="Add question" Name="AddQuestionButton" Style="{StaticResource ButtonsTemplate}" Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Center"/>
-        <Button Content="Remove" Name="RemoveQuestionButton" Style="{StaticResource ButtonsTemplate}" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Center" />
+        <Button Content="Add question" Name="AddQuestionButton" Style="{StaticResource ButtonsTemplate}" Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="5" VerticalAlignment="Top" HorizontalAlignment="Left" Click="AddQuestionButton_Click" Margin="0,17,0,0"/>
+        <Button Content="Remove" Name="RemoveQuestionButton" Style="{StaticResource ButtonsTemplate}" Grid.Column="3" Grid.Row="5" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="35,17,0,0" Click="RemoveQuestionButton_Click"/>
 
-        <Button Content="Save" Name="SaveQuizButton" Style="{StaticResource ButtonsTemplate}" Grid.Column="4" Grid.Row="5" Grid.ColumnSpan="2" Margin="20" />
-        <Button Content="Cancel" Name="CancelQuizButton" Style="{StaticResource ButtonsTemplate}" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2" Margin="20"  />
+        <Button Name="SaveQuizButton" Content="Add Quiz" Click="SaveQuizButton_Click" Style="{StaticResource ButtonsTemplate}" Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="2" Margin="25,10,15,45"></Button>
+        <Button Content="Cancel" Name="CancelQuizButton" Style="{StaticResource ButtonsTemplate}" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2" Margin="35,10,5,45" Click="CancelQuizButton_Click" />
 
     </Grid>
 </Window>
