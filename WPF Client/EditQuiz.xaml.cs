@@ -46,11 +46,18 @@ namespace WPF_Client
 
         private void SaveQuizButton_Click(object sender, RoutedEventArgs e)
         {
-
-            CourseService singleCourse = new CourseService();
-            
-            Quiz.Name = QuizNameTextBox.Text;
-            singleCourse.UpdateQuiz(Quiz);
+            try
+            {
+                ValidateQuiz();
+                CourseService singleCourse = new CourseService();
+                Quiz.Name = QuizNameTextBox.Text;
+                singleCourse.UpdateQuiz(Quiz);
+            }
+            catch(Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+         
 
 
         }
@@ -79,5 +86,13 @@ namespace WPF_Client
                 MessageBox.Show("Plese select a question!");
             }
         }
+
+        private void ValidateQuiz()
+        {
+            if (QuizNameTextBox.Text.Length <= 0)
+            {
+                throw new Exception("The name of the quiz cannot be empty!");
+            }
         }
+    }
 }
