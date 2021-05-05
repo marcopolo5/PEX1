@@ -46,7 +46,7 @@ namespace WPF_Client.Custom
 
         // Using a DependencyProperty as the backing store for Source.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SourceProperty =
-            DependencyProperty.Register("Source", typeof(ImageSource), typeof(Cards));
+            DependencyProperty.Register("Source", typeof(ImageSource), typeof(CardsTrainer));
 
         private void Button_MouseEnter(object sender, MouseEventArgs e)
         {
