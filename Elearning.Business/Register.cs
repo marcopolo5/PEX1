@@ -7,7 +7,7 @@ namespace Elearning.Business
 {
     public class Register
     {
-        public bool ValidateRegister(string username, string password, string firstname, string lastname, string confirmPassword, bool checkInstructor, string email)
+        public User ValidateRegister(string username, string password, string firstname, string lastname, string confirmPassword, bool checkInstructor, string email)
         {
             RoleEnum role = RoleEnum.Student;
             if(!CheckIfUserExists(username))
@@ -30,13 +30,24 @@ namespace Elearning.Business
                             Email = email
                         });
                         elearningContext.SaveChanges();
+                        var newId = elearningContext.Users.Max(x => x.Id);
+                        
+                        var returnedUser = elearningContext.Users.Where(x => x.Id == newId).ToList().FirstOrDefault();
+                        return returnedUser;
                     }
 
-                    return true;
                 }
+                else
+                {
+                    throw new System.Exception("Invalid password or email!");
+                }
+
+            }
+            else
+            {
+                throw new System.Exception("Username taken!");
             }
  
-            return false;
         }
 
         private bool IsValidEmail(string email)

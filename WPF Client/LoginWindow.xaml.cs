@@ -109,8 +109,15 @@ namespace ElearningClient
             string firstname = FirstNameTxt.Text;
             string lastname = LastNameTxt.Text;
             string confirmPassword = ConfirmPasswordTxt.Password.ToString();
-            bool checkInstructor = InstructorRadioBtn.IsEnabled;
-            bool checkStudent = StudentRadioBtn.IsEnabled;
+            bool checkInstructor;
+            if (InstructorRadioBtn.IsChecked == true)
+            {
+                checkInstructor = true;
+            }
+            else
+            {
+                checkInstructor = false;
+            }
             string email = EmailTxt.Text;
             user.Username = username;
             user.Password = password;
@@ -119,18 +126,25 @@ namespace ElearningClient
             user.Email = email;
             user.Role = InstructorRadioBtn.IsEnabled? RoleEnum.Trainer: RoleEnum.Student;
 
-            if(register.CheckIfUserExists(UsernameTxt.Text))
-            {
-                MessageBox.Show("Username already exists! Please enter a new one.");
-            }
-
             try
             {
-                if (register.ValidateRegister(username, password, firstname, lastname, confirmPassword, checkInstructor, email))
+                User newUser = register.ValidateRegister(username, password, firstname, lastname, confirmPassword, checkInstructor, email);
+                MessageBox.Show("You're now a part of our e-Learning community. Enjoy!");
+
+
+                if (newUser.Role.ToString().Equals("Student"))
                 {
-                    MessageBox.Show("You're now a part of our e-Learning community. Enjoy!");
-                    this.ShowMainWindow(user);                 
+                    MainCoursesView mainWindow = new MainCoursesView(newUser);
+                    mainWindow.Show();
+                    this.Close();
                 }
+                else if (newUser.Role.ToString().Equals("Trainer"))
+                {
+                    MainTrainerView mainTrainerView = new MainTrainerView(newUser);
+                    mainTrainerView.Show();
+                    this.Close();
+                }
+
             }
             catch (Exception ex)
             {

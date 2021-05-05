@@ -77,6 +77,25 @@ namespace WPF_Client
             this.Close();
         }
 
+        private void ValidateCourse()
+        {
+            if (courseNameBox.Text.Length <= 0)
+            {
+                throw new Exception("The name of the course cannot be empty!");
+            }
+            if (courseDescriptionBox.Text.Length <= 0)
+            {
+                throw new Exception("The description of the course cannot be empty!");
+            }
+            if (categoryComboBox.SelectedItem == null)
+            {
+                throw new Exception("Please select a category!");
+            }
+            if (dificultyComboBox.SelectedItem == null)
+            {
+                throw new Exception("Please select a difficulty!");
+            }
+        }
         public void GetUpdatedCourse()
         {
             course.Name = courseNameBox.Text;
@@ -89,9 +108,18 @@ namespace WPF_Client
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            GetUpdatedCourse();
-            courseService.UpdateCourse(course);
-            this.Close();
+            try
+            {
+                ValidateCourse();
+                GetUpdatedCourse();
+                courseService.UpdateCourse(course);
+                this.Close();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+
+            }
         }
         private void ShowQuizes()
         {

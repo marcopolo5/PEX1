@@ -65,18 +65,43 @@ namespace WPF_Client
         {
         }
 
+        private void ValidateLesson()
+        {
+            if(LessonNameTxtBox.Text.Length <= 0)
+            {
+                throw new Exception("Lesson name cannot be empty!");
+            }
+            if (LessonContentTxtBox.Text.Length <= 0)
+            {
+                throw new Exception("Lesson content cannot be empty!");
+            }
+            if (AddResourceTxtBox.Text.Length <= 0)
+            {
+                throw new Exception("Resource cannot be empty!");
+            }
+        }
+
         private void SaveLessonButton_Click(object sender, RoutedEventArgs e)
         {
-            Lesson lesson = new Lesson();
-            CourseService singleCourse = new CourseService();
-            lesson.Name = LessonNameTxtBox.Text;
-            lesson.Content = LessonContentTxtBox.Text;
-            Resource resource = new Resource();
-            resource.File = AddResourceTxtBox.Text;
-            lesson.Resource = resource;
- 
-            singleCourse.InsertLesson(lesson, course.Id);
-            this.Close();
+            try
+            {
+                ValidateLesson();
+                Lesson lesson = new Lesson();
+                CourseService singleCourse = new CourseService();
+                lesson.Name = LessonNameTxtBox.Text;
+                lesson.Content = LessonContentTxtBox.Text;
+                Resource resource = new Resource();
+                resource.File = AddResourceTxtBox.Text;
+                lesson.Resource = resource;
+
+                singleCourse.InsertLesson(lesson, course.Id);
+                this.Close();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+            
         }
     }
 }
