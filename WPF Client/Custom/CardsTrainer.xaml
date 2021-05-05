@@ -92,10 +92,10 @@
         <Grid Name="defaultGrid" Margin="25,32,25,18" Width="250" Height="250">
             <Image Name="CourseImage" Source="{Binding Path=Source}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="103" Width="234"/>
             <TextBlock Name="CourseNameTxtBlock" Text="{Binding Course.Name, Mode=TwoWay, UpdateSourceTrigger=Explicit}" Margin="10,137,0,0" Style="{StaticResource CourseTextTemplate}"/>
-            <TextBlock Name="AuthorName" Text="{Binding Author}" Margin="10,177,0,0" Style="{StaticResource AuthorTextTemplate}"/>
+            <TextBlock Name="AuthorName" Text="{Binding Course.Author.Username}" Margin="10,177,0,0" Style="{StaticResource AuthorTextTemplate}"/>
             <TextBlock Name="CourseDescription" Text="{Binding Course.Description, Mode=TwoWay, UpdateSourceTrigger=Explicit}" Foreground="White" FontSize="20" Margin="10,42,0,2"/>
-            <TextBlock Name="CourseCategory" Text="{Binding Category}" Foreground="White" FontSize="20" Margin="10,10,21,213"/>
-            <TextBlock Name="CourseHidden" Text="{Binding Course}" Visibility="Hidden"/>
+            <TextBlock Name="CourseCategory" Text="{Binding Course.Category}" Foreground="White" FontSize="20" Margin="10,10,21,213"/>
+ 
 
         </Grid>
     </Grid>
