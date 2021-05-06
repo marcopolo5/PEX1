@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="Course View" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
     <Window.Resources>
+        
         <Style x:Key="textBox" TargetType="{x:Type TextBox}">
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="VerticalAlignment" Value="Top" />
@@ -123,10 +124,12 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+
+        <local:IdToUsernameConverter x:Key="IdToUsernameConverter" />
     </Window.Resources>
 
     <Grid Name="MainGrid" Height="800" Width="1300">
-        <Label Content="Course Name" Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="35" Margin="45,21,0,0" Width="250" />
+        <Label Name="CourseNameLabel" Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="35" Margin="45,21,0,0" Width="250" />
 
         <TextBox Name="ReviewTxtBox" Style="{StaticResource textBox}" TextWrapping="Wrap" Margin="313,556,189,0" />
         <Button Name="AddReviewButton" Click="AddReviewButton_Click" Content="Add review" Style="{StaticResource ReviewButtonTemplate}" Margin="1136,561,10,194" />
@@ -233,7 +236,7 @@
             </StackPanel>
         </Grid>
         
-        <ListView Name="ReviewListView" Background="White" ItemsSource="{Binding Reviews, Mode=TwoWay}"  Margin="313,632,29,25">
+        <ListView Name="ReviewListView" Background="White" ItemsSource="{Binding Reviews, Mode=TwoWay}"  Margin="313,632,29,25" >
             <ListView.Resources>
                 <Style TargetType="GridViewColumnHeader">
                     <Setter Property="Visibility" Value="Collapsed" />
@@ -264,7 +267,7 @@
             </ListView.Template>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="UserId" Width="150" DisplayMemberBinding="{Binding UserId}"></GridViewColumn>
+                    <GridViewColumn Header="UserName" Width="150" DisplayMemberBinding="{Binding UserId, Converter={StaticResource IdToUsernameConverter}}"></GridViewColumn>
                     <GridViewColumn Header="Content" Width="300"  DisplayMemberBinding="{Binding Content}"></GridViewColumn>
                 </GridView>
             </ListView.View>

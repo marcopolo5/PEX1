@@ -56,6 +56,7 @@ namespace WPF_Client
             lesson = new Lesson();
             quiz = new Quiz();
             resource = new Resource();
+            CourseNameLabel.Content = course.Name;
         }
 
         public void GetCourses()
@@ -187,6 +188,34 @@ namespace WPF_Client
             }
 
             MessageBox.Show(score.ToString() + "/" + QuizesUniformGrid.Children.Count * 10);
+        }
+
+        private string GetUsernameById(int userId)
+        {
+            return LessonService.GetUserById(userId).Username;
+        }
+        
+    }
+
+
+
+
+    public class IdToUsernameConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            LessonService service = new LessonService();
+            int userId = Int32.Parse(value.ToString());
+            string username = service.GetUserById(userId).Username;
+            return username;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            LessonService service = new LessonService();
+            string username = value.ToString();
+            int userId = service.GetUserByUsername(username).Id;
+            return userId;
         }
     }
 }

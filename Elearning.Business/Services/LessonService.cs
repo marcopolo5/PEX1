@@ -24,5 +24,23 @@ namespace Elearning.Business
                 return resource;
             }
         }
+
+        public User GetUserById(int userId)
+        {
+            using (ElearningContext elearningContext = new ElearningContext())
+            {
+                var user = elearningContext.Users.Where(x => x.Id == userId).Select(x => x).FirstOrDefault();
+                return user;
+            }
+        }
+
+        public User GetUserByUsername(string username)
+        {
+            using (ElearningContext elearningContext = new ElearningContext())
+            {
+                var user = elearningContext.Users.Where(x => x.Username == username).Select(x => x).FirstOrDefault();
+                return user;
+            }
+        }
     }
 }
