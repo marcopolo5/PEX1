@@ -90,10 +90,10 @@
             </Image>
         </Button>
         <Grid Name="defaultGrid" Margin="25,32,25,18" Width="250" Height="250" MouseEnter="defaultGrid_MouseEnter" MouseLeave="defaultGrid_MouseLeave">
-            <Image Name="CourseImage" Source="/Resources/defaultImageBlue.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="147" Width="234"/>
-            <TextBlock Name="CourseNameTxtBlock" Text="{Binding Course.Name}" Margin="10,165,0,0" Style="{StaticResource CourseTextTemplate}" Height="29" Width="151"/>
-            <TextBlock Name="AuthorName" Text="{Binding Course.Author.Username}" Margin="10,205,0,0" Style="{StaticResource AuthorTextTemplate}" Width="151"/>
-            <TextBlock Name="CourseDescription" Text="{Binding Course.Description}" Foreground="White" FontSize="20" Margin="10,42,39,125"/>
+            <Image Name="CourseImage" Source="/Resources/defaultImageBlue.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,0,0,0" Height="147" Width="234"/>
+            <TextBlock Name="CourseNameTxtBlock" Text="{Binding Course.Name}" Margin="10,165,0,0" Style="{StaticResource CourseTextTemplate}" Height="49" Width="151"/>
+            <TextBlock Name="AuthorName" Text="{Binding Course.Author.Username}" Margin="10,220,0,0" Style="{StaticResource AuthorTextTemplate}" Width="151"/>
+            <TextBlock Name="CourseDescription" TextWrapping="Wrap" Text="{Binding Course.Description}" Foreground="White" FontSize="20" Margin="10,42,39,125"/>
             <TextBlock Name="CourseCategory" Text="{Binding Course.Category}" Foreground="White" FontSize="20" Margin="10,10,118,215"/>
         </Grid>
     </Grid>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ElearningClient"
         mc:Ignorable="d"
-       Title="e-Learning" 
+        Title="E-COV Learning" 
         SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>

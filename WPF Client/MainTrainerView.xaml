@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Client"
         mc:Ignorable="d"
-        Title="Main Window" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+        Title="E-COV Learning"  WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
 
     <Window.Resources>
         <Style x:Key="textBox" TargetType="{x:Type TextBox}">
@@ -118,8 +118,8 @@
     
 
     <Grid Height="800" Width="1300" HorizontalAlignment="Center">
-        <Label Content="e-Learning App" Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="25" Margin="102,18,0,0"/>
-       
+        <!--<Label Content="E-COV Learning" Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="45" Margin="124,4,0,0"/>-->
+        <Image Source="/Resources/LOGO.png" Margin="12,10,1018,638" RenderTransformOrigin="0.5,0.5"/>
         <Button Name="LogoutButton" Style="{StaticResource buttonTemplate}" Content="{StaticResource LogoutIcon}" Click="Logout_Click" ToolTip="Log out" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,14,112,0" Width="44" Height="45" Panel.ZIndex="1" Cursor="Hand"/>
 
 

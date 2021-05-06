@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Client"
         mc:Ignorable="d"
-        Title="Course View" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+        Title="E-COV Learning"  WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
     <Window.Resources>
         
         <Style x:Key="textBox" TargetType="{x:Type TextBox}">
@@ -26,6 +26,36 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+        </Style>
+
+        <Style x:Key="SubmitButton" TargetType="{x:Type Button}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="#F0E1DE"/>
+            <Setter Property="TextElement.FontSize" Value="17"/>
+            <Setter Property="TextElement.FontStyle" Value="Oblique"/>
+            <Setter Property="TextElement.FontWeight" Value="DemiBold"/>
+            <Setter Property="Background" Value="#132F70"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="13" Background="#132F70" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#050A30"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
         </Style>
 
         <SolidColorBrush x:Key="Button.Static.Background" Color="Transparent" />
@@ -232,7 +262,7 @@
 
                     </UniformGrid>
                 </ScrollViewer>
-                <Button Name="SubmitButton" Content="Submit" Click="SubmitButton_Click" Height="50" Width="50"/>
+                <Button Name="SubmitButton" Content="Submit" Click="SubmitButton_Click" Height="50" Width="50" Style="{StaticResource SubmitButton}"/>
             </StackPanel>
         </Grid>
         

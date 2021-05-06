@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Client"
         mc:Ignorable="d"
-        Title="Edit Course" SizeToContent="WidthAndHeight"  WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="E-COV Learning"  SizeToContent="WidthAndHeight"  WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
 
     <Window.Resources>
         <Style x:Key="textBox" TargetType="{x:Type TextBox}">
@@ -72,32 +72,32 @@
     <Grid Height="855" Width="1300">
 
 
-        <Label Foreground="#132F70" FontWeight="Bold" Content="Course name:" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="57,55,0,0"/>
+        <Label Foreground="#132F70" FontWeight="Bold" Content="Course name:" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="57,51,0,0"/>
 
-        <TextBox Name="courseNameBox" Style="{StaticResource textBox}" VerticalContentAlignment="Center" TextWrapping="Wrap" Height="30" FontSize="20" HorizontalAlignment="Left" Width="375" Margin="274,62,0,0"  />
+        <TextBox Name="courseNameBox" Style="{StaticResource textBox}" VerticalContentAlignment="Center" TextWrapping="Wrap" Height="30" FontSize="20" HorizontalAlignment="Left" Width="404" Margin="274,62,0,0"  />
 
         <Label Content="Course description:" Foreground="#132F70" FontWeight="Bold" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="57,122,0,0" Width="198"/>
 
-        <TextBox Name="courseDescriptionBox" Style="{StaticResource textBox}" TextWrapping="Wrap" FontSize="17" Height="223" Margin="274,122,650,0" />
+        <TextBox Name="courseDescriptionBox" Style="{StaticResource textBox}" TextWrapping="Wrap" FontSize="17" Height="151" Margin="274,122,218,0" />
 
-        <Button Content="Remove lesson" Name="RemoveLessonButton" FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Left"  Style="{StaticResource buttonTemplate}" Click="RemoveLessonButton_Click" Margin="1107,363,0,0" Width="139" Height="30"/>
+        <Button Content="Remove lesson" Name="RemoveLessonButton" FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Left"  Style="{StaticResource buttonTemplate}" Click="RemoveLessonButton_Click" Margin="493,636,0,0" Width="139" Height="24"/>
 
-        <Button Content="Add lesson" Name="AddLessonButton" FontSize="15" Style="{StaticResource buttonTemplate}" Click="AddLesson_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="942,363,0,0" Height="30" Width="139"/>
+        <Button Content="Add lesson" Name="AddLessonButton" FontSize="15" Style="{StaticResource buttonTemplate}" Click="AddLesson_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="313,636,0,0" Height="24" Width="140"/>
 
-        <Button Content="Cancel" Name="CancelButton" Style="{StaticResource buttonTemplate}" Click="CancelCourse_Click" Margin="1080,775,54,44"/>
+        <Button Content="Cancel" Name="CancelButton" Style="{StaticResource buttonTemplate}" Click="CancelCourse_Click" Margin="1064,778,52,44"/>
 
-        <Button Content="Save" Name="SaveButton"  Style="{StaticResource buttonTemplate}" Click="SaveButton_Click" Margin="859,775,275,44"/>
+        <Button Content="Save" Name="SaveButton"  Style="{StaticResource buttonTemplate}" Click="SaveButton_Click" Margin="852,778,264,44"/>
 
-        <ComboBox Name="categoryComboBox" IsEditable="True" Text="Category" FontSize="15" IsReadOnly="True" Margin="274,363,842,462"/>
+        <ComboBox Name="categoryComboBox" IsEditable="True" Text="Category" FontSize="15" IsReadOnly="True" Margin="407,291,705,535"/>
 
-        <ComboBox Name="dificultyComboBox" IsEditable="True" Text="Difficulty" FontSize="15" IsReadOnly="True" Margin="466,363,650,462"/>
+        <ComboBox Name="dificultyComboBox" IsEditable="True" Text="Difficulty" FontSize="15" IsReadOnly="True" Margin="729,291,383,535"/>
 
         <ListView ItemsSource="{Binding Lessons, Mode=TwoWay}"
             Name="lessonListView"
             FontSize="17"
-                  Margin="783,73,0,509"
+                  Margin="182,395,0,241"
             HorizontalAlignment="Left"
-            Width="463"
+            Width="450"
             >
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
@@ -151,9 +151,9 @@
         <ListView ItemsSource="{Binding Quizes, Mode=TwoWay}"
             Name="quizesListView"
             FontSize="17"
-                  Margin="165,446,0,135"
+                  Margin="792,395,0,241"
             HorizontalAlignment="Left"
-            Width="593"
+            Width="456"
             >
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
@@ -193,11 +193,11 @@
             </ListView.View>
         </ListView>
 
-        <Button Content="Remove quiz" Name="RemoveQuizButton" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource buttonTemplate}" Margin="783,609,0,0" Click="RemoveQuizButton_Click" Width="125"/>
-        <Button Content="Edit quiz" Name="EditQuizButton" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource buttonTemplate}" Margin="783,572,0,0" Click="EditQuizButton_Click" Width="125"/>
-        <Button Content="Add quiz" Name="AddQuizButton" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource buttonTemplate}" Click="AddQuizButton_Click" Margin="0,532,392,0" Width="125"/>
-        <Label Foreground="#132F70" FontWeight="Bold" Content="Quizzes:" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="57,446,0,0"/>
-        <Label Foreground="#132F70" FontWeight="Bold" Content="Lessons:" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="691,65,0,0"/>
+        <Button Content="Remove quiz" Name="RemoveQuizButton" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource buttonTemplate}" Margin="1123,637,0,0" Click="RemoveQuizButton_Click" Width="125"/>
+        <Button Content="Edit quiz" Name="EditQuizButton" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource buttonTemplate}" Margin="958,637,0,0" Click="EditQuizButton_Click" Width="124"/>
+        <Button Content="Add quiz" Name="AddQuizButton" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource buttonTemplate}" Click="AddQuizButton_Click" Margin="0,637,383,0" Width="125"/>
+        <Label Foreground="#132F70" FontWeight="Bold" Content="Quizzes:" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="683,410,0,0"/>
+        <Label Foreground="#132F70" FontWeight="Bold" Content="Lessons:" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="57,410,0,0"/>
 
     </Grid>
 

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPF_Client"
         xmlns:ccontrols="clr-namespace:WPF_Client.Custom"
         mc:Ignorable="d"
-        Title="Main Window"
+        Title="E-COV Learning" 
          WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
 
     <Window.Resources>
@@ -99,11 +99,11 @@
 
 
     <Grid Height="800" Width="1300" HorizontalAlignment="Center">
-        <Label Content="e-Learning App" Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="25" Margin="67,18,0,0"/>
-        <Button Name="LogoutButton" Style="{StaticResource buttonTemplate}" Content="{StaticResource LogoutIcon}" Click="Logout_Click" ToolTip="Log out" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,14,10,0" Width="44" Height="46" Panel.ZIndex="1" Cursor="Hand"/>
+        <Image Source="/Resources/LOGO.png" Margin="12,10,1018,638" RenderTransformOrigin="0.5,0.5"/>
+        <Button Name="LogoutButton" Style="{StaticResource buttonTemplate}" Content="{StaticResource LogoutIcon}" Click="Logout_Click" ToolTip="Log out" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,14,26,0" Width="44" Height="46" Panel.ZIndex="1" Cursor="Hand"/>
 
 
-        <Label Name="UserNameLabel"  Foreground="#132F70" FontWeight="Bold" HorizontalContentAlignment="Right" VerticalAlignment="Top" FontSize="25" Margin="911,16,70,0" Height="42" Width="319"/>
+        <Label Name="UserNameLabel"  Foreground="#132F70" FontWeight="Bold" HorizontalContentAlignment="Right" VerticalAlignment="Top" FontSize="25" Margin="895,16,86,0" Height="42" Width="319"/>
 
         <Image Name="ExploreImage" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="18,263,0,0" Width="27" Height="40" Panel.ZIndex="1"/>
         <Button Name="ExploreBtn" Content="Explore" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="83,263,0,0" Style="{StaticResource NavigationButtons}" Width="208" Click="ExploreBtn_Click" MouseEnter="ExploreBtn_MouseEnter" MouseLeave="ExploreBtn_MouseLeave"/>
