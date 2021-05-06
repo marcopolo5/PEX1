@@ -57,7 +57,7 @@ namespace WPF_Client
             openFileDialog.Filter = @"PDF Files (*.pdf)|*.pdf";
             if (openFileDialog.ShowDialog() == true)
             {
-                AddResourceTxtBox.Text = File.ReadAllText(openFileDialog.FileName);
+                AddResourceButton.DataContext = File.ReadAllText(openFileDialog.FileName);
             }
         }
 
@@ -75,10 +75,10 @@ namespace WPF_Client
             {
                 throw new Exception("Lesson content cannot be empty!");
             }
-            if (AddResourceTxtBox.Text.Length <= 0)
-            {
-                throw new Exception("Resource cannot be empty!");
-            }
+            //if (AddResourceButton.DataContext. <= 0)
+            //{
+            //    throw new Exception("Resource cannot be empty!");
+            //}
         }
 
         private void SaveLessonButton_Click(object sender, RoutedEventArgs e)
@@ -91,7 +91,7 @@ namespace WPF_Client
                 lesson.Name = LessonNameTxtBox.Text;
                 lesson.Content = LessonContentTxtBox.Text;
                 Resource resource = new Resource();
-                resource.File = AddResourceTxtBox.Text;
+                resource.File = (string)AddResourceButton.DataContext;
                 lesson.Resource = resource;
 
                 singleCourse.InsertLesson(lesson, course.Id);

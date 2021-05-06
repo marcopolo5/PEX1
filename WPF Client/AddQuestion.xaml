@@ -108,7 +108,7 @@
         <Label Content="CorrectAnswer" Margin="0,20,0,0" Foreground="#132F70" FontWeight="Bold" Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="2"/>
         <ComboBox Name="CorrectAnswerComboBox" Width="100" Margin="0,20,400,0" Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="2"/>
         <Button Content="Save" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25,20,0,0" Grid.Column="2" Style="{StaticResource ButtonsTemplate}" Name="SaveQuestionButton" Click="SaveQuestionButton_Click" Grid.Row="13"/>
-        <Button Content="Cancel" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,20,25,0" Grid.Column="1" Style="{StaticResource ButtonsTemplate}" Name="CancelButton" Grid.Row="13"/>
+        <Button Content="Cancel" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,20,25,0" Grid.Column="1" Style="{StaticResource ButtonsTemplate}" Name="CancelButton" Grid.Row="13" Click="CancelButton_Click"/>
 
 
     </Grid>
