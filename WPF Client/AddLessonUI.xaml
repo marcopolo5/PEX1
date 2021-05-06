@@ -72,7 +72,7 @@
         <TextBox Name="LessonContentTxtBox" Style="{StaticResource textBox}" FontSize="17" HorizontalAlignment="Left" Width="422"  Margin="187,99,0,0" Height="159" />
         <!--<TextBox Name="AddResourceTxtBox" Style="{StaticResource textBox}" FontSize="17" HorizontalAlignment="Left" Width="390"  Margin="39,251,0,0" Height="31" />-->
         <Button Content="Add resource..." Style="{StaticResource buttonTemplate}" Name="AddResourceButton" Margin="39,278,419,87" Click="AddResourceButton_Click" />
-        <TextBox x:Name="AddResourceTxtBox" Margin="237,274,40,87"></TextBox>
+        <TextBox Name="AddResourceTxtBox" Style="{StaticResource textBox}" FontSize="17" HorizontalAlignment="Left" Width="376"  Margin="250,288,0,0" Height="31"></TextBox>
         <Button Content="Save" Name="SaveLessonButton" Style="{StaticResource buttonTemplate}" Margin="294,342,211,25" Click="SaveLessonButton_Click" />
         <Button Content="Cancel" Name="CancelButton" Style="{StaticResource buttonTemplate}" Margin="464,342,41,25" Click="CancelButton_Click" />
     </Grid>
