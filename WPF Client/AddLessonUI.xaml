@@ -65,13 +65,14 @@
         </Style>
     </Window.Resources>
 
-    <Grid Width="650" Height="400">
+    <Grid Width="650" Height="417">
         <Label Content="Lesson name:" Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Margin="39,33,0,0" Height="33" Width="143" />
         <Label Content="Content:" Foreground="#132F70" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Margin="39,99,0,0" Height="33" Width="96" />
         <TextBox Name="LessonNameTxtBox" Style="{StaticResource textBox}" FontSize="17" HorizontalAlignment="Left" Width="422"  Margin="187,36,0,0" Height="30" RenderTransformOrigin="0.706,-0.414" />
         <TextBox Name="LessonContentTxtBox" Style="{StaticResource textBox}" FontSize="17" HorizontalAlignment="Left" Width="422"  Margin="187,99,0,0" Height="159" />
         <!--<TextBox Name="AddResourceTxtBox" Style="{StaticResource textBox}" FontSize="17" HorizontalAlignment="Left" Width="390"  Margin="39,251,0,0" Height="31" />-->
         <Button Content="Add resource..." Style="{StaticResource buttonTemplate}" Name="AddResourceButton" Margin="39,278,419,87" Click="AddResourceButton_Click" />
+        <TextBox x:Name="AddResourceTxtBox" Margin="237,274,40,87"></TextBox>
         <Button Content="Save" Name="SaveLessonButton" Style="{StaticResource buttonTemplate}" Margin="294,342,211,25" Click="SaveLessonButton_Click" />
         <Button Content="Cancel" Name="CancelButton" Style="{StaticResource buttonTemplate}" Margin="464,342,41,25" Click="CancelButton_Click" />
     </Grid>
